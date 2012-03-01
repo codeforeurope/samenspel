@@ -289,7 +289,7 @@ class ApplicationController < ActionController::Base
     end
 
     def signups_enabled?
-      !Teambox.config.community || User.count == 0
+      Teambox.config.allow_signups || User.count == 0
     end
 
     def time_tracking_enabled?

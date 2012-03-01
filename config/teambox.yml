@@ -7,6 +7,13 @@ defaults: &defaults
   # The domain from where your app is served
   app_domain: localhost
 
+  # Set community to false to allow support for multiple organizations (just like in hosted version).
+  community: false
+
+  # Set to true if you want to allow users to sign-up.
+  # Sign-up for the first user, just after installation, is allowed implicitly.
+  allow_signups: false
+
   # How many activities should activity feeds display?
   activities_per_page: 25
   autorefresh_interval: 60 # in seconds

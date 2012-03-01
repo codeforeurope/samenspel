@@ -38,3 +38,8 @@ Contributing
 Follow our [contributor guide](https://github.com/teambox/teambox/wiki/Contributing) on our github wiki.
 
 Thanks to the many Ruby projects we're using and the Famfamfam icon collection.
+
+What's new in this fork?
+------------------------
+
+- Disabled 'community mode' so you can now create more than one organizations. Every organization may have its own projects (like as in hosted version).
