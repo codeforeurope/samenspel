@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   concerned_with  :activation,
                   :avatar,
                   :authentication,
+                  :authentication_ldap,
                   :conversions,
                   :recent_projects,
                   :roles,
@@ -61,7 +62,8 @@ class User < ActiveRecord::Base
                   :notify_conversations,
                   :notify_tasks,
                   :splash_screen,
-                  :wants_task_reminder
+                  :wants_task_reminder,
+                  :uses_ldap_authentication
 
   attr_accessor   :activate, :old_password
 

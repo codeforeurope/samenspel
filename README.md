@@ -43,3 +43,4 @@ What's new in this fork?
 ------------------------
 
 - Disabled 'community mode' so you can now create more than one organizations. Every organization may have its own projects (like as in hosted version).
+- Implemented authentication via LDAP with automatic account creation.

@@ -119,6 +119,19 @@ defaults: &defaults
   #  - :provider: facebook
   #    :key: 
   #    :secret: 
+      
+  allow_ldap_auth: false
+  
+  ldap_auth_settings:
+    :host: 'HOST'
+    :port: 389
+    :base_dn: 'ou=People,o=organization.org'
+    :bind_dn: # default none
+    :bind_password: # default none
+    :identifier_key: # default 'uid'
+    :first_name_key: # default 'givenName'
+    :last_name_key: # default 'sn'
+    :email_key: # default 'mail'
   
   heroku: <%= !!ENV['HEROKU_TYPE'] %>
 

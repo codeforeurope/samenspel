@@ -44,7 +44,7 @@ class User
   end
 
   def password_required?
-    crypted_password.blank? || !password.blank? || performing_reset
+    (crypted_password.blank? || !password.blank? || performing_reset) && !Teambox.config.allow_ldap_auth
   end
 
   def old_password_provided?

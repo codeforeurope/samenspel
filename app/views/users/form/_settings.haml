@@ -1,7 +1,11 @@
 .login.text_field
   = f.label :login, t('users.form.login')
-  = f.text_field :login
-  = errors_for user, :login
+  - if user.uses_ldap_authentication
+    = user.login
+  - else
+    = f.text_field :login
+    = errors_for user, :login
+
 .email.text_field
   = f.label :email, t('users.form.email')
   - if (@invitation || @app_link)
@@ -10,22 +14,23 @@
     = f.text_field :email
   = errors_for user, :email
 
-#password_fields{ :style => 'display: none' }
-  .password.text_field
-    = f.label :old_password, t('users.form.old_password')
-    = f.password_field :old_password, :autocomplete => 'off'
-    = errors_for user, :old_password
-  .password.text_field
-    = f.label :password, t('users.form.password')
-    = f.password_field :password, :autocomplete => 'off'
-    = errors_for user, :password
-  .password.text_field
-    = f.label :password_confirmation, t('users.form.confirm_password')
-    = f.password_field :password_confirmation, :autocomplete => 'off'
-    = errors_for user, :password_confirmation
+- unless user.uses_ldap_authentication
+  #password_fields{ :style => 'display: none' }
+    .password.text_field
+      = f.label :old_password, t('users.form.old_password')
+      = f.password_field :old_password, :autocomplete => 'off'
+      = errors_for user, :old_password
+    .password.text_field
+      = f.label :password, t('users.form.password')
+      = f.password_field :password, :autocomplete => 'off'
+      = errors_for user, :password
+    .password.text_field
+      = f.label :password_confirmation, t('users.form.confirm_password')
+      = f.password_field :password_confirmation, :autocomplete => 'off'
+      = errors_for user, :password_confirmation
 
-#change_password_link
-  = link_to_function t('users.form.change_password'), show_user_password_fields
+  #change_password_link
+    = link_to_function t('users.form.change_password'), show_user_password_fields
 
 .first_day_of_week.select
   = f.label :first_day_of_week, t('users.form.first_day_of_week')
