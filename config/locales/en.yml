@@ -126,7 +126,8 @@ en:
       back: Back to Login screen
       submit: Send me a link to reset my password
     create:
-      not_found_html: "We can't find a user with that email: %{email}<br/>Please check the email address and try again. If that doesn't work, contact us at %{support}"
+      not_found_html: "We can't find a user with that email: %{email}. Please check the email address and try again. If that doesn't work, contact us at %{support}."
+      uses_ldap_auth_html: "We can't change this password because user with email %{email} is authenticated via LDAP. Please contact administrator of your LDAP server. If you're sure that your password is correct, contact us at %{support}."
       invalid_html: "The change password URL you visited is either invalid or expired. Try using I Forgot my Password again from the home page.<br/>If that doesn't work, contact us at %{support}"
       password_not_updated: "New password is not valid. Try again."
       password_updated: "Password was successfully updated."

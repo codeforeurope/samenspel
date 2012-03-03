@@ -11,8 +11,13 @@ class ResetPasswordsController < ApplicationController
   def create
     @reset_password = ResetPassword.new(params[:reset_password])
     @reset_password.user = User.find_by_email(@reset_password.email)
-
-    if @reset_password.save
+    
+    if @reset_password.user && @reset_password.user.uses_ldap_authentication
+      @reset_password.errors.clear
+      flash[:error] = I18n.t('reset_passwords.create.uses_ldap_auth_html',
+                              {:email => @reset_password.email, :support => Teambox.config.support})
+      render :new
+    elsif @reset_password.save
       flash[:error] = nil
       Emailer.send_email :forgot_password, @reset_password.id
       redirect_to sent_password_path(:email => @reset_password.email)
