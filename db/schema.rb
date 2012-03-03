@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302190912) do
+ActiveRecord::Schema.define(:version => 20120303033530) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(:version => 20120302190912) do
     t.string   "name"
     t.string   "permalink",                                                   :null => false
     t.string   "language",          :default => "en"
-    t.string   "time_zone",         :default => "Eastern Time (US & Canada)"
+    t.string   "time_zone",         :default => "Prague"
     t.string   "domain"
     t.text     "description"
     t.string   "logo_file_name"
@@ -424,9 +424,9 @@ ActiveRecord::Schema.define(:version => 20120302190912) do
     t.string   "salt",                      :limit => 40
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
-    t.string   "time_zone",                                :default => "Eastern Time (US & Canada)"
+    t.string   "time_zone",                                :default => "Prague"
     t.string   "locale",                                   :default => "en"
-    t.string   "first_day_of_week",                        :default => "sunday"
+    t.string   "first_day_of_week",                        :default => "monday"
     t.integer  "invitations_count",                        :default => 0,                            :null => false
     t.string   "login_token",               :limit => 40
     t.datetime "login_token_expires_at"
