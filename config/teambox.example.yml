@@ -123,15 +123,15 @@ defaults: &defaults
   allow_ldap_auth: false
   
   ldap_auth_settings:
-    :host: 'HOST'
+    :host: 'domain.tld'
     :port: 389
-    :base_dn: 'ou=People,o=organization.org'
-    :bind_dn: # default none
-    :bind_password: # default none
-    :identifier_key: # default 'uid'
-    :first_name_key: # default 'givenName'
-    :last_name_key: # default 'sn'
-    :email_key: # default 'mail'
+    :base_dn: 'ou=People,o=domain.tld'
+    :bind_dn: # none
+    :bind_password: # none
+    :identifier_key: 'uid'
+    :first_name_key: 'givenName'
+    :last_name_key: 'sn'
+    :email_key: 'mail'
   
   heroku: <%= !!ENV['HEROKU_TYPE'] %>
 

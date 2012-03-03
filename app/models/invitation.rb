@@ -26,7 +26,12 @@ class Invitation < RoleRecord
 
   def user_or_email=(value)
     self.invited_user = User.find_by_username_or_email(value)
-    self.email = value unless self.invited_user
+
+    if Teambox.config.allow_ldap_auth && !self.invited_user && !valid_email?(value)
+      self.invited_user = User.find_in_ldap_and_create(value)
+    else
+      self.email = value
+    end
     @user_or_email = value
   end
   
