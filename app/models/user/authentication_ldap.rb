@@ -4,13 +4,13 @@ class User
     logger.info "LDAP login with '#{login}'"
 
     # First query ldap to get the user's info
-    user = User.find_in_ldap(login)
-    return nil if !user
+    ldap_user = User.find_in_ldap(login)
+    return nil if !ldap_user
 
     # Then try to bind with user's password
     logger.debug "Trying to bind with user\'s password"
     conn = User.create_ldap_connection
-    conn.auth user[:dn], password
+    conn.auth ldap_user[:dn], password
     
     if conn.bind
       logger.info "LDAP authentication successful"
@@ -36,21 +36,29 @@ class User
     logger.debug "Searching #{conf.identifier_key}=#{login},#{conf.base_dn} on #{conf.host}:#{conf.port}"
     result = conn.search(:base => conf.base_dn, :filter => filter, :attributes => attributes)
     
-    if (!result || result.empty?)
+    if !result || result.empty?
       logger.debug conn.get_operation_result
       return nil
     end
 
     dn = result.first.dn
-    logger.debug "Found '#{dn}'"
-    return nil if !dn
+    first_name = result.first[ conf.first_name_key ][0]
+    last_name = result.first[ conf.last_name_key ][0]
+    email = result.first[ conf.email_key ][0]
     
+    logger.debug "Found #{dn}: #{first_name}, #{last_name}, #{email}"
+    if !dn || !first_name || !last_name || !email
+      logger.info "One of the required attributes in LDAP entry is null"
+      return nil
+    end
+    
+    # Net::LDAP doesn't return string object; to_str is really necessary (tested)
     return {
       :dn => dn,
       :login => login,
-      :first_name => result.first[ conf.first_name_key ][0].to_str,
-      :last_name => result.first[ conf.last_name_key ][0].to_str,
-      :email => result.first[ conf.email_key ][0].to_str
+      :first_name => first_name.to_str,
+      :last_name => last_name.to_str,
+      :email => email.to_str
     }
   end
 
@@ -64,7 +72,7 @@ class User
       conn.host = conf.host
       conn.port = conf.port
 
-      if (conf.bind_dn && conf.bind_password)
+      if conf.bind_dn && conf.bind_password
         conn.auth conf.bind_dn, conf.bind_password
       end
       return conn
