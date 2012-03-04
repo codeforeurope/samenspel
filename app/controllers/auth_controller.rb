@@ -1,4 +1,5 @@
 # TODO: Make it run on Heroku
+# Fixed by https://teambox.com/projects/teambox/conversations/76950
 
 class AuthController < ApplicationController
   skip_before_filter :login_required
@@ -6,12 +7,12 @@ class AuthController < ApplicationController
   def callback
     provider = params[:provider]
     begin
-      auth_hash = params[:auth]
+      auth_hash = params[:auth] || symbolize_keys(request.env["omniauth.auth"])
       AppLink.find_by_provider_and_app_user_id_and_user_id(provider, auth_hash[:uid], nil).try(:destroy)
       load_profile(auth_hash, provider)
 
       if logged_in?
-        if current_user.app_links.find_by_provider(@provider)
+        if current_user.app_links.find_by_provider(provider)
           flash[:notice] = t(:'oauth.already_linked_to_your_account')
         elsif AppLink.find_by_provider_and_app_user_id(provider, auth_hash[:uid])
           flash[:error] = t(:'oauth.already_taken_by_other_account')
@@ -92,6 +93,22 @@ class AuthController < ApplicationController
         true
       else
         false
+      end
+    end
+    
+    def symbolize_keys arg
+      case arg
+      when Array
+        arg.map { |elem| symbolize_keys elem }
+      when Hash
+        Hash[
+          arg.map { |key, value|
+            k = key.is_a?(String) ? key.to_sym : key
+            v = symbolize_keys value
+            [k,v]
+          }]
+      else
+        arg
       end
     end
 end

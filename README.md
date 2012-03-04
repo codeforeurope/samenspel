@@ -43,6 +43,8 @@ What's new in this fork?
 ------------------------
 
 - Disabled 'community mode' so you can now create more than one organizations. Every organization may have its own projects (like as in hosted version).
-- Implemented authentication via LDAP with automatic account creation.
+- Implemented authentication via LDAP with automatic account creation. Also fixed "Forgot your password" to work correctly with users authenticated via LDAP.
 - Added LDAP support for invitations. When you invite colleague by username and he's known in LDAP, it will automaticaly create user account for him and send e-mail invitation for log-in.
 - Changed default time-zone to Prague and first day of week to monday :-)
+- Used [fixed](https://github.com/davidmm/immortal) gem Immortal that works correctly with PostgreSQL etc.
+- Fixed OAuth authentication controller for Google (see [this page](https://teambox.com/projects/teambox/conversations/76950)).
