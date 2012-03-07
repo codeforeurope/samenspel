@@ -103,11 +103,15 @@ class Ability
     can :admin, Organization do |organization|
       organization.is_admin?(user)
     end
-    
+
     # User permissions
     
     can :create_project, User do |the_user|
       the_user.can_create_project?
+    end
+    
+    can :create_organization, User do |the_user|
+      Teambox.config.user_can_create_organization? or the_user.supervisor?
     end
     
     can :admin, User do |the_user|

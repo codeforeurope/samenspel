@@ -200,7 +200,7 @@ class User < ActiveRecord::Base
   end
 
   def can_create_project?
-    true
+    !organizations.empty?  # is in any organization?
   end
 
   DELETED_TAG = "deleted"
@@ -264,6 +264,10 @@ class User < ActiveRecord::Base
 
   def users_for_user_map
     @users_for_user_map ||= self.organizations.map{|o| o.users + o.users_in_projects }.flatten.uniq
+  end
+
+  def supervisor?
+    Teambox.config.supervisors? and Teambox.config.supervisors.include?(login)
   end
 
   protected
