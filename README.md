@@ -48,3 +48,4 @@ What's new in this fork?
 - Changed default time-zone to Prague and first day of week to monday :-)
 - Used [fixed](https://github.com/davidmm/immortal) gem Immortal that works correctly with PostgreSQL etc.
 - Fixed OAuth authentication controller for Google (see [this page](https://teambox.com/projects/teambox/conversations/76950)).
+- Introduced new role named supervisor and ability to create organizations. You can allow creating new organizations only to supervisors (or every user like as before).

@@ -17,12 +17,22 @@ defaults: &defaults
   # Set community to false to allow support for multiple organizations (just like in hosted version).
   community: false
 
+  # You can assign new supervisor role to some users. When you disallow users
+  # to create organizations (see below), than only supervisors will be allowed 
+  # to do that. Provide their usernames or comment it out if you don't want
+  # supervisor role.
+#  supervisors: admin
+
 
 ########## Users settings ##########
 
   # Set to true if you want to allow users to sign-up.
   # Sign-up for the first user, just after installation, is allowed implicitly.
   allow_signups: false
+  
+  # Allow users to create new organizations?
+  # If false then only supervisors are allowed to do that.
+  user_can_create_organization: true
   
   # Email confirmaiton is require to login
   email_confirmation_require: true
