@@ -203,20 +203,40 @@ module Emailer::Incoming
     raise NotProjectMemberError.new(email, "User does not belong to project") unless @user.projects.include? @project
 
     # Get the body in multipart emails as well
-    if email.respond_to? :parts
-      parts = email.parts.select{|p| p.content_type.include?('text/')}
-      @body = parts.any? ? parts.collect(&:decoded).join("\n") : email.body
-    else
-      @body = email.body
-    end
+    # if email.respond_to? :parts
+    #   parts = email.parts.select{|p| p.content_type.include?('text/')}
+    #   @body = parts.any? ? parts.collect(&:decoded).join("\n") : email.body
+    # else
+    #   @body = email.body
+    # end
+    # ^-- This doesn't work well because multiparts can be recursive! However it seems 
+    #     that 'email.text_part' returns just what we need so this is not necessary.
+
     #strip any remaining html tags (after strip_responses) from the body
-    @body    = strip_responses(@body).strip_tags.to_s.strip
+    @body    = strip_responses(email.text_part.decoded).strip_tags.to_s.strip
     @subject = email.subject.to_s.gsub(REPLY_REGEX, "").strip
     @files   = email.attachments || []
+
+    # Delete attachments with unwanted MIME types.
+    # This was introduced due to S/MIME signature file to not include in conversations.
+    @files.delete_if do |attachment|
+      denied = Teambox.config.email_denied_mime_types.to_a
+      !denied.count { |type| attachment.content_type.start_with?(type) }.zero?
+    end
+
+    # Format attachments for processing by Paperclip
+    @files.collect! do |attachment|
+      file = StringIO.new(attachment.decoded)
+      file.class.class_eval { attr_accessor :original_filename, :content_type }
+      file.original_filename = attachment.filename
+      file.content_type = attachment.mime_type
+
+      file
+    end
     
     Rails.logger.info "#{@user.name} <#{@user.email}> sent '#{@subject}' to #{@to}"
   end
-  
+
   # Removes 'On ... bla bla wrote line'
   # Splits emails on answer line and takes top half
   # Gmail adds <div class='email' to indicate where real message begins
