@@ -52,6 +52,7 @@ GEM
       rack-mount (~> 0.6.13)
       rack-test (~> 0.5.6)
       tzinfo (~> 0.3.23)
+    active_reload (0.6.1)
     activemodel (3.0.3)
       activesupport (= 3.0.3)
       builder (~> 2.1.2)
@@ -270,6 +271,7 @@ PLATFORMS
 
 DEPENDENCIES
   SystemTimer (~> 1.2.0)
+  active_reload
   activesupport-i18n-patch!
   aws-s3 (~> 0.6.2)
   barista (~> 1.0)

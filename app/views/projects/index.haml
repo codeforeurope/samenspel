@@ -19,7 +19,7 @@
     = list_threads(@threads)
     = show_more_button
   = #javascript_tag autorefresh(@activities)
-- elsif current_user.organizations.any?
+- elsif current_user.can_create_project?
   = render 'projects/primer'
 
 - content_for :column do

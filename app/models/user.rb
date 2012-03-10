@@ -200,7 +200,8 @@ class User < ActiveRecord::Base
   end
 
   def can_create_project?
-    !organizations.empty?  # is in any organization?
+    # is in any organization?
+    !organizations.empty? or supervisor? or Teambox.config.user_can_create_organization 
   end
 
   DELETED_TAG = "deleted"
