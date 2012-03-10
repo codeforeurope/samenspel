@@ -94,6 +94,9 @@ module Teambox
         end
       end
 
+      # Don't mess conversations with S/MIME signature files from emails.
+      self.email_denied_mime_types = 'application/pkcs'
+
     end
     config.from_file 'teambox.yml'
 
