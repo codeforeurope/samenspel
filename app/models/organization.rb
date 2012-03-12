@@ -25,7 +25,7 @@ class Organization < ActiveRecord::Base
   before_destroy :prevent_if_projects
   
   attr_accessor :is_example
-  attr_accessible :name, :permalink, :description, :logo, :settings
+  attr_accessible :name, :permalink, :description, :logo, :settings, :default
 
   LogoSizes = {
     :square   => [96, 96],

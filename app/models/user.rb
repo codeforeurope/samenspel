@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   
   before_create :init_user
   after_create :clear_invites
+  after_create :join_default_organizations
   before_save :update_token
 
   def update_token
@@ -269,6 +270,12 @@ class User < ActiveRecord::Base
 
   def supervisor?
     Teambox.config.supervisors? and Teambox.config.supervisors.include?(login)
+  end
+
+  def join_default_organizations
+    Organization.find_all_by_default(true).each do |target|
+      target.add_member(self, Membership::ROLES[:participant])
+    end
   end
 
   protected

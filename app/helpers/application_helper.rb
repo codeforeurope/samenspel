@@ -301,4 +301,8 @@ BLOCK
       page << errors
     end
   end
+
+  def default_organizations_enabled?
+    Teambox.config.allow_default_organizations? || false
+  end
 end
