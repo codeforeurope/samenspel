@@ -302,7 +302,7 @@ BLOCK
     end
   end
 
-  def default_organizations_enabled?
+  def default_organizations_allowed?
     Teambox.config.allow_default_organizations? || false
   end
 end

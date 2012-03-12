@@ -179,6 +179,8 @@ defaults: &defaults
   # Allow option to set certain organizations as default for all new users;
   # every newly signed user will be automatically added to that organizations 
   # as participant (i.e. will be able to create new projects).
+  # When you disable it lately, it will NOT turn off adding new users to
+  # default organizations, but only disable changing of this option.
   allow_default_organizations: false
 
   # Allow teambox.com to gather statistics about this installation

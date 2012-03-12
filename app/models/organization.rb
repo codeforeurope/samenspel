@@ -21,6 +21,7 @@ class Organization < ActiveRecord::Base
   validates_format_of     :permalink, :with => /^[\w\_\-]+$/
 
   validate :ensure_unicity_for_community_version, :on => :create, :unless => :is_example
+  validate :forbid_if_change_default_is_disabled
 
   before_destroy :prevent_if_projects
   
@@ -136,6 +137,13 @@ class Organization < ActiveRecord::Base
 
     def prevent_if_projects
       projects.empty?
+    end
+
+    def forbid_if_change_default_is_disabled
+      unless Teambox.config.allow_default_organizations?
+        # raise error if value of attribute "default" has changed
+        errors.add(:base, "You are not allowed to do that!") if default_changed?
+      end
     end
 
 end
