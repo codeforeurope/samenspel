@@ -203,17 +203,10 @@ module Emailer::Incoming
     raise NotProjectMemberError.new(email, "User does not belong to project") unless @user.projects.include? @project
 
     # Get the body in multipart emails as well
-    # if email.respond_to? :parts
-    #   parts = email.parts.select{|p| p.content_type.include?('text/')}
-    #   @body = parts.any? ? parts.collect(&:decoded).join("\n") : email.body
-    # else
-    #   @body = email.body
-    # end
-    # ^-- This doesn't work well because multiparts can be recursive! However it seems 
-    #     that 'email.text_part' returns just what we need so this is not necessary.
+    @body = email.multipart? ? extract_body_from_multipart(email.parts) : decode_body(email)
 
     #strip any remaining html tags (after strip_responses) from the body
-    @body    = strip_responses(email.text_part.decoded).strip_tags.to_s.strip
+    @body    = strip_responses(@body).strip_tags.to_s.strip
     @subject = email.subject.to_s.gsub(REPLY_REGEX, "").strip
     @files   = email.attachments || []
 
@@ -235,6 +228,24 @@ module Emailer::Incoming
     end
     
     Rails.logger.info "#{@user.name} <#{@user.email}> sent '#{@subject}' to #{@to}"
+  end
+
+  # Extract and collect body content from all parts which are in given content type.
+  # This works also with nested multiparts of any level.
+  def extract_body_from_multipart(parts, content_type='text/plain')
+    parts.collect {|part|
+      if part.content_type.include?(content_type)
+        decode_body(part)
+      elsif part.multipart?
+        extract_body_from_multipart(part.parts, content_type)
+      end
+    }.join("\n")
+  end
+
+  # This is really ugly hack, but I couldn't find better solution... fucking charsets!
+  # There was issue with non-ASCII compatible chars in e-mails (e.g. Czech diacritic).
+  def decode_body(body)
+    Iconv.iconv('UTF-8//IGNORE', "#{body.charset}//IGNORE", body.decoded)
   end
 
   # Removes 'On ... bla bla wrote line'
