@@ -179,9 +179,12 @@ defaults: &defaults
   # Enable option to set organization as default for all new users;
   # every newly signed user will be automatically added to all default 
   # organizations as participant (i.e. will be able to create new projects).
-  # When you disable it lately, it will NOT turn off adding new users to
+  # When you disable it later, it will NOT turn off adding new users to
   # existing default organizations, but only disable change of this option.
   allow_default_organizations: false
+
+  # If you want to use Google Analytics, uncomment this and fill your Tracking ID.
+#  analytics_tracking_id:
 
   # Allow teambox.com to gather statistics about this installation
   tracking_enabled: false

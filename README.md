@@ -49,6 +49,7 @@ What's new in this fork?
 - Changed default time-zone to Prague and first day of week to monday :-)
 - Introduced new role named supervisor and ability to create organizations. You can allow creating new organizations only to supervisors (or every user like as before).
 - Option to set organization as default for all new users; every newly signed user will be automatically added to all default organizations as participant (i.e. will be able to create new projects).
+- Support for Google Analytics tracking.
 
 ### Bug fixies 
 - Used [fixed](https://github.com/davidmm/immortal) gem Immortal that works correctly with PostgreSQL etc.
