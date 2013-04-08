@@ -40,7 +40,7 @@ gem 'paperclip', '~> 2.3.6'
 gem 'teambox-permalink_fu', :require => 'permalink_fu'
 gem 'cancan', '~> 1.4.1'
 gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'postgresql_fix'
-gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer' 
+gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
 
 group :development do
@@ -66,6 +66,7 @@ group :testing do
   gem 'factory_girl', '~> 1.3.2'
   gem 'pickle', '~> 0.4.4'
   gem 'cucumber-rails', '~> 0.3.2', :require => nil
+  gem 'cucumber', '~> 0.10.0'
   gem 'headless', :require => nil
   gem 'capybara', '~> 0.4.0'
   gem 'launchy', '~> 0.3.7'
