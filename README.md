@@ -56,3 +56,15 @@ What's new in this fork?
 - Fixed OAuth authentication controller for Google (see [this page](https://teambox.com/projects/teambox/conversations/76950)).
 - Fixed broken processing of incoming e-mail attachments and multipart messages (thanks to [mrtorrent](https://github.com/mrtorrent/teambox/commit/74d9204b1fa0d5f18180b09f8d6d19ce49a16d7f) for the first part). Added filter that removes attachments of unwanted MIME type. That's for removing S/MIME signature files which are useless in Teambox.
 - Fixed issue with incoming e-mails that contains non-ASCII compatible characters (e.g. Czech diacritic). This charset problem was even with text/plain in UTF-8! Successfully tested: ordinary text/plain email, multipart emails - S/MIME signed, with inline picture, with any attachments and all combinations. I suppose that every e-mail has at least one text/plain part, HTML-only emails doesn't work.
+
+Upgrading from the official Teambox
+-----------------------------------
+
+If you have an installation of Teambox from [the official repository](https://github.com/teambox/teambox) in production, and want to use this fork, you will need to update your database schema and Bundler dependencies.
+
+Backup your database and run the following commands in your Teambox directory:
+
+```sh
+$ bundle install
+$ bundle exec rake db:migrate RAILS_ENV=production
+```
