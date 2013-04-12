@@ -10,6 +10,7 @@ env:
   # - DB=mysql
 before_script:
   - "cp config/database.${DB}.yml config/database.yml"
+  - "cp config/teambox.example.yml config/teambox.yml"
   - bundle exec rake db:create db:schema:load RAILS_ENV=test
 script: "bundle exec rake spec"
 matrix:
