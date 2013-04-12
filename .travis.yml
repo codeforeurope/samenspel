@@ -12,4 +12,6 @@ before_script:
   - "cp config/database.${DB}.yml config/database.yml"
   - bundle exec rake db:create db:schema:load RAILS_ENV=test
 script: "bundle exec rake spec"
-
+matrix:
+  allow_failures:
+    -rvm: 1.9.3
