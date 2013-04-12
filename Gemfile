@@ -14,7 +14,7 @@ end
 gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
 
 gem 'nokogiri'
-gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer'
+gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer', :platform => :mri_18
 gem 'whenever', '~> 0.4.1', :require => nil
 gem 'icalendar', '~> 1.1.3'
 gem 'libxml-ruby', '1.1.3', :require => 'libxml'
