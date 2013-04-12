@@ -8,6 +8,9 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=postgres
+branches:
+  except:
+    - fit-pages
 before_script:
   - "cp -v config/database.${DB}.yml config/database.yml"
   - "cp -v config/teambox.example.yml config/teambox.yml"

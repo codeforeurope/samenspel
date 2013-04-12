@@ -1,4 +1,5 @@
 # Teambox
+
 ## Collaboration just got better
 
 [Teambox is project management software](http://teambox.com/) built on Ruby on Rails with a focus on collaboration.
@@ -18,6 +19,13 @@ Project info
 - End user guide: <http://guide.teambox.com>
 - Open-source contributors: <http://github.com/teambox/teambox/contributors>
 - License: [GNU Affero GPL 3](https://github.com/teambox/teambox/blob/master/LICENSE)
+
+Code statuses
+-------------
+
+* [![Build Status](https://travis-ci.org/cvut/teambox.png)](https://travis-ci.org/cvut/teambox) 
+* [![Code Climate](https://codeclimate.com/github/cvut/teambox.png)](https://codeclimate.com/github/cvut/teambox) 
+* [![Dependency Status](https://gemnasium.com/cvut/teambox.png)](https://gemnasium.com/cvut/teambox)
 
 Installation
 ------------
