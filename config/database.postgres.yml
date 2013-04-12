@@ -1,0 +1,8 @@
+test: &TEST
+  adapter: postgresql
+  username: postgres
+  password:
+  database: teambox_test
+
+cucumber:
+  <<: *TEST

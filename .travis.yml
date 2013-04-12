@@ -7,7 +7,7 @@ bundler_args: --without development
 env:
   - DB=sqlite
   - DB=mysql
-  # - DB=postgres
+  - DB=postgres
 before_script:
   - "cp -v config/database.${DB}.yml config/database.yml"
   - "cp -v config/teambox.example.yml config/teambox.yml"
@@ -15,4 +15,4 @@ before_script:
 script: "bundle exec rake spec"
 matrix:
   allow_failures:
-    -rvm: 1.9.3
+    - rvm: 1.9.3
