@@ -44,9 +44,12 @@ gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
 
 group :development do
-  gem 'sqlite3-ruby', '~> 1.2.5', :require => nil
   gem 'ruby-debug', '~> 0.10.3', :require => nil
   gem 'mongrel', '~> 1.1.5', :require => nil
+end
+
+group :sqlite do
+  gem 'sqlite3-ruby', '~> 1.2.5', :require => nil
 end
 
 group :test, :development do
