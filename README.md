@@ -1,4 +1,5 @@
-# Teambox
+# Teambox [![build status](https://secure.travis-ci.org/cvut/teambox.png)](https://secure.travis-ci.org/cvut/teambox)
+
 ## Collaboration just got better
 
 [Teambox is project management software](http://teambox.com/) built on Ruby on Rails with a focus on collaboration.
