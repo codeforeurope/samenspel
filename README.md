@@ -1,4 +1,4 @@
-# Teambox [![build status](https://secure.travis-ci.org/cvut/teambox.png)](https://secure.travis-ci.org/cvut/teambox)
+# Teambox [![build status](https://travis-ci.org/cvut/teambox.png)](https://travis-ci.org/cvut/teambox)
 
 ## Collaboration just got better
 
