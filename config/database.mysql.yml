@@ -1,0 +1,9 @@
+test: &TEST
+  adapter: mysql
+  host: localhost
+  username: root
+  password:
+  database: teambox_test
+
+cucumber:
+  <<: *TEST
