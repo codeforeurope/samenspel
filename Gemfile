@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.8.7'
 
 group :rails do
   gem 'rails', '~> 3.0.3'
