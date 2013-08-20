@@ -43,6 +43,7 @@ gem 'cancan', '~> 1.4.1'
 gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'postgresql_fix'
 gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
+gem 'rake', '0.9.2'
 
 group :development do
   gem 'debugger'
