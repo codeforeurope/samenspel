@@ -20,6 +20,7 @@ gem 'icalendar', '~> 1.1.3'
 gem 'libxml-ruby' 
 gem 'rdiscount', '~> 1.6.3'
 gem 'haml'
+gem 'sass'
 # gem 'mysql2'
 gem 'mysql', '~> 2.8.1', :require => nil, :group => 'mysql'
 gem 'pg', '~> 0.9.0', :require => nil, :group => 'pg'
@@ -64,7 +65,7 @@ end
 # we don't call the group :test because we don't want them auto-required
 group :testing do
   gem 'database_cleaner', '~> 0.5.0'
-  #gem 'rcov'
+  gem 'simplecov'
   gem 'factory_girl', '~> 1.3.2'
   gem 'pickle', '~> 0.4.4'
   gem 'cucumber-rails', '~> 0.3.2', :require => nil
