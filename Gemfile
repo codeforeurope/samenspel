@@ -7,7 +7,7 @@ group :rails do
   gem 'tzinfo', '~> 0.3.12'
   gem 'i18n', '>= 0.1.3'
   gem 'tmail', '~> 1.2.3'
-  #gem 'text-format' , '~> 1.0.0', :require => 'text/format'
+  gem 'text-format', git: 'git://github.com/ccarruitero/text-format.git'
 end
 
 #Temporary hack - Fix once this ticket: is resolved
