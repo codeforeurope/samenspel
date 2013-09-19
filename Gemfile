@@ -55,7 +55,7 @@ end
 
 group :test, :development do
   gem 'thin'
-  gem 'rspec-rails', '~> 2.3.1'
+  gem 'rspec-rails', '~> 2.4.1'
   gem 'webrat'
   gem 'fuubar'
   gem 'faker', :require => nil
