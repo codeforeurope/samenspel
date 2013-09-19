@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts <<-EOS
 This will create some example users and a pre-populated project for development.
 EOS
