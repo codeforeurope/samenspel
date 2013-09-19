@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 {
   'in the title' => 'h2',
   'in the watchers list' => '.watching',

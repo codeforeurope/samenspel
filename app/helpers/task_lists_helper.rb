@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module TaskListsHelper
 
   def filter_task_lists(project=nil)

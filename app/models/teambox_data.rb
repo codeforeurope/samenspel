@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamboxData < ActiveRecord::Base
   include Immortal
 

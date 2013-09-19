@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamboxData
   # Note:
   # Internally the import is just a mass creation of objects using hashes of

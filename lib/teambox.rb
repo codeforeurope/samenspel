@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # RAILS3 fixme
 module Teambox
     # class GemLocator < Rails::Plugin::GemLocator

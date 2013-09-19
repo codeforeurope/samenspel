@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class User
   scope :in_time_zone, lambda { |zone|
     { :conditions => {:time_zone => zone} }

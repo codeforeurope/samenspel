@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Project
 
   def create_task_list(user,task_list)

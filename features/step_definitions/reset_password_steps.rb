@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^the user with login: "([^\"]*)" has asked to reset his password$/ do |login|
   @reset_password = Factory(:reset_password, :user => User.find_by_login(login))
 end

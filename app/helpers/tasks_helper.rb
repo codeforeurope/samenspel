@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module TasksHelper
 
   def task_classes(task)

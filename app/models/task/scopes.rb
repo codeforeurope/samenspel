@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Task
   default_scope :order => 'position ASC, created_at DESC'
 

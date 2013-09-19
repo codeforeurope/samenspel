@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Task < RoleRecord
   include Immortal
   

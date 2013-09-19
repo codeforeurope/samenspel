@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Conversation
   def to_xml(options = {})
     options[:indent] ||= 2

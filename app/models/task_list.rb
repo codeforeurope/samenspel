@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TaskList < RoleRecord
   include Immortal
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module MobileHelper
   
   def controller_selected?(controllers)

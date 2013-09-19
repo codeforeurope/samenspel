@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::ConversationsController < ApiV1::APIController
   before_filter :load_conversation, :except => [:index, :create]
   

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^I am in the project called "([^"]*)" the following comments:$/ do |project, table|
   Given %(I am in the project called "#{project}")
 

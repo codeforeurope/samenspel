@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GoogleDoc < RoleRecord
   include Immortal
   belongs_to :user

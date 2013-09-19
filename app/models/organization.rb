@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Organization < ActiveRecord::Base
   include Immortal
   include Metadata

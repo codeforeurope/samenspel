@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Conversation
   attr_accessor :due_on, :status, :assigned_id, :task_list_id
   attr_accessible :due_on, :status, :assigned_id, :task_list_id

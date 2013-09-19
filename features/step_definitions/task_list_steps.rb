@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^I have a task list called "([^\"]*)"$/ do |name|
   @task_list = (@current_project || Factory(:project)).create_task_list(@current_user,{:name => name})
 end

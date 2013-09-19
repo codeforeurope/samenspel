@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module AvatarsHelper
 
   def thumb_avatar(user)

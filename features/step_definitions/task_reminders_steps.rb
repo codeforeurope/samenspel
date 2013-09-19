@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^the email reminders are to be sent at (\d+)$/ do |hour|
   Teambox.config.daily_task_reminder_email_time = hour.to_i
 end

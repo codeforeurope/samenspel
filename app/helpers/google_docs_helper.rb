@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module GoogleDocsHelper
   def google_docs_checkbox_tag(item, index)
     check_box_tag "document_#{index}", item[:id], false,

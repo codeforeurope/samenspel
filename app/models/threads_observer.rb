@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ThreadsObserver < ActiveRecord::Observer
   observe :comment, :conversation, :task
 

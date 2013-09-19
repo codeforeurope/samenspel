@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TaskList
   before_create :init_list
   after_create :log_create

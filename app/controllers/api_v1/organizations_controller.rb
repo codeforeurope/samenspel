@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::OrganizationsController < ApiV1::APIController
   skip_before_filter :load_project
   before_filter :load_organization, :except => [:create, :index]

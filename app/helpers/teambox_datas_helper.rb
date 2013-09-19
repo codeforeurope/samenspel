@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module TeamboxDatasHelper
   def new_teambox_export_link
     link_to content_tag(:span,"Export"), new_teambox_data_path(:type => :export), :class => 'add_button'

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SprocketsController < ActionController::Base
   caches_page :index, :show, :if => Proc.new { SprocketsApplication.use_page_caching }
   

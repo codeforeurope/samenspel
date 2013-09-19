@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::PagesController < ApiV1::APIController
   before_filter :load_page, :only => [:show, :update, :reorder, :destroy]
   

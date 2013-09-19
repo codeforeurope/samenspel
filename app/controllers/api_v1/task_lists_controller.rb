@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::TaskListsController < ApiV1::APIController
   before_filter :load_task_list, :only => [:update,:show,:destroy,:archive,:unarchive]
   

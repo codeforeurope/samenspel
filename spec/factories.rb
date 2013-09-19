@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- encoding : utf-8 -*-
 require 'factory_girl'
 
 Factory.sequence :login do |n|

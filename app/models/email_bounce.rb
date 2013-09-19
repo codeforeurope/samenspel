@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class EmailBounce < ActiveRecord::Base
   
   scope :created_today, lambda {

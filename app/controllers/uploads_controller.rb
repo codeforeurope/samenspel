@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UploadsController < ApplicationController
   before_filter :find_upload, :only => [:destroy,:update,:thumbnail,:show]
   skip_before_filter :load_project, :only => [:download]

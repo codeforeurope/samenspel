@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class InvitationsController < ApplicationController
   skip_before_filter :load_project
   before_filter :load_target_project, :except => [:invite_format]

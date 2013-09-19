@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 When /^the search index is re(indexed|built)$/ do |action|
   ts_reindex(action == 'built')
   # seems to be necessary before hitting sphinx

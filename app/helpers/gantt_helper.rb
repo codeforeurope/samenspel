@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Builds a GANTT Chart from the given array of task_lists
 # It'll need some CSS to display well, for example:
 #

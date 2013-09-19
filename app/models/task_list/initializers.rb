@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TaskList
 
   def new_task(user, task=nil)

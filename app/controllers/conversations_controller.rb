@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ConversationsController < ApplicationController
   before_filter :load_conversation, :except => [:index, :new, :create]
   before_filter :set_page_title

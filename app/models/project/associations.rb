@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Project
   belongs_to :user
   belongs_to :organization

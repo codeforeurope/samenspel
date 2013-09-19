@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamboxData
   attr_accessor :data
   attr_accessor :import_data

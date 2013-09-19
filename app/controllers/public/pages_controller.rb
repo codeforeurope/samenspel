@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Public::PagesController < Public::PublicController
 
   def index

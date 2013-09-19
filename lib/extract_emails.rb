@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class String
   # adapted from http://fightingforalostcause.net/misc/2006/compare-email-regex.php
   EmailLocal  = /[\w!#\$%&'*\/=?^`{|}~+-]/

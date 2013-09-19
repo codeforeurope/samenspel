@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Public::ProjectsController < Public::PublicController
 
   def index

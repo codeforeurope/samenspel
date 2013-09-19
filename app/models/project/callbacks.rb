@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Project
   
   after_create :log_create

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 if ENV['BUILD_NUMBER'].present? # Jenkins sets this
   require 'headless'
 

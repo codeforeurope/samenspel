@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # A User model describes an actual user, with his password and personal info.
 # A Person model describes the relationship of a User that follows a Project.
 

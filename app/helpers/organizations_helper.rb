@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module OrganizationsHelper
 
   def options_for_organizations(organizations)

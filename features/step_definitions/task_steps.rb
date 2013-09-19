@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^there is a task called "([^\"]*)"$/ do |name|
   Task.find_by_name(name) || Factory(:task, :name => name)
 end

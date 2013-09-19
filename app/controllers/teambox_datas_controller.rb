@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamboxDatasController < ApplicationController
   skip_before_filter :load_project
   before_filter :find_data, :except => [:index, :new, :create]

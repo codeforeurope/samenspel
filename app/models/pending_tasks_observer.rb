@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PendingTasksObserver < ActiveRecord::Observer
   observe :person, :task, :project
 

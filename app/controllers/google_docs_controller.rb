@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'google_docs'
 
 class GoogleDocsController < ApplicationController

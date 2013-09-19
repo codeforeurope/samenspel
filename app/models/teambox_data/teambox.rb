@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamboxData
   def unserialize_teambox(dump, object_maps, opts={})
     ActiveRecord::Base.transaction do

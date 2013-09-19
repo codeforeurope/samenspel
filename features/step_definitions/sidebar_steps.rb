@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Then /^I should see the project "([^\"]*)"$/ do |project_name|
   Then %(I should see "#{project_name}" within "#my_projects")
 end

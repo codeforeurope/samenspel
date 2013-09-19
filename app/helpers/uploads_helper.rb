@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module UploadsHelper
   
   def upload_primer(project)

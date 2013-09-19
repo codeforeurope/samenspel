@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Public::ConversationsController < Public::PublicController
 
   def index

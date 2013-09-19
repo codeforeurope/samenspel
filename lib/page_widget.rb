@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module PageWidget
   attr_accessor :slot_insert
   

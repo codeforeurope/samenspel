@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 When /^(?:|I )fill in the comment box with "([^\"]*)"(?: within "([^\"]*)")?$/ do |value, selector|
   with_scope(selector) do
     find(:xpath, '//textarea[contains(@name, \'[body]\')]').set(value)

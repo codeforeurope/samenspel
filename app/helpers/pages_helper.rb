@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module PagesHelper
 
   def page_primer(project)

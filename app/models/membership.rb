@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Membership < ActiveRecord::Base
   ROLES = {:external => 10, :participant => 20, :admin => 30}
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'rss_feed_helper'
 
 module ActivitiesHelper

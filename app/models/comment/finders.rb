@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Comment
 
   def self.find_by_year(year=nil)

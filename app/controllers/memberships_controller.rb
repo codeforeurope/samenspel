@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MembershipsController < ApplicationController
 
   skip_before_filter :load_project

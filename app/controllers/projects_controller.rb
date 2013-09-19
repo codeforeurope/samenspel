@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ProjectsController < ApplicationController
   around_filter :set_time_zone, :only => [:index, :show]
   before_filter :load_projects, :only => [:index]

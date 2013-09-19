@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Comment
     
   def previously_closed?

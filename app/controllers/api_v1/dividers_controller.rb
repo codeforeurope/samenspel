@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::DividersController < ApiV1::APIController
   before_filter :load_page
   before_filter :load_divider, :except => [:index,:create]

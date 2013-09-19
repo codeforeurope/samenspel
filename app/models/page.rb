@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Page < RoleRecord
   include Immortal
   has_many :notes, :dependent => :destroy

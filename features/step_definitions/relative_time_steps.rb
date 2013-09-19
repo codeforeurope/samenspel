@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 When /I previously posted the following comments?:?$/ do |table|
   mislav = User.find_by_login('mislav')
   project = mislav.projects.first

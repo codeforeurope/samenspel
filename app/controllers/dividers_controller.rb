@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DividersController < ApplicationController
   before_filter :load_page
   before_filter :load_divider, :only => [:show, :edit, :update, :destroy]

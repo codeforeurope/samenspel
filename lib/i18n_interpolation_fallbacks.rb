@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module I18n
   module Backend
     module MissingInterpolationFallbacks

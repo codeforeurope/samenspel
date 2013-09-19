@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class User
   def self.send_daily_task_reminders
     send_at_hour = Teambox.config.daily_task_reminder_email_time.to_i

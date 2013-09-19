@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module InvitationsHelper
 
   def list_pending_invites(invitations)

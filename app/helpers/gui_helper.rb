@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module GuiHelper
 
   def progress_bar(now, max, classes='green', width=200)

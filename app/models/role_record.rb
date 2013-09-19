@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RoleRecord < ActiveRecord::Base
 
   self.abstract_class = true

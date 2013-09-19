@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TaskList
   belongs_to :page
   has_many :tasks, :order => 'position', :dependent => :destroy

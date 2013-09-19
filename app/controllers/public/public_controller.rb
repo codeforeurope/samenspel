@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Public::PublicController < ApplicationController
   skip_before_filter :rss_token, :recent_projects, :touch_user, :verify_authenticity_token
   skip_before_filter :login_required

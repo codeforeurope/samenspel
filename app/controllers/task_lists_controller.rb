@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TaskListsController < ApplicationController
   around_filter :set_time_zone, :only => [:index, :show, :gantt_view]
   before_filter :load_task_list, :only => [:edit,:update,:show,:destroy,:watch,:unwatch,:archive,:unarchive]

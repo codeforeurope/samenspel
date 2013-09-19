@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'digest/sha1'
 
 # A User model describes an actual user, with his password and personal info.

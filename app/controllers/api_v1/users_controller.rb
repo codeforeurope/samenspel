@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::UsersController < ApiV1::APIController
   before_filter :find_user, :only => [ :show ]
   skip_before_filter :load_project

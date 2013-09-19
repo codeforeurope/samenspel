@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^I am currently "([^\"]*)"$/ do |login|
   @current_user = User.find_by_login(login) ||
                     (login == "mislav" ?

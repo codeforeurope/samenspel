@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class HooksController < ApplicationController
 
   no_login_required

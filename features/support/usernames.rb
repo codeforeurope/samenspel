@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module TeamboxUsernames
   def each_user(usernames, factory = false)
     usernames.scan(/(?:^|\W)@(\w+)/).flatten.each do |name|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CardsHelper
 
   def options_for_card_type(types)

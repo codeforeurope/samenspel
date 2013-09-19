@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class NotificationsObserver < ActiveRecord::Observer
 
   observe :comment

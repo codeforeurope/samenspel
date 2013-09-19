@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class NotesController < ApplicationController
   before_filter :load_page
   before_filter :load_note, :only => [:show, :edit, :update, :destroy]

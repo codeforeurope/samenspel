@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::CommentsController < ApiV1::APIController
   before_filter :load_comment, :only => [:update, :convert, :show, :destroy]
   

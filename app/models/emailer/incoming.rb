@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'net/pop'
 require 'net/imap'
 require 'net/http'

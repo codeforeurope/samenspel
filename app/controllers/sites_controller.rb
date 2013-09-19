@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # This controller handles custom organization pages and login for them
 class SitesController < ApplicationController
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TasksController < ApplicationController
 
   around_filter :set_time_zone, :only => [:show]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 When /^"([^\"]*)" accepts the invitation from "([^\"]*)"$/ do |username,email|
   Then %(I log out)
   Then %(I am logged in as #{username})

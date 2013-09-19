@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module PublicProjectsHelper
 
   def seo_public_project_conversation_path(project, conversation)

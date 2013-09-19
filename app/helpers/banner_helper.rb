@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BannerHelper
 
   def gantt_chart(chart, days = 14)

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PeopleController < ApplicationController
   before_filter :load_person, :only => [:update, :destroy]
   before_filter :set_page_title

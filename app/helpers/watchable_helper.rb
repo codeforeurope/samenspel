@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module WatchableHelper
   
   def watch_link(project, user, target)

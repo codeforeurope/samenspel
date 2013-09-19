@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Project
 
   validates_length_of :name, :minimum => 5, :on => :create  # New projects

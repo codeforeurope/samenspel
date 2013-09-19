@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ActivitiesController < ApplicationController
 
   skip_before_filter :load_project, :rss_token, :set_page_title, :belongs_to_project?, :recent_projects, :touch_user

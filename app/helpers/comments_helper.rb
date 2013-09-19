@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CommentsHelper
 
   def cache_comment(comment, threaded, simpleconv, &block)

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ResetPasswordsController < ApplicationController
   no_login_required
 

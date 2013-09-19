@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::TasksController < ApiV1::APIController
   before_filter :load_task_list
   before_filter :load_task, :except => [:index, :create, :reorder]

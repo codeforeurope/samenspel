@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Emailer < ActionMailer::Base
   include ActionView::Helpers::TextHelper
   include Emailer::Incoming

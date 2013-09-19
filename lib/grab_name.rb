@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module GrabName
   protected
     def self.grab_name(id)

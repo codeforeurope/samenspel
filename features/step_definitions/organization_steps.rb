@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^I am using the community version$/ do
   Teambox.config.community = true
 end

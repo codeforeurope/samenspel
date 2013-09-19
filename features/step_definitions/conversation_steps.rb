@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Given /^the following conversation? with associations exists?:?$/ do |table|
   table.hashes.each do |hash|
     Factory(:conversation,

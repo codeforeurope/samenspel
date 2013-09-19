@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # pickle and factory_girl need to load the app so they can inspect models
 ENV["RAILS_ENV"] ||= "cucumber"
 require File.expand_path('../../../config/environment', __FILE__)

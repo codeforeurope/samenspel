@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::ActivitiesController < ApiV1::APIController
   skip_before_filter :touch_user
   before_filter :get_target, :only => [:index]

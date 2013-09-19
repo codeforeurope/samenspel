@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrganizationsController < ApplicationController
   skip_before_filter :load_project
   before_filter :load_organization, :only => [:show, :edit, :appearance, :update, :projects, :delete, :destroy]

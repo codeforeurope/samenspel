@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApiV1::NotesController < ApiV1::APIController
   before_filter :load_page
   before_filter :load_note, :except => [:index,:create]

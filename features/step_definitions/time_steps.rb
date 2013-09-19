@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'timecop'
 
 Given /^today is "([^\"]*)"$/ do |date|

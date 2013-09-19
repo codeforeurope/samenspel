@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module RssFeedHelper
   def rss_feed(options, &block)
     xml = options.delete(:xml) || eval("xml", block.binding)

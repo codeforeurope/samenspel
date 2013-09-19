@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
   before_filter :load_page, :only => [ :show, :edit, :update, :reorder, :destroy ]
   before_filter :set_page_title
