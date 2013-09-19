@@ -172,7 +172,7 @@ GEM
     multi_json (1.0.4)
     multi_xml (0.4.4)
     multipart-post (1.2.0)
-    mysql (2.8.1)
+    mysql2 (0.2.20)
     net-ldap (0.3.1)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
@@ -316,7 +316,7 @@ DEPENDENCIES
   launchy (~> 0.3.7)
   libxml-ruby
   memcache-client (>= 1.7.4)
-  mysql (~> 2.8.1)
+  mysql2 (~> 0.2.0)
   net-ldap
   nokogiri
   oa-oauth
