@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :rails do
-  gem 'rails', '~> 3.0.3'
+  gem 'rails', '~> 3.0.20'
   gem 'builder', '~> 2.1.2'
   gem 'memcache-client', '>= 1.7.4', :require => nil
   gem 'tzinfo', '~> 0.3.12'
