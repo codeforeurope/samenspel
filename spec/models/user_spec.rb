@@ -69,6 +69,8 @@ describe User do
       User.authenticate("bad_email", "badpass").should be_nil
       User.authenticate("", "").should be_nil
     end
+
+    pending "test LDAP authentication"
   end
 
   describe "activation" do
@@ -309,18 +311,18 @@ describe User do
       @user = Factory.create(:user)
       @org.add_member(@user)
     end
-    
+
     it "should return all users in the organization and its projects" do
       @admin.users_for_user_map.should include(@admin)
       @admin.users_for_user_map.should include(@user)
       @admin.users_for_user_map.should_not include(@project.user)
-      
+
       @admin.users_for_user_map.length.should == 2
-      
+
       @project.user.users_for_user_map.should_not include(@admin)
       @project.user.users_for_user_map.should_not include(@user)
       @project.user.users_for_user_map.should include(@project.user)
-      
+
       @project.user.users_for_user_map.length.should == 1
     end
   end
@@ -389,13 +391,13 @@ describe User do
       User.find_available_login(that_girl.login).should == "#{that_girl.login}2"
     end
   end
-  
+
   describe "#locale" do
     it "should set a valid locale" do
       user = Factory.create(:user, :locale => 'es')
       user.locale.should == 'es'
     end
-    
+
     it "should fall back to default locale when setting not in list of available locales" do
       user = Factory.create(:user, :locale => 'xy')
       user.locale.should == 'en'
@@ -414,9 +416,9 @@ describe User do
     subject {
       Factory(:user, :card_attributes => { :phone_numbers_attributes => [{:name => '+123456789'}] })
     }
-    
+
     it { should_not be_new_record }
-    
+
     it "should allow setting of work phone number" do
       phone = subject.card.phone_numbers.first
       phone.name == '+123456789'
