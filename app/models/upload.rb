@@ -3,7 +3,7 @@ class Upload < RoleRecord
   include Immortal
 
   ICONS = %w(aac ai aiff avi bmp c cpp css dat dmg doc dotx dwg dxf eps exe flv gif h hpp html ics iso java jpg key mid mp3 mp4 mpg odf ods odt otp ots ott pdf php png ppt psd py qt rar rb rtf sql tga tgz tiff txt wav xls xlsx xml yml zip)
-    
+
   belongs_to :user
   belongs_to :comment, :touch => true, :counter_cache => true
   belongs_to :project
@@ -20,7 +20,9 @@ class Upload < RoleRecord
   attr_accessible :asset,
                   :page_id,
                   :description
-  
+
+  delegate :url, :to => :asset, :prefix => false
+
   include PageWidget
 
   DOWNLOADS_URL = "/downloads/:id/:style/:basename.:extension"
@@ -35,12 +37,14 @@ class Upload < RoleRecord
     :s3_headers => {'Cache-Control' => 'max-age=157680000'}
 
   before_post_process :image?
-  
-  validates_attachment_size :asset, 
-                            :less_than => Teambox.config.asset_max_file_size.to_i.megabytes, 
-                            :message => I18n.t('uploads.form.max_size', 
+
+  validates_attachment_size :asset,
+                            :less_than => Teambox.config.asset_max_file_size.to_i.megabytes,
+                            :message => I18n.t('uploads.form.max_size',
                                                :mb => Teambox.config.asset_max_file_size.to_i)
 
+  validates_format_of :asset_file_name, :with => /^[^\/]+$/,
+    :allow_blank => false, :message => "Invalid filename"
   validates_attachment_presence :asset, :message => I18n.t('uploads.form.presence')
 
   validate :check_page
@@ -50,16 +54,25 @@ class Upload < RoleRecord
       @errors.add :project, 'is not valid'
     end
   end
-  
+
   def image?
-    !(asset_content_type =~ /^image.*/).nil?
+    !(asset_content_type =~ /^image(?!.*photoshop.*)/).nil?
   end
 
+# Since use_stamp and @default_url seem to be unused,
+# there's no much sense to override Paperclip's method
+# see: delegate
+=begin
   def url(style_name = nil, use_timestamp = false)
-    url = asset.original_filename.nil? ? Paperclip::Interpolations.interpolate(@default_url, asset, style_name) : Paperclip::Interpolations.interpolate(DOWNLOADS_URL, asset, style_name)
+    url = if asset.original_filename.nil?
+            Paperclip::Interpolations.interpolate(@default_url, asset, style_name)
+          else
+            Paperclip::Interpolations.interpolate(DOWNLOADS_URL, asset, style_name)
+          end
     url = URI.escape(url)
     use_timestamp && asset.updated_at ? [url, asset.updated_at].compact.join(url.include?("?") ? "&" : "?") : url
   end
+=end
 
   def s3_url(style_name = nil)
     AWS::S3::S3Object.url_for(asset.path(style_name), asset.bucket_name, {:expires_in => Teambox.config.amazon_s3_expiration.to_i})
@@ -79,7 +92,7 @@ class Upload < RoleRecord
   def description
     self[:description] || (comment ? truncate(comment.body, :length => 80) : nil)
   end
-  
+
   def slot_view
     'uploads/upload_slot'
   end
@@ -94,7 +107,7 @@ class Upload < RoleRecord
       Activity.destroy_all :target_type => self.class.name, :target_id => self.id
     end
   end
-  
+
   def to_s
     file_name
   end
@@ -108,7 +121,7 @@ class Upload < RoleRecord
     ext = '...' if ext == ''
     ext
   end
-  
+
   def user
     @user ||= user_id ? User.with_deleted.find_by_id(user_id) : nil
   end
@@ -130,7 +143,7 @@ class Upload < RoleRecord
       xml.tag! 'comment-id', comment_id
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -146,9 +159,9 @@ class Upload < RoleRecord
       :user_id => user_id,
       :comment_id => comment_id
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     base
   end
 
@@ -159,7 +172,7 @@ class Upload < RoleRecord
       self.project_id = comment.project_id
     end
   end
-  
+
   def update_comment_to_show_delete
     if self.comment && self.comment.body.blank? && self.comment.uploads.count == 1
       self.comment.update_attributes(:body => "File deleted")
