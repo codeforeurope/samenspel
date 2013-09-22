@@ -8,7 +8,7 @@ class ApidocsController < ApplicationController
 
   before_filter :load_example_data
   before_filter :load_api_routes, :only => [:routes,:model]
-  
+
   DOCUMENTED_MODELS = %w{activity comment conversation divider invitation membership note organization search page person project task_list task upload user}
 
   def index
@@ -16,7 +16,7 @@ class ApidocsController < ApplicationController
 
   def concepts
   end
-  
+
   def changes
   end
 
@@ -32,33 +32,33 @@ class ApidocsController < ApplicationController
   end
 
   protected
-  
+
     def autogen_created_at
       @autogen_created_at ||= 2.days.ago
       @autogen_created_at += 25.minutes
     end
-    
+
     def example_comment(target, user, body)
       @project.new_comment(@apiman, target, {:body => body}).tap do |comment|
         comment.created_at = autogen_created_at
         comment.save!
       end
     end
-    
+
     def example_task_list(name)
       @project.new_task_list(@apiman, {:name => name}).tap do |task_list|
         task_list.created_at = autogen_created_at
         task_list.save!
       end
     end
-    
+
     def example_task(task_list, name)
       @project.new_task(@apiman, task_list, {:name => name}).tap do |task|
         task.created_at = autogen_created_at
         task.save!
       end
     end
-    
+
     def example_conversation(name, body)
       @project.new_conversation(@apiman, {:name => name}).tap do |conversation|
         conversation.body = body
@@ -66,7 +66,7 @@ class ApidocsController < ApplicationController
         conversation.save!
       end
     end
-    
+
     def example_invite(email)
       @project.invitations.new({:user_or_email => email}).tap do |invitation|
         invitation.created_at = autogen_created_at
@@ -74,14 +74,14 @@ class ApidocsController < ApplicationController
         invitation.save!
       end
     end
-    
+
     def example_page(name, description)
       @project.new_page(@apiman, {:name => name, :description => description}).tap do |page|
         page.created_at = autogen_created_at
         page.save!
       end
     end
-    
+
     def example_note(page, name, body)
       @note = page.build_note({:name => name, :body => body}).tap do |note|
         note.updated_by = @apiman
@@ -89,7 +89,7 @@ class ApidocsController < ApplicationController
         note.save!
       end
     end
-    
+
     def example_divider(page, name)
       page.build_divider({:name => name}).tap do |divider|
         divider.updated_by = @apiman
@@ -97,7 +97,7 @@ class ApidocsController < ApplicationController
         divider.save!
       end
     end
-    
+
     def mock_upload(file, type = 'image/png', data=nil)
       file_path = data ? file : "%s/%s" % [ File.dirname(__FILE__), file ]
       tempfile = Tempfile.new(file_path)
@@ -108,7 +108,7 @@ class ApidocsController < ApplicationController
       end
       ActionDispatch::Http::UploadedFile.new({ :type => type, :filename => file_path, :tempfile => tempfile })
     end
-    
+
     def example_upload(page, filename, content_type, content=nil)
       @project.uploads.new({:asset => mock_upload(filename, content_type, content)}).tap do |upload|
         upload.user = @apiman
@@ -116,7 +116,7 @@ class ApidocsController < ApplicationController
         upload.save!
       end
     end
-    
+
     def load_example_data
       @apiman = find_or_create_example_user('API Man', 'example_api_user')
       @project = @apiman.projects.first
@@ -134,40 +134,40 @@ class ApidocsController < ApplicationController
           membership.user_id = @apiman.id
           membership.save!
         end
-        
+
         @project = @apiman.projects.new(:name => 'Teambox Api Example Project', :user_id => @apiman.id)
         @project.organization = @organization
         @project.save!
-        
+
         example_comment(@project, @task, "Testing the API!")
-        
+
         example_task_list("Things to do with the API")
         example_task(@project.task_lists.first, "Mobile App")
         example_comment(@project, @task, "Working on it")
-        
+
         example_conversation("What to do with the API", "Anyone have any ideas?")
-        
+
         example_invite("frodo@teambox.com")
-        
+
         example_page("Random notes", "... of questionable value")
         example_note(@project.pages.first, "RailsConf", "TODO: check dates")
         example_divider(@project.pages.first, "Conferences")
         example_upload(@project.pages.first, 'semicolons.js', 'application/javascript', 'alert(\'WHAT?!\')')
       end
-      
+
       @invitation = @project.invitations.first
       @membership = @organization.memberships.first
       @person = @project.people.first
       @user = @person.user
       @activity = @project.activities.first
-      
+
       @page = @project.pages.first
       @note = @page.notes.first
       @divider = @page.dividers.first
-      
+
       @upload = @project.uploads.first
       @conversation = @project.conversations.first
-      
+
       @task_list = @project.task_lists.first
       @task = @task_list.tasks.first
       @comment = @project.comments.first
@@ -187,7 +187,7 @@ class ApidocsController < ApplicationController
           :path => route.to_s.scan(/\/api.*?[(\s]/).first.chomp('('),
           :method => route.to_s.split(" ").first }
       end.sort_by { |route| route[:controller] }
-      
+
       route_map = {}
       @consolidated_routes = @routes.map do |route|
         hash = "#{route[:controller]}_#{route[:action]}"

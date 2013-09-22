@@ -21,7 +21,7 @@ Teambox::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  
+
   config.active_support.deprecation = :log
 
   #RAILS 3 -  When using url_helpers in Mailers you now need to set host in the default url_options

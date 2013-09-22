@@ -2,7 +2,7 @@
 class TaskList
   before_create :init_list
   after_create :log_create
-  
+
   def init_list
     unless self.position
       self.position = 0

@@ -32,7 +32,7 @@ class Activity < ActiveRecord::Base
       # touch activity related to that comment's thread
       Activity.last(:conditions => ["target_type = ? AND target_id = ?", comment_target_type, comment_target_id]).try(:touch)
     end
-    
+
     activity = Activity.new(
       :project_id => project_id,
       :target => target,
@@ -42,10 +42,10 @@ class Activity < ActiveRecord::Base
       :comment_target_id => comment_target_id)
     activity.created_at = target.try(:created_at) || nil
     activity.save
-    
+
     activity
   end
-  
+
   def refs_thread_comments
     if target.respond_to? :first_comment
       [target.first_comment] + target.recent_comments
@@ -53,14 +53,14 @@ class Activity < ActiveRecord::Base
       []
     end
   end
-  
+
   def refs_comment_target
     if comment_target.respond_to? :first_comment
       [comment_target,
        comment_target.first_comment,
        comment_target.user,
-       comment_target.first_comment.try(:user)] + 
-       comment_target.recent_comments + 
+       comment_target.first_comment.try(:user)] +
+       comment_target.recent_comments +
        comment_target.recent_comments.map(&:user)
     else
       [comment_target]
@@ -78,21 +78,21 @@ class Activity < ActiveRecord::Base
     i = "#{action}#{target_type}"
     i.underscore
   end
-    
+
   def action_type?(current_type)
     i = "#{action}#{target_type.singular_class_name}"
     i.underscore
     i == current_type
   end
-  
+
   def target
     @target ||= target_id ? Kernel.const_get(target_type).find_with_deleted(target_id) : nil
   end
-  
+
   def comment_target
     @comment_target ||= comment_target_id ? Kernel.const_get(comment_target_type).find_with_deleted(comment_target_id) : nil
   end
-  
+
   def user
     target.user
   end
@@ -153,7 +153,7 @@ class Activity < ActiveRecord::Base
       end if target
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -165,17 +165,17 @@ class Activity < ActiveRecord::Base
       :target_id => target_id,
       :target_type => target_type
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if Array(options[:include]).include? :project
       base[:project] = {:name => project.name, :permalink => project.permalink}
     end
-    
+
     if Array(options[:include]).include? :target
       base[:target] = target.to_api_hash
     end
-    
+
     if Array(options[:include]).include? :user
       base[:user] = {
         :username => user.login,
@@ -184,7 +184,7 @@ class Activity < ActiveRecord::Base
         :avatar_url => user.avatar_or_gravatar_url(:thumb)
       }
     end
-    
+
     base
   end
 

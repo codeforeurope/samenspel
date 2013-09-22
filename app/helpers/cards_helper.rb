@@ -21,7 +21,7 @@ module CardsHelper
   def generate_html(form_builder, method, options = {})
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
     options[:partial] ||= "cards/#{method.to_s.singularize}"
-    options[:form_builder_local] ||= :f  
+    options[:form_builder_local] ||= :f
 
     form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
       render options[:partial], options[:form_builder_local] => f
@@ -31,11 +31,11 @@ module CardsHelper
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options)
   end
-  
+
   def card_field(f,field)
     render "cards/#{field.singularize}", :f => f, :field => field
   end
-  
+
   def render_card_field(f,field)
     render 'cards/field', :f => f, :field => field
   end
@@ -43,9 +43,9 @@ module CardsHelper
   def list_card_fields(f,fields)
     render 'cards/fields', :f => f, :fields => fields
   end
-  
+
   def add_crm_link(field)
     link_to "+ #{t(".add_#{field}")}", "##{field}", :class => "add_nested_item add_crm_link", :rel => "#{field}"
   end
-  
-end  
+
+end

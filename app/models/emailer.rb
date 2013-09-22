@@ -94,8 +94,8 @@ class Emailer < ActionMailer::Base
     mail(
       :to         => @invitation.email,
       :from       => self.class.from_user(nil, @invitation.user),
-      :subject    => I18n.t("emailer.invitation.subject", 
-                            :user => @invitation.user.name, 
+      :subject    => I18n.t("emailer.invitation.subject",
+                            :user => @invitation.user.name,
                             :project => @invitation.project.name)
     )
   end
@@ -106,8 +106,8 @@ class Emailer < ActionMailer::Base
     @project    = @invitation.project
     mail(
       :to         => @invitation.email,
-      :subject    => I18n.t("emailer.invitation.subject", 
-                            :user    => @invitation.user.name, 
+      :subject    => I18n.t("emailer.invitation.subject",
+                            :user    => @invitation.user.name,
                             :project => @invitation.project.name)
     )
   end
@@ -138,7 +138,7 @@ class Emailer < ActionMailer::Base
     @recipient    = User.find(user_id)
     @organization = @project.organization
 
-    title         = @conversation.name.blank? ? 
+    title         = @conversation.name.blank? ?
                     truncate(@conversation.comments.first(:order => 'id ASC').body.strip) :
                     @conversation.name
 
@@ -170,8 +170,8 @@ class Emailer < ActionMailer::Base
     @recipient  = @invitation.invited_user
     mail({
       :to            => @invitation.invited_user.email,
-      :subject       => I18n.t("emailer.project_membership_notification.subject", 
-                               :user => @invitation.user.name, 
+      :subject       => I18n.t("emailer.project_membership_notification.subject",
+                               :user => @invitation.user.name,
                                :project => @invitation.project.name)
     }.merge(
       from_reply_to "#{@invitation.project.permalink}", @invitation.user
@@ -184,7 +184,7 @@ class Emailer < ActionMailer::Base
     mail(
       :to         => @user.email,
       :subject    => I18n.t("users.daily_task_reminder_email.daily_task_reminder")
-    ) 
+    )
   end
 
   def bounce_message(exception_mail, pretty_exception)

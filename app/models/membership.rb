@@ -11,12 +11,12 @@ class Membership < ActiveRecord::Base
   validates_presence_of :user, :organization
   validates_inclusion_of :role, :in => [10,20,30]
   validates_uniqueness_of :user_id, :scope => :organization_id
-  
+
   before_validation :set_default_role, :on => :create
 
 
   attr_accessor :user_or_email
-  
+
   attr_accessible :role
 
   # Roles are..
@@ -31,7 +31,7 @@ class Membership < ActiveRecord::Base
   def role_name
     ROLES.index(role)
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -41,9 +41,9 @@ class Membership < ActiveRecord::Base
       :created_at => created_at.to_s(:api_time),
       :updated_at => updated_at.to_s(:db)
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if Array(options[:include]).include? :user
       base[:user] = {
         :username => user.login,
@@ -52,7 +52,7 @@ class Membership < ActiveRecord::Base
         :avatar_url => user.avatar_or_gravatar_url(:thumb)
       }
     end
-    
+
     base
   end
 end

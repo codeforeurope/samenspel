@@ -17,7 +17,7 @@ class Public::ConversationsController < Public::PublicController
       rescue
         flash[:error] = t('not_found.conversation', :id => params[:id])
       end
-    
+
       redirect_to public_project_path(@project) unless @conversation
     end
 

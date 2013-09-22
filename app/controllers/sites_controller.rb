@@ -3,7 +3,7 @@
 class SitesController < ApplicationController
 
   no_login_required
-  
+
   skip_before_filter :confirmed_user?
   skip_before_filter :load_project
   skip_before_filter :verify_authenticity_token, :only => :create
@@ -19,7 +19,7 @@ class SitesController < ApplicationController
 
   def create
     logout_keeping_session!
-    
+
     user = User.authenticate(params[:login], params[:password])
     if user
       # Protects against session fixation attacks, causes request forgery

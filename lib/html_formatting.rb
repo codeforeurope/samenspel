@@ -7,20 +7,20 @@ module HtmlFormatting
   def formats_attributes(*attributes)
     self.formatted_attributes ||= []
     formatted_attributes.concat attributes
-    
+
     # TODO: learn how to deal without view helpers in models
     include ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper
     include ActionView::Helpers::UrlHelper
     include InstanceMethods
-    
+
     before_save :format_attributes
   end
-  
+
   module InstanceMethods
     attr_reader :mentioned
-    
+
     protected
-    
+
     def format_attributes
       self.class.formatted_attributes.each do |attr|
         text = self[attr]
@@ -43,7 +43,7 @@ module HtmlFormatting
     # Get @username, like in Twitter, and link it to user path
     def format_usernames(body)
       all_mentioned = false
-      
+
       body.gsub(/(^|\W)@(\w+)/) do |text|
         first = $1
         name = $2.downcase
@@ -63,7 +63,7 @@ module HtmlFormatting
         end
       end
     end
-    
+
     MarkdownLink = /(\[((?:\[[^\]]*\]|[^\[\]])*)\]\([ \t]*()<?(.*?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/
     WebDomain    = /^(?:(?:(?:[a-z0-9][a-z0-9-]{0,62}[a-z0-9])|[a-z])\.)+[a-z]{2,6}/i
 
@@ -123,7 +123,7 @@ module HtmlFormatting
         "#{$1}<iframe class=\"youtube-player\" type=\"text/html\" width=\"480\" height=\"385\" src=\"http://www.youtube.com/embed/#{$2}\" frameborder=\"0\"></iframe>#{$5}"
       end
     end
-    
+
     ImageLink = /(^https?:\/\/[^\s]+\.(?:gif|png|jpeg|jpg)(\?)*(\d+)*$)/i;
     def format_image(text)
       text.gsub(ImageLink) do |link|

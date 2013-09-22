@@ -29,7 +29,7 @@ class Comment
       end
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -43,9 +43,9 @@ class Comment
       :target_type => target_type,
       :hours => hours
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if target.is_a? Task
       base[:assigned_id] = assigned_id
       base[:previous_assigned_id] = previous_assigned_id
@@ -54,11 +54,11 @@ class Comment
       base[:due_on] = due_on
       base[:previous_due_on] = previous_due_on
     end
-    
+
     if uploads.any?
       base[:uploads] = uploads.map {|u| u.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :user
       base[:user] = {
         :username => user.login,
@@ -67,7 +67,7 @@ class Comment
         :avatar_url => user.avatar_or_gravatar_url(:thumb)
       }
     end
-    
+
     base
   end
 end

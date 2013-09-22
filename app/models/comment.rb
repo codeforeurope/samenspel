@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Comment < ActiveRecord::Base
   include Immortal
-  
+
   extend ActiveSupport::Memoizable
-  
+
   concerned_with :tasks, :finders, :conversions
 
   belongs_to :user
@@ -11,19 +11,19 @@ class Comment < ActiveRecord::Base
   belongs_to :target, :polymorphic => true, :counter_cache => true
   belongs_to :assigned, :class_name => 'Person'
   belongs_to :previous_assigned, :class_name => 'Person'
-  
+
   def task_comment?
     self.target_type == "Task"
   end
-  
+
   def user
     @user ||= user_id ? User.with_deleted.find_by_id(user_id) : nil
   end
-  
+
   def assigned
     @assigned ||= assigned_id ? Person.with_deleted.find_by_id(assigned_id) : nil
   end
-  
+
   def previous_assigned
     @previous_assigned ||= previous_assigned_id ? Person.with_deleted.find_by_id(previous_assigned_id) : nil
   end
@@ -31,11 +31,11 @@ class Comment < ActiveRecord::Base
   has_many :uploads
   accepts_nested_attributes_for :uploads, :allow_destroy => true,
     :reject_if => lambda { |upload| upload['asset'].blank? }
-  
+
   has_many :google_docs
   accepts_nested_attributes_for :google_docs, :allow_destroy => true,
     :reject_if => lambda { |google_docs| google_docs['title'].blank? || google_docs['url'].blank? }
-  
+
   attr_accessible :body, :status, :assigned, :hours, :human_hours, :billable,
                   :upload_ids, :uploads_attributes, :due_on, :google_docs_attributes
 
@@ -46,7 +46,7 @@ class Comment < ActiveRecord::Base
 
   # TODO: investigate how we can enable this and not break nested attributes
   # validates_presence_of :target_id, :user_id, :project_id
-  
+
   validate :check_duplicate, :if => lambda { |c| !@is_importing and c.target_id? and not c.hours? }, :on => :create
   validates_presence_of :body, :unless => lambda { |c| c.task_comment? or c.uploads.to_a.any? or c.google_docs.any? }
 
@@ -106,7 +106,7 @@ class Comment < ActiveRecord::Base
   def thread_id
     "#{target_type}_#{target_id}"
   end
-  
+
   protected
 
   # don't allow two identical updates in a row
@@ -115,12 +115,12 @@ class Comment < ActiveRecord::Base
   # they hijack `target` in a before_save callback
   def check_duplicate
     last_comment = target.comments.by_user(self.user_id).latest.first
-    
+
     if last_comment and last_comment.duplicate_of? self
       errors.add :body, :duplicate
     end
   end
-  
+
   def copy_ownership_from_target # before_create
     self.user_id ||= target.user_id
     self.project_id ||= target.project_id
@@ -134,16 +134,16 @@ class Comment < ActiveRecord::Base
       new_watchers << self.user if self.user
       target.add_watchers new_watchers
     end
-    
+
     if target.respond_to?(:updated_at)
       target.update_attribute :updated_at, self.created_at
     end
   end
-  
+
   def cleanup_activities # after_destroy
     Activity.destroy_all :target_type => self.class.name, :target_id => self.id
   end
-  
+
   def cleanup_conversation
     if self.target.class == Conversation
       @conversation = self.target

@@ -1,56 +1,56 @@
 # -*- encoding : utf-8 -*-
 class ApiV1::CommentsController < ApiV1::APIController
   before_filter :load_comment, :only => [:update, :convert, :show, :destroy]
-  
+
   def index
     query = {:conditions => api_range,
              :limit => api_limit,
              :order => 'id DESC',
              :include => [:target, :user]}
-    
+
     @comments = if target
       target.comments.where(api_scope).all(query)
     else
       Comment.where(api_scope).find_all_by_project_id(current_user.project_ids, query)
     end
-    
+
     api_respond @comments, :references => [:target, :user, :project]
   end
 
   def show
     api_respond @comment, :include => [:user]
   end
-  
+
   def create
     # pass the project as extra parameter so target.project doesn't reload it
     authorize! :comment, target, @current_project
-    
+
     @comment = target.comments.create_by_user current_user, params
-    
+
     if @comment.save
       handle_api_success(@comment, :is_new => true)
     else
       handle_api_error(@comment)
     end
   end
-  
+
   def update
     authorize! :update, @comment
-    
+
     if @comment.update_attributes params
       handle_api_success(@comment, :is_new => true)
     else
       handle_api_error(@comment)
     end
   end
-  
+
   def destroy
     authorize! :destroy, @comment
     @comment.destroy
-    
+
     handle_api_success(@comment)
   end
-  
+
   protected
 
   def load_comment
@@ -61,7 +61,7 @@ class ApiV1::CommentsController < ApiV1::APIController
     end
     api_error :not_found, :type => 'ObjectNotFound', :message => 'Comment not found' unless @comment
   end
-  
+
   def api_scope
     conditions = {}
     unless params[:user_id].nil?
@@ -85,5 +85,5 @@ class ApiV1::CommentsController < ApiV1::APIController
       @current_project
     end
   end
-  
+
 end

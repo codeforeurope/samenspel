@@ -49,9 +49,9 @@ class OrganizationsController < ApplicationController
       flash.now[:error] = t('organizations.new.invalid_organization')
       render :new
     end
-    
+
   end
-  
+
   def edit
   end
 

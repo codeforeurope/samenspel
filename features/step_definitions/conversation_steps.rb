@@ -19,27 +19,27 @@ end
 
 Given /^the conversation "([^\"]+)" is watched by (@.+)$/ do |name, users|
   conversation = Conversation.find_by_name(name)
-  
+
   each_user(users) do |user|
     conversation.add_watcher(user, false)
   end
-  
+
   conversation.save(:validate => false)
 end
 
 Given /^(@.+) stops? watching the conversation "([^\"]*)"$/ do |users, name|
   conversation = Conversation.find_by_name(name)
-  
+
   each_user(users) do |user|
     conversation.remove_watcher(user, false)
   end
-  
+
   conversation.save(:validate => false)
 end
 
 Then /^(@.+) should( not)? be watching the conversation "([^\"]*)"$/ do |users, negate, name|
   conversation = Conversation.find_by_name(name)
-  
+
   each_user(users) do |user|
     if negate.blank?
       user.should be_watching(conversation)

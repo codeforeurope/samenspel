@@ -4,10 +4,10 @@ class CreateEmailBounces < ActiveRecord::Migration
       t.string :email
       t.string :exception_type
       t.string :exception_message
-      
+
       t.timestamps
     end
-    
+
     add_index :email_bounces, :email
     add_index :email_bounces, :created_at
   end

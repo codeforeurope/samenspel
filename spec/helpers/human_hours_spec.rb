@@ -26,15 +26,15 @@ describe ApplicationHelper, "#human_hours" do
   it "rounds up complete minutes" do
     result(1.995).should == "2h"
   end
-  
+
   it "rounds up correctly" do
     result(159.999840000001).should == "160h"
   end
-  
+
   it "rounds down zero" do
     result(0.001).should be_nil
   end
-  
+
   def result(hours)
     helper.human_hours(hours)
   end

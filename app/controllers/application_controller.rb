@@ -5,16 +5,16 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+
   include AuthenticatedSystem
 
   before_filter :set_locale,
                 :rss_token,
                 :set_client,
                 :confirmed_user?,
-                :load_project, 
+                :load_project,
                 :load_organizations,
-                :login_required, 
+                :login_required,
                 :touch_user,
                 :belongs_to_project?,
                 :load_community_organization,
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
         render :text => "You don't have permission to edit/update/delete within \"#{@current_project.name}\" project", :status => :forbidden
       end
     end
-    
+
     def handle_cancan_error(exception)
       if request.xhr?
         head :forbidden
@@ -46,17 +46,17 @@ class ApplicationController < ActionController::Base
         redirect_to root_url
       end
     end
-    
+
     def handle_no_permissions
       render :text => "You don't have permission to edit/update/delete within \"#{@current_project.name}\" project", :status => :forbidden
     end
-    
+
     def confirmed_user?
       if current_user and not current_user.is_active?
         redirect_to unconfirmed_email_user_path(current_user)
       end
     end
-    
+
     def rss_token
       unless params[:rss_token].nil? or !%w(rss ics).include?(params[:format])
         user = User.find_by_rss_token(params[:rss_token])
@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
     # When you only belong to one organization, every page will be branded with its logo and colors.
     # If you belong to 2+ organizations, common pages will not be branded and others will be organization branded
     def load_organizations
-      if logged_in? 
+      if logged_in?
         @organizations = current_user.organizations
         @organization = case @organizations.size
         when 0
@@ -126,7 +126,7 @@ class ApplicationController < ActionController::Base
         :en
       end
     end
-    
+
     def fragment_cache_key(key)
       super(key).tap { |str|
         str << "_#{I18n.locale}"
@@ -135,7 +135,7 @@ class ApplicationController < ActionController::Base
         end
       }
     end
-    
+
     def touch_user
       current_user.update_visited_at if logged_in?
     end
@@ -169,9 +169,9 @@ class ApplicationController < ActionController::Base
             user_name = current_user.name
           when 'show_users'
             user_name = @user.name
-        end    
+        end
         @page_title = h("#{user_name ? user_name + ' — ' : ''}#{translate_location_name}")
-      end    
+      end
     end
 
     MobileClients = /(iPhone|iPod|Android|Opera mini|Blackberry|Palm|Windows CE|Opera mobi|iemobile|webOS)/i
@@ -189,16 +189,16 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
+
     def mobile?
       request.format == :m
     end
     helper_method :mobile?
-    
+
     def iframe?
       params[:iframe] == 'true'
     end
-    
+
     def output_errors_json(record)
       if request.xhr?
         response.content_type = Mime::JSON
@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
         render :template => 'shared/iframe_error', :layout => false, :locals => { :data => record.errors.as_json }
       end
     end
-    
+
     def split_events_by_date(events, start_date=nil)
       start_date ||= Date.today.monday.to_date
       split_events = Array.new
@@ -219,7 +219,7 @@ class ApplicationController < ActionController::Base
       end
       split_events
     end
-    
+
     # http://www.coffeepowered.net/2009/02/16/powerful-easy-dry-multi-format-rest-apis-part-2/
     def render(opts = nil, extra_options = {}, &block)
       if opts && opts.is_a?(Hash) then
@@ -249,14 +249,14 @@ class ApplicationController < ActionController::Base
         super(opts, extra_options, &block)
       end
     end
-    
+
     def handle_api_error(f,object)
       error_list = object.nil? ? [] : object.errors
       f.xml  { render :xml => error_list.to_xml,     :status => :unprocessable_entity }
       f.json { render :as_json => error_list.to_xml, :status => :unprocessable_entity }
       f.yaml { render :as_yaml => error_list.to_xml, :status => :unprocessable_entity }
     end
-    
+
     def handle_api_success(f,object,is_new=false)
       if is_new
         f.xml  { render :xml => object.to_xml, :status => :created }
@@ -268,7 +268,7 @@ class ApplicationController < ActionController::Base
         f.yaml { head :ok }
       end
     end
-    
+
     def calculate_position(obj)
       options = {}
       if pos = params[:position].presence
@@ -310,7 +310,7 @@ class ApplicationController < ActionController::Base
     def h(text)
       ERB::Util.h(text)
     end
-    
+
     def add_chrome_frame_header
       headers['X-UA-Compatible'] = 'chrome=1' if chrome_frame? && request.format == :html
     end
@@ -322,7 +322,7 @@ class ApplicationController < ActionController::Base
         redirect_to path
       end
     end
-    
+
     def chrome_frame?
       request.user_agent =~ /chromeframe/
     end

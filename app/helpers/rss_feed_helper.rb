@@ -4,9 +4,9 @@ module RssFeedHelper
     xml = options.delete(:xml) || eval("xml", block.binding)
     builder_klass = options.delete(:builder) || RssFeedBuilder
     xml.instruct!
-    
+
     options[:schema_date] ||= "2005"
-    
+
     xml.rss :version => "2.0", :'xmlns:content' => "http://purl.org/rss/1.0/modules/content/" do
       xml.channel do
         xml.link options[:root_url] if options[:root_url]
@@ -14,17 +14,17 @@ module RssFeedHelper
       end
     end
   end
-  
+
   class RssFeedBuilder
     def initialize(xml, view, options = {})
       @xml, @view, @options = xml, view, options
     end
-    
+
     # Accepts a Date or Time object and inserts it in the proper format. If nil is passed, current time in UTC is used.
     def updated(date_or_time = nil)
       @xml.pubDate((date_or_time || Time.now.utc).to_s(:rfc822))
     end
-    
+
     # Creates an entry tag for a specific record and prefills the id using class and id.
     #
     # Options:
@@ -47,7 +47,7 @@ module RssFeedHelper
     end
 
     private
-    
+
     def method_missing(method, *arguments, &block)
       @xml.__send__(method, *arguments, &block)
     end

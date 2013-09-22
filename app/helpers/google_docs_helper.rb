@@ -9,7 +9,7 @@ module GoogleDocsHelper
       'data-edit-url' => item[:edit_url],
       'data-acl-url' => item[:acl_url]
   end
-  
+
   def google_docs_image(document_type)
     image_tag "/images/google_docs/icon_6_#{document_type}.gif"
   end

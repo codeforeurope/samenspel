@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
   def content_for(*args)
     super unless args.first.to_sym == :column and mobile?
   end
-  
+
   def logo_image
     logo = @organization ? @organization.logo(:top) : "header_logo_black.png"
     image_tag(logo, :alt => "Teambox")
@@ -33,7 +33,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def navigation(project,projects,recent_projects)
       render 'shared/navigation',
         :project => project,
@@ -72,11 +72,11 @@ module ApplicationHelper
 
   def posted_date(datetime)
     datetime = datetime.in_time_zone(current_user.time_zone) if current_user
-    
+
     content_tag :time, localize(datetime, :format => :long), :class => 'timeago',
       :datetime => datetime.xmlschema, :pubdate => true, :'data-msec' => datetime_ms(datetime)
   end
-  
+
   def datetime_ms(datetime)
     datetime = datetime.in_time_zone(current_user.time_zone) if current_user
     datetime.to_i * 1000
@@ -121,7 +121,7 @@ module ApplicationHelper
   def upgrade_browser
     render 'shared/upgrade_browser'
   end
-  
+
   def chrome_frame
     render 'shared/chrome_frame'
   end
@@ -141,7 +141,7 @@ module ApplicationHelper
   def formatting_documentation_link
     link_to '', text_styles_path, :rel => :facebox, :class => :style_icon, :title => t('projects.show.text_styling')
   end
-  
+
   def formatting_invitations_link
     link_to t('invitations.search.help'), invite_format_path, :rel => :facebox
   end
@@ -149,17 +149,17 @@ module ApplicationHelper
   def host_with_protocol
     request.protocol + request.host + request.port_string
   end
-  
+
   def human_hours(hours)
     hours = (hours.to_f * 100).round.to_f / 100
     if hours > 0
       minutes = ((hours % 1) * 60).round
-      
+
       if minutes == 60
         hours += 1
         minutes = 0
       end
-      
+
       if minutes.zero?
         t('comments.comment.hours', :hours => hours.to_i)
       else
@@ -167,11 +167,11 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def set_reload_url(path)
     @reload_url = path
   end
-  
+
   def reload_url
     @reload_url || url_for(request.path_parameters)
   end
@@ -179,18 +179,18 @@ module ApplicationHelper
   def rss?
     request.format == :rss
   end
-  
+
   def time_tracking_enabled?
     Teambox.config.allow_time_tracking || false
   end
-  
+
   def auto_discovery_link_by_context(user, project)
     if user
       path = project ? project_path(project, :format => :rss) : projects_path(:format => :rss)
       auto_discovery_link_tag(:rss, user_rss_token(path))
     end
   end
-  
+
   def configure_this_organization
     if Teambox.config.community && @community_role == :admin && @community_organization.description.blank? && params[:organization].nil?
       message = if location_name != "appearance_organizations"
@@ -203,13 +203,13 @@ module ApplicationHelper
       </div>).html_safe
     end
   end
-  
+
   def locale_select_values
     I18n.available_locales.map { |code|
       [t(code, :scope => :locales, :locale => code), code.to_s]
     }.sort_by(&:first)
   end
-  
+
   # collecting stats about Teambox installations
   def tracking_code
     if Teambox.config.tracking_enabled and Rails.env.production?
@@ -248,7 +248,7 @@ module ApplicationHelper
 
   def upload_form_html_options(page, upload)
     id = upload.new_record? ? 'new_upload' : 'upload_file_form'
-    form_classes = %w(upload_form app_form) 
+    form_classes = %w(upload_form app_form)
     form_classes << 'form_error' unless upload.errors.empty?
     form_classes << 'new_upload' if upload.new_record?
 
@@ -257,7 +257,7 @@ module ApplicationHelper
 
     {:html => { :multipart => true, :id => id, :style => form_style, :class => form_classes}}
   end
-  
+
   ##
   ##  eg. js_id(:edit_header,@project,@tasklist) => project_21_task_list_12_edit_header
   ##  eg. js_id(:new_header,@project,Task.new) => project_21_task_list_new_header
@@ -310,7 +310,7 @@ BLOCK
   # Google Analytics Tracking Code
   def analytics_tracking_code
     if Teambox.config.analytics_tracking_id? and Rails.env.production?
-      render 'shared/analytics', 
+      render 'shared/analytics',
         :tracking_id => Teambox.config.analytics_tracking_id
     end
   end

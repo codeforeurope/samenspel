@@ -16,12 +16,12 @@ class User
 
   validates_length_of       :email,       :within => 6..100 #r@a.wk
   validates_uniqueness_of   :email,       :case_sensitive => false
-  
+
   validates                 :email,       :presence => true, :email => { :message => Authentication.bad_email_message }
   validate  :old_password_provided?, :if => lambda { |u| u.password_confirmation.present? and !u.performing_reset }, :on => :update
-  
+
   before_validation :strip_fields
-  
+
   def strip_fields
     [:email, :login, :first_name, :last_name].each {|v| self[v] = (self[v]||'').strip }
   end
@@ -39,8 +39,8 @@ class User
   end
 
   def short_name
-     I18n.t 'common.format_name_short', :first_name => first_name, :last_name => last_name, 
-                                        :first_name_first_character => first_name.chars.first, 
+     I18n.t 'common.format_name_short', :first_name => first_name, :last_name => last_name,
+                                        :first_name_first_character => first_name.chars.first,
                                         :last_name_first_character => last_name.chars.first
   end
 

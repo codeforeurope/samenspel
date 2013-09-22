@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe Project do 
-  describe 'roles' do 
+describe Project do
+  describe 'roles' do
     before do
       @owner = Factory.create(:user)
       @project = Factory.create(:project, :user_id => @owner.id)

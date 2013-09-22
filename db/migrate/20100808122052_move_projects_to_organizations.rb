@@ -18,18 +18,18 @@ class MoveProjectsToOrganizations < ActiveRecord::Migration
         <p style="font-size: 10px">If you like what we're doing, why not tell your friends about us or blog about it?</p>
       )
     end
-    
+
     begin
-    
+
     organization = Organization.create!(:name => "Your company name", :permalink => "organization", :description => description)
-    
+
     Project.find_each(:batch_size => 500) do |project|
       project.update_attribute :organization_id, organization.id
     end
     User.find_each(:batch_size => 500) do |user|
       organization.add_member(user)
     end
-    
+
     rescue
     end
   end

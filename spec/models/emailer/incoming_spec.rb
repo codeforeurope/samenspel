@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
 
-describe Emailer do 
-  describe 'incoming emails' do 
+describe Emailer do
+  describe 'incoming emails' do
     before do
       @owner = Factory.create(:user)
       @fred = Factory.create(:user)
@@ -11,23 +11,23 @@ describe Emailer do
       @project.add_user(@fred)
       @task = Factory(:task, :user_id => @owner.id, :project_id => @project.id)
       @conversation = Factory(:conversation, :user_id => @owner.id, :project_id => @project.id)
-      
+
       @email_template = Mail.new
       @email_template.from = @owner.email
     end
-    
+
     context 'an email to create a new task' do
       before do
         @email_template.to = "#{@project.permalink}+task@#{Teambox.config.smtp_settings[:domain]}"
         @email_template.subject = "Our new task subject"
         @email_template.body = "Some body stuff"
       end
-      
+
       it "should create a new task from the subject and assign to the sender then add a comment with the body" do
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should change(Task, :count).by(1)
-      
+
         task = Task.first(:order => 'tasks.id DESC')
         task.user.should == @owner
         task.name.should == @email_template.subject
@@ -37,11 +37,11 @@ describe Emailer do
         comment.assigned_id.should be_nil
         comment.status_name.should == :new
       end
-      
+
       it "should not create a new task if the subject is blank and the body is blank" do
         @email_template.subject = ""
         @email_template.body = ""
-        
+
         lambda do
           lambda do
             Emailer.receive(@email_template.to_s)
@@ -112,31 +112,31 @@ describe Emailer do
 
       it "should add the Inbox list if it exists" do
         list = @project.task_lists.create(:user => @owner, :name => 'Inbox')
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should change(Task, :count).by(1)
-      
+
         task = Task.first(:order => 'tasks.id DESC')
         task.task_list.should == list
       end
-    
+
       it "should create the Inbox list if it does not exist" do
         lambda do
           lambda do
             Emailer.receive(@email_template.to_s)
           end.should change(Task, :count).by(1)
         end.should change(TaskList, :count).by(1)
-        
+
         task_list = TaskList.find_by_name('Inbox')
         task = Task.first(:order => 'tasks.id DESC')
         task.task_list.should == task_list
       end
-      
+
       it "should assign the task to fred with #fred" do |variable|
         @email_template.body = "##{@fred.login}\nWe did some stuff"
         Emailer.receive(@email_template.to_s)
-        
+
         task = Task.first(:order => 'tasks.id DESC')
         task.assigned.user.id.should == @fred.id
         comment = task.comments.last
@@ -145,11 +145,11 @@ describe Emailer do
         comment.previous_assigned_id.should == nil
         comment.previous_status.should == Task::STATUSES[:new]
       end
-      
+
       it "should assign the given task status when given a status" do
         @email_template.body = "#hold\nWe did some stuff"
         Emailer.receive(@email_template.to_s)
-        
+
         task = Task.first(:order => 'tasks.id DESC')
         task.assigned.should be_nil
         comment = task.comments.last
@@ -164,7 +164,7 @@ describe Emailer do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "#\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.assigned?.should be_false
@@ -172,12 +172,12 @@ describe Emailer do
       comment.assigned_id.should be_nil
       comment.status.should be_nil
     end
-    
+
     it "should assign the task to fred with #fred" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "##{@fred.login}\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.assigned.user.id.should == @fred.id
@@ -187,46 +187,46 @@ describe Emailer do
       comment.previous_assigned_id.should == nil
       comment.previous_status.should == Task::STATUSES[:new]
     end
-    
+
     it "should not assign the task to janet with #janet" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "##{@janet.login}\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.assigned_id.should_not == @janet.id
     end
-    
+
     it "should resolve the task with #resolve or #resolved" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "#resolve\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.status_name.should == :resolved
       comment.status.should == Task::STATUSES[:resolved]
       comment.previous_status.should == 0
     end
-    
+
     it "should hold the task with #hold" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "#hold\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.status.should == Task::STATUSES[:hold]
       comment.status.should == Task::STATUSES[:hold]
       comment.previous_status.should == Task::STATUSES[:new]
     end
-    
+
     it "should reject the task with #reject" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "#reject\nWe did some stuff"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.status.should == Task::STATUSES[:rejected]
@@ -238,29 +238,29 @@ describe Emailer do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "\n\n  \n\n \n\n#hold\nPeople like newlines too. So lets implement that!"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       @task.status.should == Task::STATUSES[:hold]
       comment.status.should == Task::STATUSES[:hold]
       comment.previous_status.should == Task::STATUSES[:new]
     end
-    
+
     it "should extract actions from emails" do
       @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "\n\n  \n\n \n\n#hold\nPeople like newlines too. So lets implement that!"
       Emailer.receive(@email_template.to_s)
-      
+
       @task.reload
       comment = @task.comments.last
       comment.body.should == "People like newlines too. So lets implement that!"
     end
-    
+
     it "should post a comment to a project if no subject is given" do
       @email_template.to = "#{@project.permalink}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "Yes i agree completely!"
       Emailer.receive(@email_template.to_s)
-      
+
       @project.conversations(true).first.simple.should == true
       comment = @project.comments(true).first
       comment.body.should == "Yes i agree completely!"
@@ -282,11 +282,11 @@ describe Emailer do
     it "should post a comment to a conversation" do
       @email_template.to = "#{@project.permalink}+conversation+#{@conversation.id}@#{Teambox.config.smtp_settings[:domain]}"
       @email_template.body = "I am outraged!"
-      
+
       lambda {
         Emailer.receive(@email_template.to_s)
       }.should change(Comment, :count).by(1)
-      
+
       comment = @conversation.comments(true).first(:order => 'comments.id DESC')
       comment.body.should == "I am outraged!"
     end
@@ -304,55 +304,55 @@ describe Emailer do
         conv.user.should == @owner
       end
     end
-    
+
     context "should raise an error when" do
       before do
         @email_template.to = "#{@project.permalink}+task+#{@task.id}@#{Teambox.config.smtp_settings[:domain]}"
         @email_template.body = "#\nWe did some stuff"
       end
-      
+
       it "the email sender is not recognised" do
         @email_template.from = "random.sender@example.com"
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should raise_error(Emailer::Incoming::UserNotFoundError) { |e|
           e.mail.from.should == @email_template.from
         }
       end
-      
+
       it "the specified project does not exist" do
         @email_template.to = "random_project+tasks@#{Teambox.config.smtp_settings[:domain]}"
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should raise_error Emailer::Incoming::ProjectNotFoundError
       end
-      
+
       it "is not part of the specified project" do
         @email_template.from = @janet.email
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should raise_error Emailer::Incoming::NotProjectMemberError
       end
-      
+
       it "the specified conversation does not exist" do
         @email_template.to = "#{@project.permalink}+conversation+#{rand(1000) + 1000}@#{Teambox.config.smtp_settings[:domain]}"
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should raise_error Emailer::Incoming::TargetNotFoundError
       end
-      
+
       it "the specified task does not exist" do
         @email_template.to = "#{@project.permalink}+task+#{rand(1000) + 1000}@#{Teambox.config.smtp_settings[:domain]}"
-        
+
         lambda do
           Emailer.receive(@email_template.to_s)
         end.should raise_error Emailer::Incoming::TargetNotFoundError
       end
-      
+
     end
   end
 end

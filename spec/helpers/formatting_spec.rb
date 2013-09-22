@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe HtmlFormatting, 'Should apply our special Markdown' do
-  
+
   subject do
     comment = Comment.new :body => description
     comment.save!
@@ -40,11 +40,11 @@ describe HtmlFormatting, 'Should apply our special Markdown' do
   it "some **bold** text" do
     should == "<p>some <strong>bold</strong> text</p>"
   end
-  
+
   it "some *italic* text" do
     should == "<p>some <em>italic</em> text</p>"
   end
-  
+
   it "She used to mean:\n\n* So\n* much\n* to\n * me!" do
     should == "<p>She used to mean:</p>\n\n<ul>\n<li>So</li>\n<li>much</li>\n<li>to</li>\n<li>me!</li>\n</ul>"
   end
@@ -80,7 +80,7 @@ describe HtmlFormatting, 'Should apply our special Markdown' do
   it "This is a comment\nwith multiple lines\n\nJordi." do
     should == "<p>This is a comment<br />\nwith multiple lines</p>\n\n<p>Jordi.</p>"
   end
-  
+
   it "Can somebody spec and fix this?\n\nA comment line \"**text**\ntext\" should return a line break with a br tag." do
     should == "<p>Can somebody spec and fix this?</p>\n\n<p>A comment line \"<strong>text</strong><br />\ntext\" should return a line break with a br tag.</p>"
   end
@@ -88,15 +88,15 @@ describe HtmlFormatting, 'Should apply our special Markdown' do
   it "This is a comment with an_underscored_word" do
     should == "<p>This is a comment with an_underscored_word</p>"
   end
-  
+
   it "Why don't you\nhttp://www.google.co.uk/images/logos/ps_logo2.png\nIt?" do
     should == "<p>Why don't you<br />\n<a href=\"http://www.google.co.uk/images/logos/ps_logo2.png\"><img class=\"comment-image\" src=\"http://www.google.co.uk/images/logos/ps_logo2.png\" alt=\"http://www.google.co.uk/images/logos/ps_logo2.png\" /></a><br />\nIt?</p>"
   end
-  
+
   it "Why don't you\nJust http://www.google.co.uk/images/logos/ps_logo2.png\nIt?" do
     should == "<p>Why don't you<br />\nJust <a href=\"http://www.google.co.uk/images/logos/ps_logo2.png\">http://www.google.co.uk/images/logos/ps_logo2.png</a><br />\nIt?</p>"
   end
-  
+
   context "Add http:// to links" do
     it "The internet is made of [lolcats](icanhascheezburger.com)" do
       should == "<p>The internet is made of <a href=\"http://icanhascheezburger.com\">lolcats</a></p>"
@@ -109,7 +109,7 @@ describe HtmlFormatting, 'Should apply our special Markdown' do
     it "The internet is made of [random](www.4chan.org/b)" do
       should == "<p>The internet is made of <a href=\"http://www.4chan.org/b\">random</a></p>"
     end
-    
+
     it "The internet is made of [google](http://google.com)" do
       should == "<p>The internet is made of <a href=\"http://google.com\">google</a></p>"
     end

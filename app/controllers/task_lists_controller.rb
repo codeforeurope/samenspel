@@ -4,7 +4,7 @@ class TaskListsController < ApplicationController
   before_filter :load_task_list, :only => [:edit,:update,:show,:destroy,:watch,:unwatch,:archive,:unarchive]
   before_filter :load_task_lists, :only => [:index, :reorder]
   before_filter :set_page_title
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     # Can they even edit the project?
     if @task_list
@@ -68,7 +68,7 @@ class TaskListsController < ApplicationController
     authorize! :make_task_lists, @current_project
     @on_index = true
     @task_list = @current_project.create_task_list(current_user,params[:task_list])
-    
+
     if !@task_list.new_record?
       respond_to do |f|
         f.html { redirect_to_task_list @task_list }
@@ -85,12 +85,12 @@ class TaskListsController < ApplicationController
       end
     end
   end
-  
+
   def edit
     authorize! :update, @task_list
     @edit_part = params[:part]
     calc_onindex
-    
+
     respond_to do |f|
       f.any(:html, :m)
       f.js { render :layout => false }
@@ -101,7 +101,7 @@ class TaskListsController < ApplicationController
     authorize! :update, @task_list
     calc_onindex
     @saved = @task_list.update_attributes(params[:task_list])
-    
+
     if @saved
       respond_to do |f|
         f.any(:html, :m) { non_js_list_redirect }
@@ -127,17 +127,17 @@ class TaskListsController < ApplicationController
     end
     head :ok
   end
-  
+
   def archive
     authorize! :update, @task_list
     calc_onindex
-    
+
     if !@task_list.archived
       # Prototype for comment
       comment_attrs = {}
       comment_attrs[:status] = Task::STATUSES[:resolved]
       comment_attrs[:assigned] = nil
-      
+
       # Resolve all unresolved tasks
       @task_list.tasks.each do |task|
         unless task.archived?
@@ -147,11 +147,11 @@ class TaskListsController < ApplicationController
           comment.save!
         end
       end
-      
+
       @task_list.reload
       @task_list.archived = true
       @task_list.save!
-      
+
       respond_to do |f|
         f.any(:html, :m) { non_js_list_redirect }
         f.js   { render :layout => false }
@@ -165,16 +165,16 @@ class TaskListsController < ApplicationController
       end
     end
   end
-  
+
   def unarchive
     authorize! :update, @task_list
     calc_onindex
-    
+
     if @task_list.archived
       @task_list.archived = false
       @saved = @task_list.save
     end
-    
+
     if @saved
       respond_to do |f|
         f.js { render 'task_lists/update', :layout => false }
@@ -191,7 +191,7 @@ class TaskListsController < ApplicationController
   def destroy
     calc_onindex
     authorize! :destroy, @task_list
-    
+
     @task_list.try(:destroy)
 
     respond_to do |f|
@@ -252,7 +252,7 @@ class TaskListsController < ApplicationController
         @task_lists = @current_project.task_lists(:include => [:project])
       else
         @projects = current_user.projects.unarchived
-        
+
         if [:xml, :json, :as_yaml].include? request.format.to_sym
           @task_lists = TaskList.find(:all,
                                       :include => [:project],
@@ -266,12 +266,12 @@ class TaskListsController < ApplicationController
                     sort { |a,b| (a.due_on || 1.year.from_now.to_date) <=> (b.due_on || 1.year.from_now.to_date) }
         end
       end
-      
+
       @task_lists_archived = @task_lists.reject {|t| !t.archived?}
       @task_lists_active = @task_lists.reject {|t| t.archived?}
       @task_lists = @task_lists_active + @task_lists_archived
     end
-    
+
     def non_js_list_redirect
       if @on_index
         redirect_to project_task_lists_path(@current_project)
@@ -283,11 +283,11 @@ class TaskListsController < ApplicationController
     def load_task_list
       @task_list = @current_project.task_lists.find(params[:id])
     end
-    
+
     def calc_onindex
       @on_index = ((params[:on_index] || 0).to_i == 1)
     end
-    
+
     def redirect_to_task_list(task_list=nil)
       redirect_to task_list ? project_task_list_path(@current_project, @task_list) :
                                project_task_lists_path(@current_project)

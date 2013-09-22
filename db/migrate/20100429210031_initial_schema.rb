@@ -1,7 +1,7 @@
 class InitialSchema < ActiveRecord::Migration
   def self.up
     return if connection.tables.include?('groups')
-    
+
     create_table "activities" do |t|
       t.integer  "user_id"
       t.integer  "project_id"

@@ -12,7 +12,7 @@ class ResetPasswordsController < ApplicationController
   def create
     @reset_password = ResetPassword.new(params[:reset_password])
     @reset_password.user = User.find_by_email(@reset_password.email)
-    
+
     if @reset_password.user && @reset_password.user.uses_ldap_authentication
       @reset_password.errors.clear
       flash[:error] = I18n.t('reset_passwords.create.uses_ldap_auth_html',

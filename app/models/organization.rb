@@ -25,7 +25,7 @@ class Organization < ActiveRecord::Base
   validate :forbid_if_change_default_is_disabled
 
   before_destroy :prevent_if_projects
-  
+
   attr_accessor :is_example
   attr_accessible :name, :permalink, :description, :logo, :settings, :default
 
@@ -34,7 +34,7 @@ class Organization < ActiveRecord::Base
     :top      => [134, 36]
   }
 
-  has_attached_file :logo, 
+  has_attached_file :logo,
     :url  => "/logos/:id/:style.png",
     :path => (Teambox.config.amazon_s3 ? "logos/:id/:style.png" : ":rails_root/public/logos/:id/:style.png"),
     :s3_protocol => (Teambox.config.secure_logins ? 'https' : 'http'),
@@ -67,7 +67,7 @@ class Organization < ActiveRecord::Base
   def to_param
     permalink
   end
-  
+
   def self.find_by_id_or_permalink(param)
     if param.to_s =~ /^\d+$/
       find_by_id(param)
@@ -100,7 +100,7 @@ class Organization < ActiveRecord::Base
   def has_logo?
     !!logo.original_filename
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -114,17 +114,17 @@ class Organization < ActiveRecord::Base
       :created_at => created_at.to_s(:api_time),
       :updated_at => updated_at.to_s(:db)
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if Array(options[:include]).include? :members
       base[:members] = memberships.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :projects
       base[:projects] = projects.map {|p| p.to_api_hash(options)}
     end
-    
+
     base
   end
 

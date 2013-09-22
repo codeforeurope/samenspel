@@ -17,10 +17,10 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :permalink, :archived, :tracks_time, :public, :organization_attributes, :organization_id
   has_many :google_docs
-  
+
   attr_accessor :is_importing
   attr_accessor :import_activities
-  
+
   def self.find_by_id_or_permalink(param)
     if param.to_s =~ /^\d+$/
       find_by_id(param)
@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
     return log_later(target, action, creator_id) if self.is_importing
     Activity.log(self, target, action, creator_id)
   end
-  
+
   def log_later(target, action, creator_id)
     @import_activities ||= []
     base = {:date => target.try(:created_at) || nil,
@@ -49,12 +49,12 @@ class Project < ActiveRecord::Base
     end
     @import_activities << base
   end
-  
+
   def add_user(user, params={})
     unless has_member?(user)
       person = Person.with_deleted.where(:project_id => self.id, :user_id => user.id).first
       person ||= people.build
-      
+
       person.user = user
       person.role = params[:role] if params[:role]
       person.source_user_id = params[:source_user].try(:id)
@@ -109,7 +109,7 @@ class Project < ActiveRecord::Base
     tasks = projects.collect{ |p| p.tasks }.flatten
     self.calendar_for_tasks(tasks, projects, filter_user, host, port)
   end
-  
+
   protected
 
     def self.calendar_for_tasks(tasks, projects, filter_user, host = nil, port = 80)

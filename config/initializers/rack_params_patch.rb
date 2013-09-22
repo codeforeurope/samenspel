@@ -3,7 +3,7 @@ require 'rack/utils'
 # backporting a params parsing fix from Rack 1.2
 module Rack::Utils
   undef normalize_params
-  
+
   def normalize_params(params, name, v = nil)
     name =~ %r(\A[\[\]]*([^\[\]]+)\]*)
     k = $1 || ''
@@ -34,6 +34,6 @@ module Rack::Utils
 
     return params
   end
-  
+
   module_function :normalize_params
 end

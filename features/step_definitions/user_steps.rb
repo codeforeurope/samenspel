@@ -112,11 +112,11 @@ Given /^I have the daily task reminders turned off$/ do
 end
 
 Given /^I set my preference to collapsed threads$/ do
-  visit collapse_activities_path 
+  visit collapse_activities_path
   @current_user.reload.settings["collapse_activities"].should be_true
 end
 
 Given /^I set my preference to expanded threads$/ do
-  visit expand_activities_path 
+  visit expand_activities_path
   @current_user.reload.settings["collapse_activities"].should be_false
 end

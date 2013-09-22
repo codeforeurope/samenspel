@@ -2,30 +2,30 @@
 class ApiV1::UploadsController < ApiV1::APIController
   before_filter :load_page
   before_filter :load_upload, :only => [:update,:show,:destroy]
-  
+
   def index
     query = {:conditions => api_range,
              :limit => api_limit,
              :order => 'id DESC',
              :include => [:page, :user]}
-    
+
     @uploads = if target
       target.uploads.where(api_scope).all(query)
     else
       Upload.where(api_scope).find_all_by_project_id(current_user.project_ids, query)
     end
-    
+
     api_respond @uploads, :references => [:page, :user]
   end
 
   def show
     api_respond @upload, :include => [:page_slot]
   end
-  
+
   def create
     authorize! :upload_files, @current_project
     authorize! :update, @page if @page
-      
+
     @upload = @current_project.uploads.new params
     @upload.page = @page if @page
     @upload.user = current_user
@@ -49,15 +49,15 @@ class ApiV1::UploadsController < ApiV1::APIController
   end
 
   protected
-  
+
   def target
     @target ||= (@page || @current_project)
   end
-  
+
   def load_page
     @page = @current_project.pages.find params[:page_id] if params[:page_id]
   end
-  
+
   def api_scope
     conditions = {}
     unless params[:user_id].nil?
@@ -65,7 +65,7 @@ class ApiV1::UploadsController < ApiV1::APIController
     end
     conditions
   end
-  
+
   def load_upload
     @upload = if target
       target.uploads.find(params[:id])
@@ -74,5 +74,5 @@ class ApiV1::UploadsController < ApiV1::APIController
     end
     api_error :not_found, :type => 'ObjectNotFound', :message => 'Upload not found' unless @upload
   end
-  
+
 end

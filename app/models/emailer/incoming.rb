@@ -48,7 +48,7 @@ module Emailer::Incoming
       end
     end
   end
-  
+
   def self.fetch_imap(settings)
     imap = Net::IMAP.new(settings[:address], settings[:port], true)
     imap.login(settings[:user_name], settings[:password])
@@ -78,11 +78,11 @@ module Emailer::Incoming
   # Receives a parsed and decoded TMail::Mail object.
   def receive(email)
     email = ParamsMail.new(email) if Hash === email
-    
+
     # TODO: ease a bit on the ivars pls
     process_incoming email
     get_target email
-    
+
     case @type
     when :project
       create_conversation
@@ -94,7 +94,7 @@ module Emailer::Incoming
       unless @target
         @target = create_task
       end
-      
+
       get_action
       @body = extract_action
       post_to(@target)
@@ -102,7 +102,7 @@ module Emailer::Incoming
   end
 
   private
-  
+
   # Sendgrid params to act as TMail::Mail
   class ParamsMail
     def initialize(params)
@@ -111,7 +111,7 @@ module Emailer::Incoming
       @attachments = nil
       @charsets = JSON.parse(@params[:charsets] || '{}')
     end
-    
+
     %w[from to cc].each do |field|
       class_eval <<-CODE
         def #{field}
@@ -119,15 +119,15 @@ module Emailer::Incoming
         end
       CODE
     end
-    
+
     def body
       @body ||= field_to_utf8(:text)
     end
-    
+
     def subject
       @params[:subject]
     end
-    
+
     def attachments
       @attachments ||= begin
         files = []
@@ -137,9 +137,9 @@ module Emailer::Incoming
         files
       end
     end
-    
+
     private
-    
+
     def field_to_addr(field)
       value = @params[field.to_sym]
       return if value.blank?
@@ -147,11 +147,11 @@ module Emailer::Incoming
       header = Mail::Field.new(field.to_s, value.strip)
       header.addrs.map &:address
     end
-    
+
     def field_to_utf8(field)
       value = @params[field.to_sym]
       return value if value.blank?
-      
+
       charset = @charsets[field.to_s]
       if charset and charset.downcase != 'utf-8'
         begin
@@ -163,21 +163,21 @@ module Emailer::Incoming
       return value
     end
   end
-  
+
   class MissingInfo < ArgumentError; end
   class Error < StandardError
     attr_accessor :mail
-    
+
     def initialize(mail, message)
       super(message)
       @mail = mail
     end
-    
+
     def sender?
       mail.from.present?
     end
   end
-  
+
   class UserNotFoundError < Error; end
   class NotProjectMemberError < Error; end
   class ProjectNotFoundError < Error; end
@@ -186,10 +186,10 @@ module Emailer::Incoming
   # accepts params in Sendgrid's format: http://wiki.sendgrid.com/doku.php?id=parse_api
   def process_incoming(email)
     raise MissingInfo, "Invalid mail body" if email.body.blank?
-    
+
     from = Array(email.from).first
     raise MissingInfo, "Invalid From field" if from.nil?
-    
+
     configured_domain = Teambox.config.smtp_settings[:domain]
     destinations = Array(email.to) + Array(email.cc)
     target = destinations.detect { |a| a.include? configured_domain }
@@ -198,7 +198,7 @@ module Emailer::Incoming
     @to = target.split('@').first.downcase
     @project = Project.find_by_permalink @to.split('+').first
     raise ProjectNotFoundError.new(email, "Invalid project '#{@to}'") unless @project
-    
+
     @user = User.find_by_email from
     raise UserNotFoundError.new(email, "Invalid user '#{email.from.first}'") unless @user
     raise NotProjectMemberError.new(email, "User does not belong to project") unless @user.projects.include? @project
@@ -214,10 +214,10 @@ module Emailer::Incoming
     @body    = strip_responses(@body).strip_tags.to_s.strip
     @subject = email.subject.to_s.gsub(REPLY_REGEX, "").strip
     @files   = email.attachments || []
-    
+
     Rails.logger.info "#{@user.name} <#{@user.email}> sent '#{@subject}' to #{@to}"
   end
-  
+
   # Removes 'On ... bla bla wrote line'
   # Splits emails on answer line and takes top half
   # Gmail adds <div class='email' to indicate where real message begins
@@ -231,13 +231,13 @@ module Emailer::Incoming
       split("<div class='email'").first.
       strip
   end
-  
+
   # Decides which kind of object we'll be posting to (Conversation, Task, Task List..)
   # and finds it if appliable.
   def get_target(email)
     # projectname+targetclass+id@mailserver.com
     permalink, klass, object_id = @to.split('+')
-    
+
     begin
       @type = klass ? klass.singularize.to_sym : :project
 
@@ -259,13 +259,13 @@ module Emailer::Incoming
       raise TargetNotFoundError.new(email, "couldn't process target #{@to}")
     end
   end
-  
+
   # Determines the #action
   # The commands are #resolve / #resolved, #username, #reject / #rejected and #hold.
   def get_action
     if @body =~ ACTION_MATCH
       tag = $1.downcase
-      
+
       @target_action = case tag
       when 'open', 'reopen'      then :open
       when 'resolve', 'resolved' then :resolved
@@ -279,12 +279,12 @@ module Emailer::Incoming
       end
     end
   end
-  
+
   def extract_action
     get_action
     @body.sub(ACTION_MATCH, '').strip
   end
-  
+
   def post_to(target)
     Rails.logger.info "Posting to #{target.class.to_s} #{target.id} '#{@subject}'"
 
@@ -292,7 +292,7 @@ module Emailer::Incoming
     if target.is_a? Task
       target.updating_user = @user
       target.comments_attributes = [{:body => @body, :uploads_attributes => attributes}]
-      
+
       case @target_action
       when :assign
         target.status_name = :open
@@ -300,14 +300,14 @@ module Emailer::Incoming
       when Symbol
         target.status_name = @target_action
       end
-      
+
       target.save!
     else
       comment = target.comments.new_by_user(@user, :body => @body, :uploads_attributes => attributes)
       comment.save!
     end
   end
-  
+
   def create_conversation
     Rails.logger.info "Creating conversation '#{@subject}'"
 
@@ -320,20 +320,20 @@ module Emailer::Incoming
     else
       conversation.name = @subject
     end
-    
+
     conversation.save!
   end
-  
+
   def create_task
     raise "Subject and body cannot be blank when creating task from email" if @subject.blank? && @body.blank?
     Rails.logger.info "Creating task '#{@subject}'"
-    
+
     task_list_name = "Inbox"
     task_list = @project.task_lists.find_by_name(task_list_name) || @project.task_lists.create! do |task_list|
       task_list.user = @user
       task_list.name = task_list_name
     end
-    
+
     task = task_list.tasks.create! do |task|
       task.name = @subject.blank? ? truncate(@body, :length => 255) : @subject
       task.project = @project

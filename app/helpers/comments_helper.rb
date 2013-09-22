@@ -9,7 +9,7 @@ module CommentsHelper
       key << ".#{request.format.to_sym}" if request.format.to_sym.to_s =~ /^\w+$/
     }, &block)
   end
-  
+
   def activity_comment_user_link(comment)
     if comment.user.deleted?
       "<span class='author' style='text-decoration: line-through'>#{h comment.user.name}</span>".html_safe
@@ -19,7 +19,7 @@ module CommentsHelper
         :class => 'author'
     end
   end
-  
+
   def activity_comment_target_link(comment, connector = "&rarr;")
     link = case comment.target_type
       when 'Conversation'

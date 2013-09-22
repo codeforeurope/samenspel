@@ -34,7 +34,7 @@ end
 # "Given a project with users @john and @richard"
 Given(/^a project with users? (.+)$/) do |users|
   @current_project = Factory(:project)
-  
+
   each_user(users, true) do |user|
     person = Factory(:person, :user => user, :project => @current_project)
     person.user.update_attribute :splash_screen, false
@@ -114,7 +114,7 @@ end
 Given /^there is a project with a conversation$/ do
   @current_project = @current_user.projects.first || Factory(:project)
   Factory(:conversation,
-          :user => @current_user, 
+          :user => @current_user,
           :project => @current_project,
           :name => "Conversation title",
           :body => "Conversation body")

@@ -2,7 +2,7 @@
 class ApiV1::OrganizationsController < ApiV1::APIController
   skip_before_filter :load_project
   before_filter :load_organization, :except => [:create, :index]
-  
+
   def index
     @organizations = current_user.organizations(:order => 'id DESC')
     api_respond current_user.organizations, :references => []
@@ -11,10 +11,10 @@ class ApiV1::OrganizationsController < ApiV1::APIController
   def show
     api_respond @organization, :include => api_include
   end
-  
+
   def create
     @organization = current_user.organizations.new(params)
-    
+
     if !Teambox.config.community and @organization.save
       membership = @organization.memberships.build(:role => Membership::ROLES[:admin])
       membership.user_id = current_user.id
@@ -24,7 +24,7 @@ class ApiV1::OrganizationsController < ApiV1::APIController
       handle_api_error(@organization)
     end
   end
-  
+
   def update
     authorize! :admin, @organization
     if @organization.update_attributes(params)
@@ -41,10 +41,10 @@ class ApiV1::OrganizationsController < ApiV1::APIController
   end
 
   protected
-  
+
   def load_organization
     organization_id ||= params[:id]
-    
+
     if organization_id
       @organization = Organization.find_by_id_or_permalink(organization_id)
       unless @organization and @organization.is_user?(current_user)
@@ -52,9 +52,9 @@ class ApiV1::OrganizationsController < ApiV1::APIController
       end
     end
   end
-  
+
   def api_include
     [:projects, :members] & (params[:include]||{}).map(&:to_sym)
   end
-  
+
 end

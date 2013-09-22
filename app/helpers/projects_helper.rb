@@ -4,7 +4,7 @@ module ProjectsHelper
   extend ActiveSupport::Memoizable
 
   def delete_project_link(project)
-    link_to content_tag(:span,t('projects.fields.forever')), 
+    link_to content_tag(:span,t('projects.fields.forever')),
     project_path(project),
     :method => :delete,
     :class => 'button',
@@ -12,11 +12,11 @@ module ProjectsHelper
   end
 
   def archive_project_link(project)
-    link_to_function content_tag(:span,t('projects.fields.archiving')), 
+    link_to_function content_tag(:span,t('projects.fields.archiving')),
       "$('project_archived').value = 1; $('content').down('.edit_project').submit();",
       :class => 'button'
   end
-  
+
   def permalink_example(permalink)
     out = host_with_protocol + projects_path + '/'
     out << content_tag(:span, permalink, :id => 'handle', :class => 'good')
@@ -24,24 +24,24 @@ module ProjectsHelper
   end
 
   def watch_permalink_example
-    javascript_tag "$('project_permalink').observe('keyup', function(e) { Project.valid_url(); })"    
+    javascript_tag "$('project_permalink').observe('keyup', function(e) { Project.valid_url(); })"
   end
 
   def list_users_statuses(users)
     render :partial => 'users/status', :collection => users, :as => :user
   end
-  
+
   def new_project_link
     if !Teambox.config.community || (@community_organization && !@community_role.nil?)
       link_to content_tag(:span, t('.new_project')), new_project_path,
         :class => 'add_button', :id => 'new_project_link'
     end
   end
-  
+
   def project_fields(f,project,sub_action='new')
     render "projects/fields/#{sub_action}",  :f => f, :project => project
   end
-   
+
   def instructions_for_feeds
     link_to t('shared.instructions.subscribe_to_feeds'), feeds_path, :class => :subscribe
   end
@@ -120,7 +120,7 @@ module ProjectsHelper
 
   def autorefresh(activities, project = nil)
     first_id = Array(activities).first.id
-    
+
     ajax_request = if project
       remote_function(:url => project_show_new_path(project, first_id))
     else
@@ -135,11 +135,11 @@ module ProjectsHelper
   def options_for_owner(people)
     people.map {|person| [ person.name, person.user_id ]}
   end
-  
+
   def options_for_projects(projects)
     projects.map {|project| [ project.name, project.id ]}
   end
-  
+
   def options_for_owned_projects(user, projects)
     projects.reject{|p| p.user_id != user.id}.map {|p| [ p.name, p.id ]}
   end
@@ -148,17 +148,17 @@ module ProjectsHelper
   def autocomplete_projects_people_data
     projects = @current_project ? [@current_project] : current_user.projects.reject{ |p| p.new_record? }
     return nil if projects.empty?
-    
+
     format = '@%s <span class="informal">%s</span>'
     special_all = format % ['all', t('conversations.watcher_fields.people_all')]
     data_by_permalink = Hash.new { |h, k| h[k] = [special_all] }
-    
+
     rows = Person.user_names_from_projects(projects)
-    
+
     names = rows.each_with_object(data_by_permalink) do |(project_id, login, first_name, last_name), data|
       data[project_id] << (format % [login, "#{h first_name} #{h last_name}"])
     end
-    
+
     javascript_tag "_people_autocomplete = #{names.to_json}"
   end
 

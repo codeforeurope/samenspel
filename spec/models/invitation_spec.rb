@@ -21,7 +21,7 @@ describe Invitation do
       invitation.user.should == @inviter
       invitation.email.should == "vnabokov@mail.ru"
     end
-    
+
     it "should initialize properly entering existing users' emails" do
       user = Factory(:user)
       invitation = @project.create_invitation(nil, :user_or_email => user.email)
@@ -33,7 +33,7 @@ describe Invitation do
       invitation.user.should == @inviter
       invitation.email.should == user.email
     end
-    
+
     it "should find a user by her login" do
       user = Factory.create(:user)
       invitation = @project.create_invitation(@inviter, :user_or_email => user.login)
@@ -51,7 +51,7 @@ describe Invitation do
       invitation.invited_user.should == user
       invitation.email.should == user.email
     end
-    
+
     it "should send an Invitation email to existing users" do
       user = Factory.create(:user)
       invitation = @project.new_invitation(@inviter, :user_or_email => user.login)
@@ -68,7 +68,7 @@ describe Invitation do
       invitation.save
       user.invitations.length.should == 0
     end
-    
+
     it "should send a project membership notification email even when the invite is deleted" do
       user = Factory.create(:user)
       @project.organization.add_member(user, :participant)
@@ -76,7 +76,7 @@ describe Invitation do
       invitation.save
       invitation.deleted?.should == true
       user.invitations.length.should == 0
-      
+
       Emailer.send_email(:project_membership_notification, invitation.id)# rescue assert(false)
     end
 
@@ -119,13 +119,13 @@ describe Invitation do
       invitation.invited_user.should be_nil
       invitation.email.should == "carl.jung@hotmail.ch"
     end
-    
+
     it "should send a Signup and Invitation email to non-existing users" do
       invitation = @project.new_invitation(@inviter, :user_or_email => "carl.jung@hotmail.ch")
       Emailer.should_receive(:send_with_language).once
       invitation.save
     end
-    
+
     it "should be invalid if the invited user string has spaces" do
       invitation = @project.new_invitation(@inviter, :user_or_email => "joe the plumber")
       invitation.should_not be_valid
@@ -140,7 +140,7 @@ describe Invitation do
       invitation = @project.new_invitation(@inviter, :user_or_email => @invitee.login)
       invitation.should be_valid
     end
-    
+
     it "should be invalid if it's an invalid login" do
       invitation = @project.new_invitation(@inviter, :user_or_email => "mokngiodngiojdiogjvdkjvg")
       invitation.should_not be_valid
@@ -150,7 +150,7 @@ describe Invitation do
       invitation = @project.new_invitation(@inviter, :user_or_email => "sigmund.freud@gmail.com")
       invitation.should be_valid
     end
-    
+
     it "should not create duplicate invitations for a project" do
       user = Factory.create(:user)
       invitation = @project.create_invitation(@inviter, :user_or_email => user.email)
@@ -168,12 +168,12 @@ describe Invitation do
       invitation = @project.create_invitation(@inviter, :user_or_email => @project.users.first.login)
       invitation.should_not be_valid
     end
-    
+
     it "should be not valid if an observer creates it" do
       invitation = @project.new_invitation(@observer, :user_or_email => "sigmund.freud@gmail.com")
       invitation.should_not be_valid
     end
-    
+
     it "should be not valid if a deleted user creates it" do
       uname = @inviter.login
       @inviter.destroy
@@ -182,7 +182,7 @@ describe Invitation do
       invitation.should_not be_valid
     end
   end
-  
+
   describe "an existing invitation" do
     before do
       @project = Factory.create(:project)

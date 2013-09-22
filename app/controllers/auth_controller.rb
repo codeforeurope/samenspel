@@ -29,7 +29,7 @@ class AuthController < ApplicationController
         else
           if signups_enabled?
             session[:profile] = @profile
-            app_link = AppLink.create!(:provider => provider, 
+            app_link = AppLink.create!(:provider => provider,
                                        :app_user_id => auth_hash[:uid],
                                        :custom_attributes => auth_hash,
                                        :access_token => auth_hash[:credentials] ? auth_hash[:credentials][:token] : nil,
@@ -68,11 +68,11 @@ class AuthController < ApplicationController
     # Loads user's OAuth profile in @profile
     def load_profile(user, provider)
       @profile = {}
-      
+
       @profile[:provider]     = provider
       @profile[:login]        = user[:user_info][:nickname]      if user[:user_info][:nickname]
       @profile[:phone]        = user[:user_info][:phone]         if user[:user_info][:phone]
-      
+
       if user[:user_info][:first_name] and user[:user_info][:last_name]
         @profile[:first_name] = user[:user_info][:first_name]
         @profile[:last_name]  = user[:user_info][:last_name]
@@ -96,7 +96,7 @@ class AuthController < ApplicationController
         false
       end
     end
-    
+
     def symbolize_keys arg
       case arg
       when Array

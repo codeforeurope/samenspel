@@ -15,7 +15,7 @@ SEED_OPTS = {
 class Project
   attr_accessor :last_task
   attr_accessor :made_task_comment
-  
+
   def make_task_list(user, name, opts={})
     task_lists.build_by_user(user, opts) do |task_list|
       task_list.project = self
@@ -58,7 +58,7 @@ class Project
       c.project = self
       c.save!
     end
-    
+
     # Need to fix first comment time
     conversation.comments.first.update_attribute :created_at, conversation.created_at
     Activity.last.update_attribute :created_at, conversation.created_at
@@ -69,16 +69,16 @@ class Project
   end
 
   def status_update(user, body, params={}, comment_params={})
-    task = last_task 
-    
-    # Grab 
+    task = last_task
+
+    # Grab
     if params.has_key? :assigned_user
       params[:assigned_id] = people.find_by_user_id(params.delete(:assigned_user).id).id
     end
     params[:status] = Task::STATUSES[params[:status]] if params[:status].is_a? Symbol
     params[:status] ||= 1
     comment_params[:body] = body
-    
+
     task.updating_user = user
     task.updating_date = fake_time
     task.update_attributes(params.merge(:comments_attributes => {"0" => comment_params}))
@@ -106,7 +106,7 @@ class Project
       note.save!
     end
   end
-  
+
   def make_divider(user, name)
     time = fake_time
     dividers.build_by_user(user, :name => name) do |divider|
@@ -176,7 +176,7 @@ def seed_data
 
   earthworks = frank.projects.new(:name => "Earthworks Yoga",
                                   :permalink => "earthworks",
-                                  :public => true).tap do |p| 
+                                  :public => true).tap do |p|
     p.organization = organization
     p.save!
   end
@@ -272,12 +272,12 @@ def seed_random_demo_data(opts={})
   project_roles = [:commenter, :participant, :admin]
   organization_roles = [:participant, :admin]
   status_values_undue = [:hold, :resolved, :rejected]
-  
+
   user_login_match = /[^0-9A-Za-z0-9_]/
-  
+
   organizations = num_organizations.times.map do
     num_users = opts[:users]
-    
+
     users = (0...num_users).map do
       user = User.create(:login => Faker::Internet.user_name.gsub(user_login_match, '_'),
                    :password => 'papapa',
@@ -295,7 +295,7 @@ def seed_random_demo_data(opts={})
         nil
       end
     end.compact
-    
+
     generated_users += users
     org_name = Faker::Company.name
     home_page = %(<h1>#{org_name}</h1>
@@ -303,7 +303,7 @@ def seed_random_demo_data(opts={})
                   <h2>Quicklinks for testing:</h2>)
     organization = Organization.create!(:name => org_name, :description => home_page)
     puts "Organization: #{organization.permalink}"
-    
+
     users.each do |user|
       home_page += %(
         <form style="display:inline" method="post" action="/session?login=#{user.login}&amp;password=papapa" class="button-to">
@@ -311,46 +311,46 @@ def seed_random_demo_data(opts={})
         </form>
           )
     end
-    
+
     organization.add_member(users.first,   :admin)
     users[1..-1].each do |user|
       organization.add_member(user, organization_roles.sample)
     end
-    
+
     organization
   end
-  
+
   organizations.each do |organization|
     num_projects = opts[:projects]
     admin = organization.users.order('id ASC').first
     projects = num_projects.times.map do
       num_external_users = opts[:external_users]
       project = admin.projects.new(:name => Faker::Company.catch_phrase,
-                                   :public => rand(100)>=80).tap do |p| 
+                                   :public => rand(100)>=80).tap do |p|
         p.organization = organization
         p.save!
       end
-      
+
       puts "Project: #{project.permalink}"
 
       project.add_users organization.users
       num_external_users.times do
         project.add_user(generated_users.sample, :role => project_roles.sample)
       end
-      
+
       project
     end
-    
+
     generated_projects += projects
   end
-  
+
   puts 'Simulating activity...'
   num_activities = opts[:activities]
-  
+
   (num_activities*generated_projects.count).times do
     project = generated_projects.sample
     types = [:conversation, :task_list, :page]
-    
+
     types << :task if project.task_lists.count > 0
     types << :reply if project.conversations.count > 0
     types << :status if project.last_task
@@ -358,10 +358,10 @@ def seed_random_demo_data(opts={})
       types << :note
       types << :divider
     end
-    
+
     type = types.sample
     user = project.users.sample
-    
+
     case type
     when :conversation
       if rand(100)>80
@@ -378,7 +378,7 @@ def seed_random_demo_data(opts={})
           project.last_task = nil
         end
       end
-      
+
       if project.last_task
         project.last_task = nil
         project.made_task_comment = false
@@ -404,7 +404,7 @@ def seed_random_demo_data(opts={})
       if rand(100)>50
         stat_opts[:due_on] = fake_time+(rand(64).days) if rand(100)>80
         stat_opts[:assigned_id] = project.people.sample.id if stat_opts[:due_on] or rand(100)>80
-        
+
         unless project.made_task_comment
           if stat_opts.has_key?(:due_on)
             stat_opts[:status] = Task::STATUSES[:open] unless project.last_task.status_name == :open
@@ -426,10 +426,10 @@ def seed_random_demo_data(opts={})
     when :divider
       project.make_divider(user, Faker::Lorem.words.join(' ').capitalize)
     end
-    
+
     print '.'
   end
-  
+
   puts "\nDone."
   puts "#{Activity.count} pointless activities generated in #{Project.count} projects in #{Organization.count} organizations totalling #{User.count} users."
 end

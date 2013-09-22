@@ -4,19 +4,19 @@ class CreateGoogleDocs < ActiveRecord::Migration
       t.integer :project_id
       t.integer :user_id
       t.integer :comment_id
-      
+
       t.string :title
       t.string :document_id
       t.string :document_type
       t.string :url
       t.string :edit_url
       t.string :acl_url
-      
+
       t.datetime :deleted_at
-      
+
       t.timestamps
     end
-    
+
     add_index :google_docs, :project_id
     add_index :google_docs, :user_id
     add_index :google_docs, :comment_id

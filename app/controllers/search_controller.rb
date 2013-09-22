@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 class SearchController < ApplicationController
-  
+
   before_filter :permission_to_search, :only => :index
-  
+
   def index
     @search_terms = params[:q]
-    
+
     if @search_terms.present?
 
       @results = ThinkingSphinx.search @search_terms,
@@ -17,24 +17,24 @@ class SearchController < ApplicationController
 
     end
   end
-  
+
   protected
-  
+
     def permission_to_search
       unless user_can_search? or (@current_project and project_owner.can_search?)
         flash[:notice] = "Search is disabled"
         redirect_to root_path
       end
     end
-    
+
     def user_can_search?
       current_user.can_search?
     end
-    
+
     def project_owner
       @current_project.user
     end
-  
+
     def project_ids
       if @current_project
         @current_project.id

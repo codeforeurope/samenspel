@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_name
   before_destroy :rename_as_deleted
-  
+
   before_create :init_user
   after_create :clear_invites
   after_create :join_default_organizations
@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
   def visited_at
     read_attribute(:visited_at) || updated_at
   end
-  
+
   def locale
     if I18n.available_locales.map(&:to_s).include? self[:locale]
       self[:locale]
@@ -138,11 +138,11 @@ class User < ActiveRecord::Base
   def shares_invited_projects_with?(user)
     Invitation.count(:conditions => {:project_id => user.project_ids, :invited_user_id => self.id}) > 0
   end
-  
+
   def users_with_shared_projects
     ids = self.projects.map(&:user_ids).flatten
     ids += Invitation.find(:all, :conditions => {:project_id => self.project_ids}, :select => 'user_id').map(&:user_id)
-    
+
     User.find(:all, :conditions => {:id => ids.uniq})
   end
 
@@ -163,15 +163,15 @@ class User < ActiveRecord::Base
       update_attribute(:visited_at, Time.now)
     end
   end
-  
+
   def person_for(project)
     self.people.find_by_project_id(project.id)
   end
-  
+
   def member_for(organization)
     self.memberships.find_by_organization_id(organization.id)
   end
-  
+
   def watching?(object)
     object.has_watcher? self
   end
@@ -179,7 +179,7 @@ class User < ActiveRecord::Base
   def utc_offset
     @utc_offset ||= ActiveSupport::TimeZone[time_zone].try(:utc_offset) || 0
   end
-  
+
   def in_project(project)
     project.people.find_by_user_id(self)
   end
@@ -203,7 +203,7 @@ class User < ActiveRecord::Base
 
   def can_create_project?
     # is in any organization?
-    !organizations.empty? or supervisor? or Teambox.config.user_can_create_organization 
+    !organizations.empty? or supervisor? or Teambox.config.user_can_create_organization
   end
 
   DELETED_TAG = "deleted"
@@ -259,7 +259,7 @@ class User < ActiveRecord::Base
 
   def tasks_counts_update
     assigned_tasks = Task.assigned_to(self)
-    # we do t.statys && t.status < 3 because some tasks might be 
+    # we do t.statys && t.status < 3 because some tasks might be
     self.assigned_tasks_count  = assigned_tasks.select { |t| t.status == 1 }.length
     self.completed_tasks_count = assigned_tasks.select { |t| t.status == 3 }.length
     self.save

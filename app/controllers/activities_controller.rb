@@ -64,7 +64,7 @@ class ActivitiesController < ApplicationController
     target = params[:thread_type].constantize.find params[:id]
 
     @comments = target.comments
-    
+
     respond_to do |format|
       format.html {
         if request.xhr?
@@ -92,7 +92,7 @@ class ActivitiesController < ApplicationController
       else
         @current_user.projects.find :all
       end
-      
+
       redirect_to root_path if @target.nil? or (@user and @target.empty?)
     end
 end

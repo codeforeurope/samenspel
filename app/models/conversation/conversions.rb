@@ -16,7 +16,7 @@ class Conversation
       end
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -29,9 +29,9 @@ class Conversation
       :watchers => Array.wrap(watchers_ids),
       :comments_count => comments_count,
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if Array(options[:include]).include? :thread_comments
       base[:first_comment] = first_comment.to_api_hash(options)  if first_comment
       base[:recent_comments] = recent_comments.map{|c|c.to_api_hash(options)}
@@ -39,11 +39,11 @@ class Conversation
       base[:first_comment_id] = first_comment.try(:id)
       base[:recent_comment_ids] = recent_comments.map{|c|c.id}
     end
-    
+
     if Array(options[:include]).include? :comments
       base[:comments] = comments.map{|c| c.to_api_hash(options)}
     end
-    
+
     base
   end
 end

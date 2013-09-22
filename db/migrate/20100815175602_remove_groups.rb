@@ -24,7 +24,7 @@ class RemoveGroups < ActiveRecord::Migration
       t.integer "group_id"
       t.integer "user_id"
     end
-    
+
     add_column :invitations, :group_id, :integer
     add_column :projects, :group_id, :integer
   end

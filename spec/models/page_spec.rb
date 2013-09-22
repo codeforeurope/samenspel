@@ -15,9 +15,9 @@ describe Page do
       page.valid?.should be_true
     end
   end
-  
+
   describe "destruction" do
-    before do 
+    before do
       @page = Factory.create(:page)
       @note = @page.build_note({:name => 'Office Ettiquete'}).tap do |n|
         n.updated_by = @page.user
@@ -28,19 +28,19 @@ describe Page do
         n.save
       end
     end
-    
+
     it "should destroy all page slots and objects" do
       @page.destroy
-      
+
       Page.count.should == 0
       PageSlot.count.should == 0
       Divider.count.should == 0
       Note.count.should == 0
     end
-    
+
     it "should destroy all page slots and objects when the project is destroyed" do
       @page.project.destroy
-      
+
       Page.count.should == 0
       Divider.count.should == 0
       Note.count.should == 0

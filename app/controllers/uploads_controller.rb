@@ -3,7 +3,7 @@ class UploadsController < ApplicationController
   before_filter :find_upload, :only => [:destroy,:update,:thumbnail,:show]
   skip_before_filter :load_project, :only => [:download]
   before_filter :set_page_title
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |f|
       error_message = "You are not allowed to do that!"
@@ -27,7 +27,7 @@ class UploadsController < ApplicationController
       unless File.exist?(path) && params[:filename].to_s == upload.asset_file_name
         head(:bad_request)
         raise "Unable to download file"
-      end  
+      end
 
       mime_type = File.mime_type?(upload.asset_file_name)
 
@@ -54,8 +54,8 @@ class UploadsController < ApplicationController
     authorize! :upload_files, @current_project
     @upload = @current_project.uploads.new
     @upload.user = current_user
-  end  
-  
+  end
+
   def create
     authorize! :upload_files, @current_project
     authorize! :update, @page if @page
@@ -63,7 +63,7 @@ class UploadsController < ApplicationController
     @upload.user = current_user
     @page = @upload.page
     calculate_position(@upload) if @page
-    
+
     @upload.save
 
     respond_to do |wants|
@@ -108,9 +108,9 @@ class UploadsController < ApplicationController
       end
     end
   end
-  
+
   private
-    
+
     def find_upload
       if params[:id].to_s.match /^\d+$/
         @upload = @current_project.uploads.find(params[:id])

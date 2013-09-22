@@ -282,7 +282,7 @@
 			:ZM => "Zambia",
 			:ZW => "Zimbabwe",
 			:ZZ => "Unknown Region",
-    } 
+    }
 
   }
 }

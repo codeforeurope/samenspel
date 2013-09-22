@@ -7,7 +7,7 @@ class User
     :profile  => [278, 500]
   }
 
-  has_attached_file :avatar, 
+  has_attached_file :avatar,
     :url  => "/avatars/:id/:style.png",
     :path => (Teambox.config.amazon_s3 ? "avatars/:id/:style.png" : ":rails_root/public/avatars/:id/:style.png"),
     :styles => AvatarSizes.each_with_object({}) { |(name, size), all|
@@ -20,11 +20,11 @@ class User
   validates_attachment_size :avatar, :less_than => 2.megabytes
   validates_attachment_content_type :avatar,
     :content_type => %w[image/jpeg image/pjpeg image/png image/x-png image/gif]
-  
+
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
-  
+
   def avatar_geometry(style = :original)
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
@@ -47,11 +47,11 @@ class User
       end
     end
   end
-  
+
   def avatar_destroy
     false
   end
-  
+
   def avatar_destroy=(value)
     self.avatar = nil if value and value != '0'
   end

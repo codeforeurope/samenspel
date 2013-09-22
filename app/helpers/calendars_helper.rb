@@ -4,11 +4,11 @@ module CalendarsHelper
   def list_hour_filters(project)
     render 'hours/filter'
   end
-  
+
   def list_hour_reports
     render 'hours/report_list'
   end
-  
+
   def day_hours(comments)
     @users_displayed ||= comments.map(&:user)
     comments.group_by { |c| c.created_at.mday }
@@ -59,7 +59,7 @@ module CalendarsHelper
     total_tally = {}
     total_sum = 0
     week_count = 0
- 
+
     first.upto(last) do |cur|
       current_day = add_zero_for_first_week(cur)
 
@@ -86,14 +86,14 @@ module CalendarsHelper
     first = start_of_calendar(year, month)
     last = end_of_calendar(year, month)
     weeks = ((last - first) / 7).ceil
-  
+
     wk = "<table class=\"weektable#{weeks} #{first} #{last}\"><tr>"
-  
+
     wk << (0...weeks).map do |week|
       "<th>#{t('hours.week_num', :num => week+1)}</th>"
     end.join('')
     wk << "<th>#{t('hours.week_total')}</th>"
-  
+
     wk << '</tr><tr>'
     wk << (0...weeks).map do |week|
       "<td id=\"week_#{week}\"></td>"
@@ -104,7 +104,7 @@ module CalendarsHelper
     wk << "<p id='total_sum' class='hour'>0#{t('hours.entry_hours')}</p>"
 
     wk << '</td></tr><tr>'
-    wk << '</tr></table>' 
+    wk << '</tr></table>'
     wk.html_safe
   end
 
@@ -133,12 +133,12 @@ module CalendarsHelper
      "0#{cur.mday.to_s}"
    else
      cur.mday.to_s
-   end    
+   end
   end
 
   def print_previous_month_days(first_weekday,first,abbreviate=false)
     cal = %(<table><tr>)
-    cal << day_names(first_weekday).collect do |d| 
+    cal << day_names(first_weekday).collect do |d|
       val = if abbreviate
         truncate(d[0], :length => 1, :omission => '')
       else
@@ -172,7 +172,7 @@ module CalendarsHelper
   def first_day_of_week(day)
     day
   end
- 
+
   def last_day_of_week(day)
     (day > 0) ? (day - 1) : 6
   end
@@ -199,7 +199,7 @@ module CalendarsHelper
     marks = {}
     array_of_marks.each do |mark|
      marks[mark[0]] = mark[1][0]
-    end    
+    end
     marks
   end
 
@@ -245,7 +245,7 @@ module CalendarsHelper
         :hours => comment.hours.to_f
       }.to_json
     end
- 
+
     usermap = {}
     usernamemap = {}
 
@@ -254,10 +254,10 @@ module CalendarsHelper
     else
       @current_user.users_with_shared_projects.each {|u| usermap[u.id] = u.login; usernamemap[u.id] = h(u.name)}
     end
- 
+
     start_date = start_of_calendar(year, month)
     start = "new Date(#{start_date.year}, #{start_date.month-1}, #{start_date.day})"
-    
+
     javascript_tag <<-EOS
       HOURS_DATA = {
         start: #{start},
@@ -304,5 +304,5 @@ module CalendarsHelper
      :year => year,
      :month => month
   end
-   
-end  
+
+end

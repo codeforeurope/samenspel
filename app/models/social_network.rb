@@ -7,11 +7,11 @@ class SocialNetwork < ActiveRecord::Base
   def get_network_type
     NETWORK_TYPES[account_network_type]
   end
-  
+
   def get_type
     TYPES[account_type]
   end
-  
+
   def to_url
     if name.include? ".com/"
       name

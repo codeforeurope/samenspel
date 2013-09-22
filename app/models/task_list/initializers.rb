@@ -7,5 +7,5 @@ class TaskList
       task.user_id = user.id
     end
   end
-  
+
 end

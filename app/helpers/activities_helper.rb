@@ -13,7 +13,7 @@ module ActivitiesHelper
       out.html_safe
     end
   end
-  
+
   def activity_section(activity)
     haml_tag 'div', :class => "activity #{activity.action_type}" do
       haml_concat micro_avatar(activity.user)
@@ -25,7 +25,7 @@ module ActivitiesHelper
   end
 
   # TODO for activities create_note, create_divider, edit and delete
-  ActivityTypes = %w( create_comment 
+  ActivityTypes = %w( create_comment
                       create_conversation
                       create_task_list
                       create_task
@@ -65,11 +65,11 @@ module ActivitiesHelper
         activity.target_type.underscore.to_sym => activity.target
     end
   end
-  
+
   def activity_title(activity, plain = false, mobile = false)
     values = mobile ? { :user => (plain ? h(activity.user.short_name) : "<span class='user'>#{h activity.user.short_name}</span>") } :
                       { :user => link_to_unless(plain, h(activity.user.name), activity.user) }
-    
+
     case activity
     when Comment
       object = activity
@@ -81,7 +81,7 @@ module ActivitiesHelper
       object = activity.target
       type = activity.action_type
     end
-    
+
     values.update case type
     when 'create_note', 'edit_note'
       page = Page.find_with_deleted(object.page_id)
@@ -112,7 +112,7 @@ module ActivitiesHelper
       # one of Project, Task or Conversation
       object = object.target
       type << "_#{object.class.name.underscore}"
-      
+
       target = case object
       when Task then link_to_unless(plain, h(object.name), [object.project, object])
       when Project then link_to_unless(plain, h(object.name), object)
@@ -124,7 +124,7 @@ module ActivitiesHelper
     end
     t("activities.#{type}.title", values).html_safe
   end
-  
+
   def activity_target_url(activity)
     if activity.target_type == 'Task'
       task = activity.target
@@ -146,28 +146,28 @@ module ActivitiesHelper
       project_url(activity.project, :anchor => "activity_#{activity.id}")
     end
   end
-  
+
   def rss_activity_feed(options, &block)
     i18n_values = {}
     project = options.delete(:project)
     i18n_values[:name] = project.name if project
-    
+
     options[:xml] ||= eval("xml", block.binding)
     options[:builder] = ActivityFeedBuilder
-    
+
     rss_feed(options) do |feed|
       feed.title t('.rss.title', i18n_values)
       feed.description t('.rss.description', i18n_values)
-      
+
       yield feed
     end
   end
-  
+
   class ActivityFeedBuilder < RssFeedHelper::RssFeedBuilder
     def entry(activity, options = {}, &block)
       options[:published] ||= activity.posted_date
       options[:url] ||= @view.activity_target_url(activity)
-      
+
       block ||= Proc.new do |item|
         item.title @view.activity_title(activity, true)
         body = @view.show_activity(activity)
@@ -178,7 +178,7 @@ module ActivitiesHelper
       super(activity, options, &block)
     end
   end
-  
+
   def activities_paginate_link(*args)
     options = args.extract_options!
 
@@ -204,28 +204,28 @@ module ActivitiesHelper
             :id => 'activity_paginate_link'
             )
   end
-  
+
   def show_more(after)
     update_page do |page|
       page['activities'].insert list_activities(@activities)
     end
   end
-  
+
   def show_more_button
     render 'activities/show_more' if @last_activity
   end
-  
+
   def fluid_badge(count)
-    badge = "if (typeof(badge_count) != 'undefined') 
+    badge = "if (typeof(badge_count) != 'undefined')
                 { badge_count += #{count}; }
             else  badge_count = #{count};"
     badge << "window.fluid.dockBadge = badge_count+'';"
     badge << "ClearBadge = window.onfocus=function(){window.fluid.dockBadge = ''; badge_count = 0};"
   end
-  
+
   def fluid_growl(project, user, body)
     "window.fluid.showGrowlNotification({
-        title: '#{project}', 
+        title: '#{project}',
         description: '#{user}: #{body}'
     });"
   end

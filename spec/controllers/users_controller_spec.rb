@@ -7,7 +7,7 @@ describe UsersController do
   route_matches("/account/profile", :get, :controller => "users", :action => "edit", :sub_action => 'profile')
   route_matches("/account/profile", :get, :controller => "users", :action => "edit", :sub_action => 'profile')
   route_matches("/account/notifications", :get, :controller => "users", :action => "edit", :sub_action => 'notifications')
-      
+
   it 'allows signup' do
     lambda do
       do_create
@@ -15,7 +15,7 @@ describe UsersController do
       flash[:success].should_not be_blank
     end.should change(User, :count).by(1)
   end
-  
+
   it 'requires email on signup' do
     lambda do
       do_create(:email => nil)
@@ -40,10 +40,10 @@ describe UsersController do
       response.should render_template('users/new')
     end
   end
-  
+
   describe "#show" do
     render_views
-    
+
     before do
       @first_project = make_a_typical_project
       @first_user = @user
@@ -53,27 +53,27 @@ describe UsersController do
       @second_project = make_a_typical_project
       @second_user = @user
     end
-    
+
     it "should not show unknown users" do
       login_as @first_user
       get :show, :id => @second_user.id
       response.should_not render_template('users/show')
       response.status.should == 302
     end
-    
+
     it "should show known users" do
       login_as @first_user
       get :show, :id => @first_project.user.id
       response.should render_template('users/show')
     end
-    
+
     it "should show the selected user in the title and not the logged in user" do
       login_as @first_user
       get :show, :id => @another_first_user.id
       response.should have_selector 'title', :content => @another_first_user.name
       response.should_not have_selector 'title', :content => @first_user.name
     end
-    
+
     it "should show projects that you share with this user and not projects that you don't" do
       login_as @first_user
       get :show, :id => @another_first_user.id
@@ -82,7 +82,7 @@ describe UsersController do
     end
   end
 
-    
+
   def do_create(options = {})
     post :create, :user => { :email       => 'testing@localhost.com',
                              :login       => 'testing',
@@ -91,6 +91,6 @@ describe UsersController do
                              :password    => 'testing',
                              :password_confirmation => 'testing'}.merge(options)
   end
-    
-end  
-  
+
+end
+

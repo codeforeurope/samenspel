@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 class ApiV1::SearchController < ApiV1::APIController
   before_filter :permission_to_search, :only => :index
-  
+
   def index
     @search_terms = params[:q]
-    
+
     unless @search_terms.blank?
       @results = ThinkingSphinx.search @search_terms,
           :retry_stale => true,
@@ -15,7 +15,7 @@ class ApiV1::SearchController < ApiV1::APIController
     end
     api_respond(@results||[], :emit_type => true, :references => [])
   end
-  
+
   protected
 
     def permission_to_search
@@ -27,15 +27,15 @@ class ApiV1::SearchController < ApiV1::APIController
         end
       end
     end
-    
+
     def user_can_search?
       current_user.can_search?
     end
-    
+
     def project_owner
       @current_project.user
     end
-  
+
     def project_ids
       if @current_project
         @current_project.id

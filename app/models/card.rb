@@ -16,9 +16,9 @@ class Card < ActiveRecord::Base
     card.accepts_nested_attributes_for :ims
     card.accepts_nested_attributes_for :social_networks
   end
-  
+
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => proc { |address|
     address['street'].blank? and address['city'].blank?
   }
-  
+
 end

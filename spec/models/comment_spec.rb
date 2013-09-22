@@ -14,30 +14,30 @@ describe Comment do
       @user.comments.last.should == comment
     end
   end
-  
+
   it "should not allow comment creation with a blank title" do
     comment = Factory.build(:comment, :body => nil)
     comment.should_not be_valid
   end
-  
+
   describe "copying ownership" do
     before do
       @target = Factory.build(:simple_conversation, :body => nil)
       @target.save(:validate => false)
       @comment = Factory.build(:comment, :target => @target, :user => nil, :project => nil)
     end
-    
+
     it "inherits project and user from target" do
       @comment.save.should be_true
       @comment.user.should == @target.user
       @comment.project.should == @target.project
     end
-    
+
     it "works even when mentioning user" do
       @comment.body = "Hello @kitty"
       lambda { @comment.save }.should_not raise_error
     end
-    
+
     it "doesn't happen when updating" do
       @comment.save
       @comment.should_not be_new_record
@@ -52,12 +52,12 @@ describe Comment do
       @comment.project.should be_nil
     end
   end
-  
+
   describe "posting to a task" do
     before do
       @task = Factory(:task)
     end
-    
+
     it "should update counter cache" do
       lambda {
         Factory(:comment, :project => @task.project, :user => @task.user, :target => @task)
@@ -134,7 +134,7 @@ describe Comment do
         @task.reload.watchers_ids.should include(@pablo.id)
       end
     end
-    
+
     describe "mentioning @user" do
       before do
         @project.add_user(@user)
@@ -146,7 +146,7 @@ describe Comment do
 
         body = "I would like to add @existing to this, but not @unexisting."
         comment = Factory(:comment, :body => body, :project => @project, :user => @project.user, :target => @conversation)
-        
+
         comment.mentioned.to_a.should == [@user]
         @conversation.reload.watchers.should include(@user)
       end
@@ -157,7 +157,7 @@ describe Comment do
 
         body = "I would like to add @existing to this, but not @unexisting."
         comment = Factory(:comment, :body => body, :project => @project, :user => @project.user, :target => @task)
-        
+
         comment.mentioned.to_a.should == [@user]
         @task.reload.watchers.should include(@user)
       end
@@ -168,7 +168,7 @@ describe Comment do
 
         body = "I would like to add @existing to this, but not @unexisting."
         comment = Factory(:comment, :body => body, :project => @project, :user => @project.user, :target => @task_list)
-        
+
         comment.mentioned.to_a.should == [@user]
         @task_list.reload.watchers.should include(@user)
       end
@@ -188,7 +188,7 @@ describe Comment do
       comment.mentioned.should == nil
     end
   end
-  
+
   describe "duplicates" do
     before do
       @project = Factory(:project)
@@ -208,13 +208,13 @@ describe Comment do
       }.should change(Comment, :count).by(1)
     end
   end
-  
+
   describe "commenting updates the updated_at field" do
     before do
       @project = Factory(:project)
       @user = @project.user
     end
-    
+
     it "on a conversation" do
       conversation = Factory(:conversation, :project => @project, :user => @project.user)
       conversation.update_attribute :updated_at, 1.day.ago
@@ -223,7 +223,7 @@ describe Comment do
         conversation.reload
       }.should change(conversation, :updated_at)
     end
-    
+
     it "on a task" do
       task = Factory(:task, :project => @project, :user => @project.user)
       task.update_attribute :updated_at, 1.day.ago
@@ -233,7 +233,7 @@ describe Comment do
       }.should change(task, :updated_at)
     end
   end
-  
+
   describe "permissions" do
     before do
       @project = Factory(:project)
@@ -245,37 +245,37 @@ describe Comment do
       @project.add_user(@other_user)
       @project.add_user(@another_user)
       @project.people.find_by_user_id(@user.id).update_attribute(:role, 3) # -> admin
-      
+
       @owner_ability = Ability.new(@comment.user)
       @admin_ability = Ability.new(@user)
       @another_ability = Ability.new(@another_user)
     end
-    
+
     it "should be editable and deletable by the creator for only 15 minutes" do
       @owner_ability.should be_able_to(:edit, @comment)
       @owner_ability.should be_able_to(:destroy, @comment)
-      
+
       # backdate to simulate elapsed time
       @comment.update_attribute :created_at, 16.minutes.ago
-      
+
       @owner_ability.should_not be_able_to(:edit, @comment)
       @owner_ability.should_not be_able_to(:destroy, @comment)
     end
-    
+
     it "should not be editable by an admin" do
       @owner_ability.should be_able_to(:edit, @comment)
       @admin_ability.should_not be_able_to(:edit, @comment)
     end
-    
+
     it "should be deletable by an admin forever" do
       @admin_ability.should be_able_to(:destroy, @comment)
-      
+
       # backdate to simulate elapsed time
       @comment.update_attribute :created_at, 16.minutes.ago
-      
+
       @admin_ability.should be_able_to(:destroy, @comment)
     end
-    
+
     it "should not be editable or deletable by another non-admin" do
       @another_ability.should_not be_able_to(:edit, @comment)
       @another_ability.should_not be_able_to(:destroy, @comment)
@@ -307,58 +307,58 @@ describe Comment do
       upload.user_id.should == comment.user_id
       upload.project_id.should == comment.project_id
     end
-    
+
     it "should allow the creation of a comment with a file but no body" do
       upload = Factory.create :upload
       comment = Factory.create :comment, :upload_ids => [upload.id.to_s],
                                          :body => nil,
                                          :project => upload.project
-      
+
       comment.should have(1).upload
       upload = comment.uploads.first
       upload.comment.should == comment
     end
-    
+
     it "should allow you to delete the upload and keep the comment if there is a body" do
       upload = Factory.create :upload
       comment = Factory.create :comment, :upload_ids => [upload.id.to_s],
                                          :body => 'test',
                                          :project => upload.project
-      
+
       comment.should have(1).upload
       comment.uploads.first.destroy
       comment.reload
       comment.body.should == 'test' # Still has the right body
       comment.should have(0).uploads
     end
-    
+
     it "should not set a deleted message on the comment if there is still a file remaining" do
       upload1, upload2 = Factory.create(:upload), Factory.create(:upload)
       comment = Factory.create :comment, :upload_ids => [upload1.id.to_s, upload2.id.to_s], :body => nil
-      
+
       comment.should have(2).uploads
-      
+
       lambda do
         comment.uploads.first.destroy
       end.should_not raise_error
-      
+
       comment.reload.should have(1).uploads
     end
-    
+
     it "should allow you to delete the upload and keep the comment if there is no body" do
       upload = Factory.create :upload
       comment = Factory.create :comment, :upload_ids => [upload.id.to_s], :body => nil, :project => upload.project
-      
+
       comment.should have(1).upload
-      
+
       lambda do
         comment.uploads.first.destroy
       end.should_not raise_error
-      
+
       comment.reload.should have(0).uploads
       comment.body.should == "File deleted"
     end
-    
+
     it "touches comment on upload destroy" do
       upload = Factory.create :upload
       comment = Factory.create :comment, :upload_ids => [upload.id.to_s],
@@ -370,7 +370,7 @@ describe Comment do
       comment.reload.updated_at.should be_within(1).of(Time.now)
     end
   end
-  
+
   context "hours" do
     it "assigns human hours" do
       comment = Factory.build :comment, :human_hours => "2:30"

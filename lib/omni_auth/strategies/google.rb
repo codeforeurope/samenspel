@@ -13,12 +13,12 @@ module OmniAuth
         :list => 'https://docs.google.com/feeds/default/private/full'
       }
       HEADERS = {'GData-Version' => '3.0'}
-      
+
       def initialize(app, consumer_key, consumer_secret)
         # consistently fails if the entire url is not given.
         super(app, :google, consumer_key, consumer_secret, RESOURCES)
       end
-      
+
       def auth_hash
         ui = user_info
         OmniAuth::Utils.deep_merge(super, {
@@ -27,7 +27,7 @@ module OmniAuth
           'extra' => {'user_hash' => user_hash}
         })
       end
-      
+
       def user_info
         email = user_hash['feed']['author'].first['email']['$t']
         name = user_hash['feed']['author'].first['name']['$t']
@@ -38,7 +38,7 @@ module OmniAuth
           'name' => name
         }
       end
-      
+
       def user_hash
         @user_hash ||= MultiJson.decode(@access_token.get(RESOURCES[:list] + '?alt=json', HEADERS).body)
       end

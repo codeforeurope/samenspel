@@ -6,7 +6,7 @@ class Project
       task_list.user_id = user.id
     end
   end
-  
+
   def create_task(user,task_list,task)
     self.tasks.create(task) do |task|
       task.user_id = user.id
@@ -19,14 +19,14 @@ class Project
       task_list.user_id = user.id
     end
   end
-  
+
   def new_task(user,task_list,task)
     self.tasks.new(task) do |task|
       task.user_id = user.id
       task.task_list_id = task_list.id
     end
   end
-    
+
   def new_conversation(user,conversation)
     self.conversations.new(conversation) do |conversation|
       conversation.user_id = user.id
@@ -49,19 +49,19 @@ class Project
       comment.attributes = attributes
     }
   end
-  
+
   def new_page(user,page)
     self.pages.new(page) do |page|
       page.user_id = user.id
     end
   end
-  
+
   def new_invitation(user, params)
     self.invitations.new(params).tap { |invitation|
       invitation.user = user
     }
   end
-  
+
   def create_invitation(user, params)
     self.invitations.new(params).tap { |invitation|
       invitation.user = user

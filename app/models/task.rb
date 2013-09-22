@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Task < RoleRecord
   include Immortal
-  
+
   include Watchable
 
   STATUS_NAMES = [:new, :open, :hold, :resolved, :rejected]
@@ -12,7 +12,7 @@ class Task < RoleRecord
   ACTIVE_STATUS_CODES = [:new, :open].map { |name| STATUSES[name] }
 
   concerned_with :scopes, :callbacks, :conversions
-  
+
   has_one  :first_comment, :class_name => 'Comment', :as => :target, :order => 'created_at ASC'
   has_many :recent_comments, :class_name => 'Comment', :as => :target, :order => 'created_at DESC', :limit => 2
 
@@ -30,9 +30,9 @@ class Task < RoleRecord
   validates_presence_of :name, :message => I18n.t('tasks.errors.name.cant_be_blank')
   validates_length_of   :name, :maximum => 255, :message => I18n.t('tasks.errors.name.too_long')
   validates_inclusion_of :status, :in => STATUSES.values, :message => "is not a valid status"
-  
+
   validate :check_asignee_membership, :if => :assigned_id?
-  
+
   # set by controller to indicate user that's doing task updating
   attr_accessor :updating_user
   attr_accessor :updating_date
@@ -44,11 +44,11 @@ class Task < RoleRecord
   before_save :save_changes_to_comment, :if => :track_changes?
   before_save :save_completed_at
   before_update :remember_comment_created
-  
+
   def assigned
     @assigned ||= assigned_id ? Person.with_deleted.find_by_id(assigned_id) : nil
   end
-  
+
   def track_changes?
     (new_record? and not status_new?) or
     (updating_user and (status_changed? or assigned_id_changed? or due_on_changed?))
@@ -74,7 +74,7 @@ class Task < RoleRecord
   def status_name
     status ? STATUS_NAMES[status] : :new
   end
-  
+
   def status_name=(value)
     status_code = STATUS_NAMES.index(value.to_sym)
     raise ArgumentError, "invalid status: #{value.inspect}" if status_code.nil?
@@ -85,7 +85,7 @@ class Task < RoleRecord
   def assigned?
     !assigned.nil?
   end
-  
+
   def unassigned?
     !assigned
   end
@@ -97,7 +97,7 @@ class Task < RoleRecord
   def assign_to(user)
     self.update_attribute :assigned, user.in_project(project)
   end
-  
+
   def comment_created?
     !!@comment_created
   end
@@ -117,11 +117,11 @@ class Task < RoleRecord
   def due_tomorrow?
     due_on == (Time.current + 1.day).to_date
   end
-  
+
   def due_in?(time_end)
     due_on && due_on >= Time.current.to_date && due_on < (Time.current+time_end).to_date
   end
-  
+
   def total_hours
     comments.sum('hours')
   end
@@ -129,7 +129,7 @@ class Task < RoleRecord
   def to_s
     name
   end
-  
+
   def refs_comments
     [first_comment, first_comment.try(:user)] +
      recent_comments + recent_comments.map(&:user)
@@ -138,11 +138,11 @@ class Task < RoleRecord
   def user
     @user ||= user_id ? User.with_deleted.find_by_id(user_id) : nil
   end
-  
+
   TRACKER_STATUS_MAP = {
     'started' => :open, 'delivered' => :hold, 'accepted' => :resolved, 'rejected' => :rejected
   }
-  
+
   def update_from_pivotal_tracker(author, activity)
     story = activity[:stories][:story]
     author_name = activity[:author]
@@ -218,14 +218,14 @@ class Task < RoleRecord
       errors.add :assigned, :doesnt_belong
     end
   end
-  
+
   def set_comments_author # before_save
     comments.select(&:new_record?).each do |comment|
       comment.user = updating_user
     end
     true
   end
-  
+
   def remember_comment_created # before_update
     @comment_created = comments.any?(&:new_record?)
     true
@@ -236,15 +236,15 @@ class Task < RoleRecord
     return if @saved_changes_to_comment
 
     comment = comments.detect(&:new_record?) || comments.build_by_user(updating_user)
-    
+
     comment.project = project
     comment.created_at = @updating_date if @updating_date
-    
+
     if status_changed? or self.new_record?
       comment.status = self.status
       comment.previous_status = self.status_was if status_changed?
     end
-    
+
     if assigned_id_changed? or self.new_record?
       comment.assigned_id = self.assigned_id
       comment.previous_assigned_id = self.assigned_id_was if assigned_id_changed?
@@ -281,7 +281,7 @@ class Task < RoleRecord
   def copy_project_from_task_list
     self.project_id = task_list.project_id
   end
-  
+
   def transition_from_new_to_open # before_save
     self.status_name = :open if self.status_name == :new
   end

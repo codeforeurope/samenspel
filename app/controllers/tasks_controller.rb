@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_filter :load_task, :except => [:new, :create]
   before_filter :load_task_list, :only => [:new, :create]
   before_filter :set_page_title
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     handle_cancan_error(exception)
   end
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   def new
     authorize! :make_tasks, @current_project
     @task = @task_list.tasks.new
-    
+
     respond_to do |f|
       f.any(:html, :m)
     end
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def create
     authorize! :make_tasks, @current_project
     @task = @task_list.tasks.create_by_user(current_user, params[:task])
-    
+
     respond_to do |f|
       f.any(:html, :m) {
         if @task.new_record?
@@ -168,7 +168,7 @@ class TasksController < ApplicationController
       @task = @current_project.tasks.find params[:id]
       @task_list = @task.task_list
     end
-    
+
     def redirect_to_task
       redirect_to [@current_project, @task]
     end

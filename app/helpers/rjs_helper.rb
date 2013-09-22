@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 module RjsHelper
-  
+
   def ef(e)
     page << "if($('#{e}')){"
   end
@@ -52,7 +52,7 @@ module RjsHelper
   def reload_javascript_events
     page << "Event.addBehavior.reload()"
   end
-  
+
   def reload_page_sort
     page.call "Page.makeSortable"
   end

@@ -30,7 +30,7 @@ module TasksHelper
   def render_assignment(task,user)
     render 'tasks/assigned', :task => task, :user => user
   end
-  
+
   def task_status_badge(name)
     content_tag(:span, localized_status_name(name), :class => "task_status task_status_#{name}")
   end
@@ -90,7 +90,7 @@ module TasksHelper
     task_or_status = task_or_status.status_name if task_or_status.respond_to? :status_name
     t("tasks.status.#{task_or_status}")
   end
-  
+
   def task_statuses_for_select
     Task::STATUS_NAMES.each_with_index.map { |name, code|
       [localized_status_name(name), code]
@@ -109,7 +109,7 @@ module TasksHelper
       f.hidden_field(field, html_options) << content_tag(:span, date_field, :class => 'localized_date')
     end
   end
-  
+
   def embedded_date_picker(f, field)
     date_field = f.object.send(field) ? localize(f.object.send(field), :format => :long) : "<i>#{t('date_picker.no_date_assigned')}</i>".html_safe
     div_id = "#{f.object.class.to_s.underscore}_#{f.object.id}_#{field}"
@@ -118,7 +118,7 @@ module TasksHelper
       javascript_tag("new CalendarDateSelect( $('#{div_id}').down('input'), $('#{div_id}').down('span'), {buttons:true, embedded:true, time:false, year_range:[2008, 2020]} )")
     end
   end
-  
+
   def value_for_assigned_to_select
     params[:assigned_to] == 'all' ? 'task' : (params[:assigned_to] || 'task')
   end

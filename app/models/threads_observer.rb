@@ -19,14 +19,14 @@ class ThreadsObserver < ActiveRecord::Observer
       expire_with_locales "#{record.thread_id}"
     end
   end
-  
+
   def after_destroy(record)
     case record
     when Comment
       expire_with_locales "#{record.thread_id}"
     end
   end
-  
+
   protected
 
     def expire_with_locales(thread_id)

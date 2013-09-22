@@ -5,7 +5,7 @@ class Comment
     year ||= Time.new.year
     find(:all, :conditions => ["YEAR(created_at) = ?", year], :order => 'created_at DESC')
   end
-  
+
   def self.find_by_year_count(year=nil)
     year ||= Time.new.year
     count(:all, :conditions => ["YEAR(created_at) = ?", year])
@@ -25,12 +25,12 @@ class Comment
       find_by_year
     end
   end
-  
+
   def self.find_today
     with_scope(:find => { :conditions => ["DAY(created_at) = ?", Time.current.day], :order => 'created_at ASC'}) do
       find_by_year
       find_by_month
     end
   end
-  
+
 end

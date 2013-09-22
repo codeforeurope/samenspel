@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe EmailValidator do
-  
+
   it "should pass valid email addresses" do
     ["billg@microsoft.com",
      "user+email@gmail.com",
@@ -11,7 +11,7 @@ describe EmailValidator do
       EmailValidator.check_address(address).should_not == false
     end
   end
-  
+
   it "should fail on invalid email addresses" do
     ["@foo@gmail.com",
       "foo@",

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   before_filter :set_page_title
   before_filter :disallow_for_community, :only => [:new, :create]
   before_filter :load_pending_projects, :only => [:index, :show]
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |f|
       flash[:error] = t('common.not_allowed')
@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
       handle_api_error(f, @current_project)
     end
   end
-  
+
   def index
     @new_conversation = Conversation.new(:simple => true)
     @activities = Activity.for_projects(@projects)
@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
     authorize! :create_project, current_user
     @project = Project.new
     @project.build_organization
-    
+
     respond_to do |f|
       f.any(:html, :m)
     end
@@ -80,12 +80,12 @@ class ProjectsController < ApplicationController
   def edit
     authorize! :update, @current_project
     @sub_action = params[:sub_action] || 'settings'
-    
+
     respond_to do |f|
       f.any(:html, :m)
     end
   end
-  
+
   def update
     authorize! :update, @current_project
     authorize!(:transfer, @current_project) if params[:sub_action] == 'ownership'
@@ -97,12 +97,12 @@ class ProjectsController < ApplicationController
     else
       flash.now[:error] = t('projects.edit.error')
     end
-    
+
     respond_to do |f|
       f.any(:html, :m) { render :edit }
     end
   end
- 
+
   # Gets called from Project#create
   def invite_people
   end
@@ -118,17 +118,17 @@ class ProjectsController < ApplicationController
 
   def transfer
     authorize! :transfer, @current_project
-    
+
     # Grab new owner
     user_id = params[:project][:user_id] rescue nil
     person = @current_project.people.find_by_user_id(user_id)
     saved = false
-    
+
     # Transfer!
     unless person.nil?
       saved = @current_project.transfer_to(person)
     end
-    
+
     if saved
       respond_to do |f|
         flash[:notice] = I18n.t('projects.edit.transferred')
@@ -190,11 +190,11 @@ class ProjectsController < ApplicationController
   end
 
   protected
-  
+
     def load_task_lists
       @task_lists = @current_project.task_lists.unarchived
     end
-  
+
     def load_projects
       @projects = current_user.projects.unarchived
     end

@@ -18,7 +18,7 @@ class Project
       end
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -31,33 +31,33 @@ class Project
       :archived => archived,
       :owner_user_id => user_id
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     if Array(options[:include]).include? :people
       base[:people] = people.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :task_lists
       base[:task_lists] = task_lists.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :invitations
       base[:invitations] = invitations.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :pages
       base[:pages] = pages.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :uploads
       base[:uploads] = uploads.map {|p| p.to_api_hash(options)}
     end
-    
+
     if Array(options[:include]).include? :conversations
       base[:conversations] = conversations.map {|p| p.to_api_hash(options)}
     end
-    
+
     base
   end
 end

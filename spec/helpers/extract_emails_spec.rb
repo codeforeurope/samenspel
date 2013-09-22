@@ -19,7 +19,7 @@ describe 'String#extract_emails' do
     it "handles two-part TLD from: james@cuppadev.co.uk" do
       should == %w[ james@cuppadev.co.uk ]
     end
-    
+
     it "doesn't munge the username part from: a.fish@example.co.uk" do
       should == %w[ a.fish@example.co.uk ]
     end
@@ -68,7 +68,7 @@ describe 'String#extract_emails' do
       should == %w[ ~&*=?^+{}'@validCharsInLocal.net ]
     end
   end
-  
+
   context "invalid" do
     it "doesn't extract invalid email from: inv@lid brr" do
       should be_empty
@@ -90,12 +90,12 @@ describe 'String#extract_emails' do
       should be_empty
     end
   end
-  
+
   protected
-  
+
   def subject
     data = description.match(/from: (.+)$/m)[1]
     data.extract_emails
   end
-  
+
 end

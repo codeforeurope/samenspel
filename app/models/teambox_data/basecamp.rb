@@ -3,8 +3,8 @@ class TeamboxData
   # Note:
   # Internally the import is just a mass creation of objects using hashes of
   # teambox data properties. Importers for each different dump are required to
-  # convert their representations to teambox data. 
-  
+  # convert their representations to teambox data.
+
   def unserialize_basecamp(object_maps, opts={})
     # xml dump format:
     # account/projects/project
@@ -17,30 +17,30 @@ class TeamboxData
     # posts/post [conversations]
     #   ../comments/comment [comments]
     # participants/person [people]
-    
+
     import_data = metadata_basecamp(true)
     unserialize_teambox(import_data, object_maps, opts)
   end
-  
+
   def metadata_basecamp(with_project_data=false)
     firm_members = []
-    
+
     organization_list = ([data['account']['firm']] + data['account']['clients']).map do |firm|
       firm_members += firm['people']
       people = firm['people'].map do |person|
         {'user_id' => person['id']}
       end
-      
+
       compat_name = firm['name'].first
       compat_name = compat_name.length < 4 ? (compat_name + '____') : compat_name
-      
+
       {'id' => firm['id'],
        'name' => compat_name,
        'permalink' => PermalinkFu.escape(compat_name, Organization),
        'time_zone' => firm['time_zone_id'],
        'members' => people}
     end
-    
+
     user_list = firm_members.map do |person|
       {'id' => person['id'],
        'first_name' => person['first_name'],
@@ -49,13 +49,13 @@ class TeamboxData
        'username' => person['name'].scan(/[A-Za-z0-9]+/).join(''),
        'created_at' => person['created_at']}
     end
-    
+
     firm_user_ids = user_list.map{|u|u['id']}
-    
+
     project_list = data['account']['projects'].map do |project|
       compat_name = project['name'].first
       compat_name = compat_name.length < 4 ? (compat_name + '____') : compat_name
-      
+
       base = {'id' => project['id'],
        'organization_id' => data['account']['firm']['id'],
        'name' => compat_name,
@@ -68,7 +68,7 @@ class TeamboxData
           'user_id' => participant,
           'role' => firm_user_ids.include?(participant) ? Person::ROLES[:admin] : Person::ROLES[:participant]}
       end
-      
+
       if with_project_data
         base['conversations'] = project['posts'].map do |post|
           {}.tap do |conversation|
@@ -89,7 +89,7 @@ class TeamboxData
             end
           end
         end
-        
+
         base['task_lists'] = project['todo_lists'].map do |list|
           {}.tap do |task_list|
             task_list.merge!({
@@ -103,7 +103,7 @@ class TeamboxData
               else
                 :open
               end
-              
+
               {}.tap do |task|
                 task.merge!({
                   'name' => list_item['content'],
@@ -123,7 +123,7 @@ class TeamboxData
             end
           end
         end
-        
+
         base['task_lists'] << {}.tap do |task_list|
           task_list.merge!({
             'name' => 'Milestones',
@@ -136,7 +136,7 @@ class TeamboxData
                 :resolved
               else
                 :open
-              end           
+              end
               task.merge!({
                 'name' => milestone['title'],
                 'created_at' => milestone['created_on'],
@@ -154,10 +154,10 @@ class TeamboxData
           end
         end
       end
-      
+
       base
     end
-    
+
     {'users' => user_list,
       'projects' => project_list,
       'organizations' => organization_list}

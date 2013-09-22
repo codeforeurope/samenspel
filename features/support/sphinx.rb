@@ -25,12 +25,12 @@ module TSHelpers
       FileUtils.rm_rf config.searchd_file_path
       config.build
     end
-    
+
     FileUtils.mkdir_p config.searchd_file_path
     output = config.controller.index
 
 
-    
+
     if output =~ /^ERROR:/
       $stderr.puts output
       raise "Sphinx indexing failed"
@@ -47,7 +47,7 @@ World(TSHelpers)
 
 Before('@sphinx') do
   Teambox.config.allow_search = true
-  
+
   if ThinkingSphinx.sphinx_running?
     config.controller.stop
     sleep(2)
@@ -59,7 +59,7 @@ Before('@sphinx') do
   unless ThinkingSphinx.sphinx_running?
     config.build
     output = config.controller.index
-    
+
     if output =~ /^ERROR:/
       $stderr.puts output
       raise "Initial Sphinx indexing failed"

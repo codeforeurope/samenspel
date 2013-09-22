@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def create
     @signups_enabled = signups_enabled?
     logout_keeping_session!
-    
+
     user = User.authenticate(params[:login], params[:password])
     if user
       # Protects against session fixation attacks, causes request forgery
@@ -58,7 +58,7 @@ class SessionsController < ApplicationController
     clear_auth_session!
     redirect_back_or_default root_path
   end
-  
+
   # for cucumber testing only
   def backdoor
     logout_killing_session!
@@ -73,7 +73,7 @@ class SessionsController < ApplicationController
     else
       flash[:error] = "Invalid format"
     end
-    
+
     redirect_back_or_to root_path
   end
 

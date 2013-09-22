@@ -10,7 +10,7 @@ describe Emailer do
       @address = %(#{@project.permalink}+conversation+#{@conversation.id}@domain.com)
       @full_address = %(#{@user.name} <#{@address}>)
     end
-  
+
     it "should set Reply-to" do
       allow_incoming_mail do
         email = Emailer.notify_conversation(@user.id, @conversation.project.id, @conversation.id)
@@ -18,7 +18,7 @@ describe Emailer do
         email.reply_to.should == [@address]
       end
     end
-  
+
     it "should not set Reply-to for no-reply" do
       allow_incoming_mail(false) do
         email = Emailer.notify_conversation(@user.id, @conversation.project.id, @conversation.id)
@@ -27,7 +27,7 @@ describe Emailer do
       end
     end
   end
-  
+
   describe "email rendering" do
     # I18n.available_locales, too slow! Top 3 only
     [:en, :es, :fr].each do |locale|

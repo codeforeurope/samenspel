@@ -22,7 +22,7 @@ class Task
       end
     end
   end
-  
+
   def to_api_hash(options = {})
     base = {
       :id => id,
@@ -38,19 +38,19 @@ class Task
       :updated_at => updated_at.to_s(:api_time),
       :watchers => Array.wrap(watchers_ids)
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
     base[:due_on] = due_on.to_s(:db) if due_on
     base[:completed_at] = completed_at.to_s(:db) if completed_at
-    
+
     if Array(options[:include]).include? :task_list
       base[:task_list] = task_list.to_api_hash(options)
     end
-    
+
     if Array(options[:include]).include? :assigned
       base[:assigned] = assigned.to_api_hash(:include => :user) if assigned
     end
-    
+
     if Array(options[:include]).include? :thread_comments
       base[:first_comment] = first_comment.to_api_hash(options)  if first_comment
       base[:recent_comments] = recent_comments.map{|c|c.to_api_hash(options)}
@@ -58,7 +58,7 @@ class Task
       base[:first_comment_id] = first_comment.try(:id)
       base[:recent_comment_ids] = recent_comments.map{|c|c.id}
     end
-    
+
     if Array(options[:include]).include? :user
       base[:user] = {
         :username => user.login,
@@ -67,7 +67,7 @@ class Task
         :avatar_url => user.avatar_or_gravatar_url(:thumb)
       }
     end
-    
+
     base
   end
 end

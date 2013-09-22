@@ -8,7 +8,7 @@ class Im < ActiveRecord::Base
   def get_im_type
     ACCOUNT_TYPES[account_im_type]
   end
-    
+
   def get_type
     TYPES[account_type]
   end

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
   no_login_required :only => [ :new, :create, :confirm_email, :forgot_password, :reset_password, :login_from_reset_password ]
-  
+
   before_filter :find_user, :only => [ :show, :confirm_email, :login_from_reset_password ]
   before_filter :load_invitation, :only => [ :new, :create ]
   skip_before_filter :confirmed_user?, :only => [ :new, :create, :confirm_email, :forgot_password, :reset_password, :login_from_reset_password, :unconfirmed_email ]
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       f.yaml  { render :as_yaml => @current_user.users_with_shared_projects.to_xml(:root => 'users')}
     end
   end
-  
+
   def new
     # Trying to accept a new account invitation, but you're already logged in
     if @invitation and logged_in?
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         @user.email = @invitation.email if @invitation
       end
     end
-    
+
     respond_to do |f|
       f.any(:html, :m) { render :layout => 'sessions' }
     end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
     logout_keeping_session!
     @user = User.new(params[:user])
 
-    @user.confirmed_user = ((@invitation && @invitation.email == @user.email) or 
+    @user.confirmed_user = ((@invitation && @invitation.email == @user.email) or
                             (session[:profile] && session[:profile][:email] == @user.email) or
                             Rails.env.development? or !Teambox.config.email_confirmation_require)
 
@@ -115,7 +115,7 @@ class UsersController < ApplicationController
   def update
     @sub_action = params[:sub_action]
     success = current_user.update_attributes(params[:user])
-    
+
     respond_to do |wants|
       wants.html {
         if success

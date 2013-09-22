@@ -16,12 +16,12 @@ module UsersHelper
       page['user_password'].focus
     end
   end
-  
+
   def user_rss_token(url, filter = nil)
     filter_param = filter.present? ? "&filter=#{filter}" : ""
     url + "?rss_token=#{current_user.rss_token}#{current_user.id}#{filter_param}"
   end
-  
+
   def avatar_or_gravatar(user, size)
     user.avatar_or_gravatar_path(size, request.ssl?).tap do |url|
       unless url.starts_with? 'http'
@@ -30,16 +30,16 @@ module UsersHelper
       end
     end
   end
-  
+
   def gravatar_url
     "<a href='http://gravatar.com'>Gravatar</a>".html_safe
   end
-  
+
   def build_user_phone_number(user)
     card = user.card || user.build_card
     card.phone_numbers.build unless card.phone_numbers.any?
   end
-  
+
   def load_javascript_user_data
     javascript_tag %(
       my_user = #{json_user}
@@ -47,7 +47,7 @@ module UsersHelper
       current_project = #{@current_project ? @current_project.id : 'null'}
     )
   end
-  
+
   def load_my_avatar_for_new_comments
     %(<style type='text/css'>
         a.micro_avatar.my_avatar { background: url(#{avatar_or_gravatar(current_user, :micro)}) no-repeat }
@@ -55,7 +55,7 @@ module UsersHelper
   end
 
   def js_for_signup_form_validations
-    error_messages = 
+    error_messages =
       %w(too_long too_short empty invalid confirmation).inject({}) do |r,key|
         r[key] = t("activerecord.errors.messages.#{key}")
         r
@@ -167,7 +167,7 @@ module UsersHelper
     def json_user
       {
         :id => current_user.id,
-        :username => current_user.login, 
+        :username => current_user.login,
         :splash_screen => current_user.splash_screen,
         :collapse_activities => !!current_user.settings["collapse_activities"]
       }.to_json

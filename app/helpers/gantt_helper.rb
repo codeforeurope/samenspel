@@ -45,7 +45,7 @@ module GanttChart
         else
           raise "Invalid date"
       end
-    end 
+    end
 
   end
 
@@ -76,7 +76,7 @@ module GanttChart
 
     def to_html(day_width=30, margin=50, expanded=true)
       @expanded = expanded
-      
+
       return if !@rows or @rows.empty?
       html = ruler_to_html(@final-@start,day_width)
       html << list_rows(@start,@final,day_width)
@@ -93,7 +93,7 @@ module GanttChart
         elsif !b.start; 1
         else a.start <=> b.start; end
       end
-    
+
       @task_lists.each do |task_list|
         # Clip the task_list to the given time window
         next if !task_list.start && !task_list.final # undefinated start and end
@@ -107,7 +107,7 @@ module GanttChart
           task_list.final = final+1
           task_list.classes = "undefined_end"
         end
-        
+
         next if task_list.start > final # not visible (future)
         next if task_list.final < start # not visible (past)
 
@@ -115,9 +115,9 @@ module GanttChart
       end
       @rows.nil? || @rows.empty?
     end
-        
+
     protected
-      
+
       def list_rows(start,final,day_width)
         @rows.inject('') do |html,row|
           row_width = (final - start) * day_width
@@ -138,7 +138,7 @@ module GanttChart
           html
         end.html_safe
       end
-      
+
       def add_to_rows(task_list)
         # Tries to fit the task_list in the best possible row
         unless @expanded
@@ -150,7 +150,7 @@ module GanttChart
             end
           end
         end
-      
+
         @rows << [task_list] # If no rows were suitable, a new one must be created
       end
   end

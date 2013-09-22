@@ -31,7 +31,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = Rails.root + '/spec/fixtures/'
-  
+
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -129,9 +129,9 @@ end
 def make_and_dump_the_teambox_dump
   make_the_teambox_dump
   @teambox_dump = dump_test_data
-  
+
   @user_list = User.all.map(&:login)
-  
+
   Organization.destroy_all
   User.destroy_all
   Project.destroy_all

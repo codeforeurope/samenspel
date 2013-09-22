@@ -1,19 +1,19 @@
 # -*- encoding : utf-8 -*-
 class ApiV1::TaskListsController < ApiV1::APIController
   before_filter :load_task_list, :only => [:update,:show,:destroy,:archive,:unarchive]
-  
+
   def index
     query = {:conditions => api_range,
              :limit => api_limit,
              :order => 'id DESC',
              :include => [:user, :project]}
-    
+
     @task_lists = if @current_project
       @current_project.task_lists.where(api_scope).all(query)
     else
       TaskList.where(api_scope).find_all_by_project_id(current_user.project_ids, query)
     end
-    
+
     api_respond @task_lists, :include => [:user, :project], :references => [:user, :project]
   end
 
@@ -24,7 +24,7 @@ class ApiV1::TaskListsController < ApiV1::APIController
   def create
     authorize! :make_task_lists, @current_project
     @task_list = @current_project.create_task_list(current_user,params)
-    
+
     if @task_list.new_record?
       handle_api_error(@task_list)
     else
@@ -35,7 +35,7 @@ class ApiV1::TaskListsController < ApiV1::APIController
   def update
     authorize! :update, @task_list
     @saved = @task_list.update_attributes(params)
-    
+
     if @saved
       handle_api_success(@task_list)
     else
@@ -49,10 +49,10 @@ class ApiV1::TaskListsController < ApiV1::APIController
       @task_list = @current_project.task_lists.find(task_list_id)
       @task_list.update_attribute(:position,idx.to_i)
     end
-    
+
     handle_api_success(@task_list)
   end
-  
+
   def archive
     authorize! :update, @task_list
     unless @task_list.archived
@@ -60,7 +60,7 @@ class ApiV1::TaskListsController < ApiV1::APIController
       comment_attrs = {:comment_body => params[:message]}
       comment_attrs[:body] ||= "Archived task list"
       comment_attrs[:status] = params[:status] || 3
-      
+
       # Resolve all unresolved tasks
       @task_list.tasks.each do |task|
         if !task.archived?
@@ -72,24 +72,24 @@ class ApiV1::TaskListsController < ApiV1::APIController
           comment.save!
         end
       end
-      
+
       @task_list.reload
       @task_list.archived = true
       @task_list.save!
-      
+
       handle_api_success(@task_list)
     else
       handle_api_error(@task_list)
     end
   end
-  
+
   def unarchive
     authorize! :update, @task_list
     if @task_list.archived
       @task_list.archived = false
       @saved = @task_list.save
     end
-    
+
     if @saved
       handle_api_success(@task_list)
     else
@@ -102,9 +102,9 @@ class ApiV1::TaskListsController < ApiV1::APIController
     @task_list.destroy
     handle_api_success(@task_list)
   end
-  
+
   protected
-  
+
   def load_task_list
     @task_list = if @current_project
       @current_project.task_lists.find(params[:id])
@@ -113,7 +113,7 @@ class ApiV1::TaskListsController < ApiV1::APIController
     end
     api_error :not_found, :type => 'ObjectNotFound', :message => 'TaskList not found' unless @task_list
   end
-    
+
   def api_scope
     conditions = {}
     unless params[:archived].nil?
@@ -124,7 +124,7 @@ class ApiV1::TaskListsController < ApiV1::APIController
     end
     conditions
   end
-  
+
   def api_include
     [:tasks, :comments] & (params[:include]||{}).map(&:to_sym)
   end

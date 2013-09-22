@@ -3,7 +3,7 @@ class MembershipsController < ApplicationController
 
   skip_before_filter :load_project
   before_filter :load_organization
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "You're not allowed to do that. Only admins of an organization have that right."
     redirect_to organization_memberships_path(@organization)
@@ -32,7 +32,7 @@ class MembershipsController < ApplicationController
   end
 
   def remove
-    authorize! :admin, @organization  
+    authorize! :admin, @organization
     membership = @organization.memberships.find_by_user_id(params[:id])
     unless membership.try(:destroy)
       flash[:error] = "Couldn't find that membership"

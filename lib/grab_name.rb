@@ -5,4 +5,4 @@ module GrabName
       e = self.find(id,:select => 'name')
       e = e.nil? ? '' : e.name
     end
-end  
+end

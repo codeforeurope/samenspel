@@ -20,7 +20,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.integer :role, :default => 20
       t.timestamps
     end
-    
+
     add_column :projects, :organization_id, :integer
   end
 

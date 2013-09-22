@@ -9,11 +9,11 @@ class ResetPassword < ActiveRecord::Base
   validates_each :user, :unless => Proc.new{|p|p.errors[:email].present?} do |record, attr, value|
     record.errors.add attr, "doesn\'t exist in the system." if record.user.nil? or record.user.deleted?
   end
-  
+
   before_create :create_code
 
   protected
-  
+
   def create_code
     self.reset_code = ActiveSupport::SecureRandom.hex(20)
     self.expiration_date = 2.weeks.from_now

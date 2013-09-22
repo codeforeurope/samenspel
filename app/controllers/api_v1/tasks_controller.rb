@@ -2,38 +2,38 @@
 class ApiV1::TasksController < ApiV1::APIController
   before_filter :load_task_list
   before_filter :load_task, :except => [:index, :create, :reorder]
-  
+
   def index
     query = {:conditions => api_range,
              :limit => api_limit,
              :order => 'id DESC',
              :include => [:task_list, :project, :user, :assigned,
                          {:first_comment => :user}, {:recent_comments => :user}]}
-    
+
     if @current_project
       @tasks = (@task_list || @current_project).tasks.where(api_scope).all(query)
     else
       @tasks = Task.where(api_scope).find_all_by_project_id(current_user.project_ids, query)
     end
-    
+
     api_respond @tasks, :references => [:task_list, :project, :user, :assigned, :refs_comments]
   end
 
   def show
     api_respond @task, :include => api_include
   end
-  
+
   def create
     authorize! :make_tasks, @current_project
     @task = @task_list.tasks.create_by_user(current_user, params)
-    
+
     if @task.new_record?
       handle_api_error(@task)
     else
       handle_api_success(@task, :is_new => true, :include => [:comments])
     end
   end
-  
+
   def update
     authorize! :update, @task
     if @task.update_attributes(params)
@@ -59,7 +59,7 @@ class ApiV1::TasksController < ApiV1::APIController
     @task.remove_watcher(current_user)
     handle_api_success(@task)
   end
-  
+
   def reorder
     authorize! :reorder_objects, @current_project
     new_task_ids_for_task_list = (params[:tasks] || []).reject { |task_id| task_id.blank? }.map(&:to_i)
@@ -71,12 +71,12 @@ class ApiV1::TasksController < ApiV1::APIController
       task = @task_list.tasks.find(task_id)
       task.update_attribute(:position,idx.to_i)
     end
-    
+
     api_status(:ok)
   end
 
   protected
-  
+
   def load_task
     @task = if @current_project
       (@task_list || @current_project).tasks.find(params[:id]) rescue nil
@@ -85,7 +85,7 @@ class ApiV1::TasksController < ApiV1::APIController
     end
     api_error :not_found, :type => 'ObjectNotFound', :message => 'Task not found' unless @task
   end
-  
+
   def api_scope
     conditions = {}
     unless params[:status].nil?
@@ -99,7 +99,7 @@ class ApiV1::TasksController < ApiV1::APIController
     end
     conditions
   end
-    
+
   def api_include
     [:comments, :user, :assigned] & (params[:include]||{}).map(&:to_sym)
   end
