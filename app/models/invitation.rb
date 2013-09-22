@@ -9,7 +9,7 @@ class Invitation < RoleRecord
   validate :valid_role?
   validate :user_already_invited?
   validate :email_valid?
-  
+
   attr_reader :user_or_email
   attr_accessor :is_silent
   attr_accessible :user_or_email, :role, :membership, :invited_user
@@ -31,11 +31,11 @@ class Invitation < RoleRecord
     if Teambox.config.allow_ldap_auth && !self.invited_user && !valid_email?(value)
       self.invited_user = User.find_in_ldap_and_create(value)
     else
-      self.email = value
+      self.email = value unless self.invited_user
     end
     @user_or_email = value
   end
-  
+
   def accept(current_user)
     if target.is_a? Project
       target.organization.add_member(current_user, membership)
@@ -44,7 +44,7 @@ class Invitation < RoleRecord
       target.add_member(current_user, membership)
     end
   end
-  
+
   def editable?(user)
     project.admin?(user) or self.user_id == user.id or self.invited_user_id == user.id
   end
@@ -60,12 +60,12 @@ class Invitation < RoleRecord
         :name => project.name
       }
     }
-    
+
     base[:type] = self.class.to_s if options[:emit_type]
-    
+
     base
   end
-  
+
   def to_json(options = {})
     to_api_hash(options).to_json
   end
@@ -75,11 +75,11 @@ class Invitation < RoleRecord
   def valid_user?
     @errors.add(:base, 'Must belong to a valid user') if user.nil? or user.deleted?
   end
-  
+
   def valid_role?
     @errors.add(:base, 'Not authorized') if target.is_a?(Project) and user and !target.admin?(user)
   end
-  
+
   def user_already_invited?
     return if invited_user.nil?
     if project and Person.exists?(:project_id => project_id, :user_id => invited_user.id)
@@ -122,11 +122,11 @@ class Invitation < RoleRecord
       Emailer.send_email :signup_invitation, self.id
     end
   end
-  
+
   if Rails.env.production? and respond_to? :handle_asynchronously
-    handle_asynchronously :send_email 
+    handle_asynchronously :send_email
   end
-  
+
   def copy_user_email
     self.email ||= invited_user.email
   end
