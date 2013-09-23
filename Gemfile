@@ -42,7 +42,7 @@ gem 'sprockets', '1.0.2'
 gem 'barista', '~> 1.0'
 gem 'vestal_versions', '~> 1.2.2', :git => 'git://github.com/adamcooper/vestal_versions'
 gem 'paperclip', '~> 2.7.5'
-gem 'teambox-permalink_fu', :require => 'permalink_fu', :git => 'https://github.com/teambox/permalink_fu.git'     #Uses Iconv, that is now deprecated
+gem 'teambox-permalink_fu', :require => 'permalink_fu' #,  :git => 'https://github.com/teambox/permalink_fu.git'     #Uses Iconv, that is now deprecated
 gem 'cancan', '~> 1.4.1'
 gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'postgresql_fix'
 gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'

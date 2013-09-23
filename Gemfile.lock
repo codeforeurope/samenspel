@@ -325,7 +325,6 @@ DEPENDENCIES
   sprockets-rails (~> 0.0.1)
   teambox-permalink_fu!
   text-format!
-  thin
   thinking-sphinx (~> 2.0.14)
   tilt
   timecop (<= 0.6.2)
