@@ -252,7 +252,6 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sprockets-rails (0.0.1)
       sprockets (>= 1.0.2)
-    sqlite3 (1.3.8)
     teambox-permalink_fu (1.0.2)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
@@ -329,7 +328,6 @@ DEPENDENCIES
   sass
   simplecov
   sprockets-rails (~> 0.0.1)
-  sqlite3
   teambox-permalink_fu
   text-format!
   thin

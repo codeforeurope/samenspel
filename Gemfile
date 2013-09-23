@@ -49,9 +49,9 @@ group :development do
   gem 'debugger'
 end
 
-group :sqlite do
-  gem 'sqlite3'
-end
+#group :sqlite do
+#  gem 'sqlite3'
+#end
 
 group :test, :development do
   gem 'thin'
