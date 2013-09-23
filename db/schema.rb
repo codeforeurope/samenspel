@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -224,7 +225,7 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
-    t.string   "permalink",                                                   :null => false
+    t.string   "permalink",                               :null => false
     t.string   "language",          :default => "en"
     t.string   "time_zone",         :default => "Prague"
     t.string   "domain"
@@ -235,7 +236,7 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "settings"
-    t.boolean  "deleted",           :default => false,                        :null => false
+    t.boolean  "deleted",           :default => false,    :null => false
     t.boolean  "default",           :default => false,    :null => false
   end
 
@@ -419,7 +420,7 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
     t.string   "login",                     :limit => 40
     t.string   "first_name",                :limit => 20,  :default => ""
     t.string   "last_name",                 :limit => 20,  :default => ""
-    t.text     "biography"
+    t.text     "biography",                                :default => ""
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
@@ -428,13 +429,13 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
     t.string   "time_zone",                                :default => "Prague"
     t.string   "locale",                                   :default => "en"
     t.string   "first_day_of_week",                        :default => "monday"
-    t.integer  "invitations_count",                        :default => 0,                            :null => false
+    t.integer  "invitations_count",                        :default => 0,        :null => false
     t.string   "login_token",               :limit => 40
     t.datetime "login_token_expires_at"
     t.boolean  "confirmed_user",                           :default => false
     t.string   "rss_token",                 :limit => 40
     t.boolean  "admin",                                    :default => false
-    t.integer  "comments_count",                           :default => 0,                            :null => false
+    t.integer  "comments_count",                           :default => 0,        :null => false
     t.boolean  "notify_mentions",                          :default => true
     t.boolean  "notify_conversations",                     :default => true
     t.boolean  "notify_tasks",                             :default => true
@@ -442,7 +443,7 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.integer  "invited_by_id"
-    t.integer  "invited_count",                            :default => 0,                            :null => false
+    t.integer  "invited_count",                            :default => 0,        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "wants_task_reminder",                      :default => true
@@ -455,7 +456,7 @@ ActiveRecord::Schema.define(:version => 20120311202846) do
     t.boolean  "splash_screen",                            :default => false
     t.integer  "assigned_tasks_count"
     t.integer  "completed_tasks_count"
-    t.boolean  "deleted",                                  :default => false,                        :null => false
+    t.boolean  "deleted",                                  :default => false,    :null => false
     t.text     "settings"
     t.boolean  "uses_ldap_authentication",                 :default => false
   end

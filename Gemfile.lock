@@ -29,12 +29,6 @@ GIT
     will_paginate (3.0.pre4)
 
 GIT
-  remote: git://github.com/teambox/activesupport-i18n-patch.git
-  revision: 2e835783c0ea7062ad280b71b04060bd9b89e1a4
-  specs:
-    activesupport-i18n-patch (0.0.1)
-
-GIT
   remote: git://github.com/teambox/choices.git
   revision: 93d0cfb4e5fd4ae03b421b379a69ee00721f337b
   specs:
@@ -218,6 +212,7 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12.2)
       json (~> 1.4)
+    riddle (1.5.8)
     rspec (2.4.0)
       rspec-core (~> 2.4.0)
       rspec-expectations (~> 2.4.0)
@@ -259,6 +254,10 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
+    thinking-sphinx (2.0.14)
+      activerecord (>= 3.0.3)
+      builder (>= 2.1.2)
+      riddle (>= 1.5.3)
     thor (0.14.6)
     tilt (1.4.1)
     timecop (0.6.3)
@@ -285,7 +284,6 @@ PLATFORMS
 DEPENDENCIES
   SystemTimer (~> 1.2.0)
   active_reload
-  activesupport-i18n-patch!
   aws-s3 (~> 0.6.2)
   barista (~> 1.0)
   builder (~> 2.1.2)
@@ -327,6 +325,7 @@ DEPENDENCIES
   teambox-permalink_fu
   text-format!
   thin
+  thinking-sphinx (~> 2.0.14)
   tilt
   timecop
   tmail (~> 1.2.3)

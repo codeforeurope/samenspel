@@ -155,7 +155,7 @@ module Emailer::Incoming
       charset = @charsets[field.to_s]
       if charset and charset.downcase != 'utf-8'
         begin
-          value = Iconv.iconv('utf-8', charset, value).first
+          value = String.encode('utf-8', charset, value).first
         rescue Iconv::IllegalSequence, Iconv::InvalidEncoding, Errno::EINVAL
           # do nothing
         end

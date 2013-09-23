@@ -11,7 +11,7 @@ group :rails do
 end
 
 #Temporary hack - Fix once this ticket: is resolved
-gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
+#gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
 
 gem 'nokogiri'
 gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer', :platform => :mri_18
@@ -33,12 +33,12 @@ gem 'tilt'
 gem 'choices', :git => "git://github.com/teambox/choices.git"
 
 gem "will_paginate", :git=>"git://github.com/mislav/will_paginate.git", :branch=>"rails3"
-#gem 'thinking-sphinx', '~> 2.0.14', :require => 'thinking_sphinx'
+gem 'thinking-sphinx', '~> 2.0.14', :require => 'thinking_sphinx'
 gem 'sprockets-rails', '~> 0.0.1'
 gem 'barista', '~> 1.0'
 gem 'vestal_versions', '~> 1.2.2', :git => 'git://github.com/adamcooper/vestal_versions'
 gem 'paperclip', '~> 2.7.5'
-gem 'teambox-permalink_fu', :require => 'permalink_fu'
+gem 'teambox-permalink_fu', :require => 'permalink_fu'     #Uses Iconv, that is now deprecated
 gem 'cancan', '~> 1.4.1'
 gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'postgresql_fix'
 gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
