@@ -16,5 +16,5 @@ stylesheets:
     - public/stylesheets/sessions.css
   sites:
     - public/stylesheets/sessions.css
-    - public/stylesheets/public.css
+    - public/stylesheets/public_projects.css
     - public/stylesheets/sites.css
