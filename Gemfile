@@ -48,6 +48,7 @@ gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
 gem 'rake', '0.9.2'
 
+gem 'thin'
 group :development do
   gem 'debugger'
 end
@@ -57,7 +58,6 @@ end
 #end
 
 group :test, :development do
-  gem 'thin'
   gem 'rspec-rails', '~> 2.4.1'
   gem 'webrat'
   gem 'fuubar'
