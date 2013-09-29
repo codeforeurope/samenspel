@@ -70,7 +70,7 @@ end
 
 # we don't call the group :test because we don't want them auto-required
 group :testing do
-  gem 'database_cleaner', '~> 0.5.0'
+  gem 'database_cleaner', '~> 0.6.0'
   gem 'simplecov'
   gem 'factory_girl', '~> 1.3.2'
   gem 'pickle', '~> 0.4.4'
