@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.8.7'
+ruby '1.9.3'
 
 
 group :rails do
@@ -51,8 +51,8 @@ gem 'rake', '0.9.2'
 
 gem 'thin'
 group :development do
-  #gem 'debugger' # debugger for 1.9.x +
-  gem 'ruby-debug' # ruby-debug for 1.8.7
+  gem 'debugger' # debugger for 1.9.x +
+  #gem 'ruby-debug' # ruby-debug for 1.8.7
 end
 
 #group :sqlite do
@@ -64,7 +64,7 @@ group :test, :development do
   gem 'webrat'
   gem 'fuubar'
   gem 'faker', :require => nil
-  gem 'timecop', '<= 0.6.2', :require => 'timecop'  #TimeCop 0.6.3 requires Ruby 1.9.2+
+  gem 'timecop', '<= 0.6.3', :require => 'timecop'  #TimeCop 0.6.3 requires Ruby 1.9.2+
   gem 'active_reload'
 end
 
