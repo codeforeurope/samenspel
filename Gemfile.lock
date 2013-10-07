@@ -29,12 +29,6 @@ GIT
     will_paginate (3.0.pre4)
 
 GIT
-  remote: git://github.com/teambox/activesupport-i18n-patch.git
-  revision: 2e835783c0ea7062ad280b71b04060bd9b89e1a4
-  specs:
-    activesupport-i18n-patch (0.0.1)
-
-GIT
   remote: git://github.com/teambox/choices.git
   revision: 93d0cfb4e5fd4ae03b421b379a69ee00721f337b
   specs:
@@ -281,7 +275,6 @@ PLATFORMS
 DEPENDENCIES
   SystemTimer (~> 1.2.0)
   active_reload
-  activesupport-i18n-patch!
   aws-s3 (~> 0.6.2)
   barista (~> 1.0)
   builder (~> 2.1.2)

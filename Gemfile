@@ -13,7 +13,7 @@ group :rails do
 end
 
 #Temporary hack - Fix once this ticket: is resolved
-gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
+#gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
 
 gem 'nokogiri'
 gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer', :platform => :mri_18
@@ -47,6 +47,8 @@ gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'pos
 gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
 gem 'rake', '0.9.2'
+gem 'thin'
+
 
 group :development do
   #gem 'debugger'
@@ -57,7 +59,6 @@ group :sqlite do
 end
 
 group :test, :development do
-  gem 'thin'
   gem 'rspec-rails', '~> 2.4.1'
   gem 'webrat'
   gem 'fuubar'
