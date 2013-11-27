@@ -56,7 +56,12 @@ class PeopleController < ApplicationController
   end
 
   def contacts
-    @project = Project.find params[:id]
+    if params[:id]
+      @project = Project.find params[:id]
+    else
+      @project = Project.where('permalink = (?)', params[:project_id]).first
+    end
+
 
     if current_user.in_project(@project)
       users = @project.users
