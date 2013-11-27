@@ -138,7 +138,10 @@ defaults: &defaults
   # Allows Google Docs integration
   # - :provider: google
   #   :key: 
-  #   :secret: 
+  #   :secret:
+  # Also set to true the following property, so that Teambox knows if to hide or show the icon in the UI
+  use_google_docs: false
+
   #
   # Register your own domain at http://github.com/account/applications
   # Allows login through Github
