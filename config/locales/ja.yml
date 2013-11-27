@@ -1991,3 +1991,4 @@ ja:
     error: 短すぎます
     strong: 強い
     weak: 弱い
+  module_not_enabled: "Module not enabled"

@@ -1109,3 +1109,4 @@ tr:
       copy5: "<a href='%{link}'>Teambox üyeliğinizi bir üst plan yükseltin</a> ve profesyonel işbirliğinin tadını çıkartın!"
       copy6: "Tüm projelerde tek noktadan arama yapmak size saatler kazandırabilir. Bu özelliğe sahip olmak için <a href='%{link}'>Teambox üyeliğinizi bir üst plan yükseltin</a>!"
       copy7: "İşiniz çok önemlidir! Premium planlarımızla Teambox'tan <a href='%{link}'>En iyi desteği alın</a>."
+  module_not_enabled: "Module not enabled"

@@ -2154,3 +2154,4 @@ es:
     error: "demasiado corta"
     strong: fuerte
     weak: débil
+  module_not_enabled: "Module not enabled"

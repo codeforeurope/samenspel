@@ -3,6 +3,7 @@ class UploadsController < ApplicationController
   before_filter :find_upload, :only => [:destroy,:update,:thumbnail,:show]
   skip_before_filter :load_project, :only => [:download]
   before_filter :set_page_title
+  before_filter :check_module_enabled
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |f|
@@ -118,5 +119,12 @@ class UploadsController < ApplicationController
         @upload = @current_project.uploads.find_by_asset_file_name(params[:id])
       end
     end
+
+  def check_module_enabled
+    unless Teambox.config.enable_files_module
+      flash[:error] = t('module_not_enabled')
+      redirect_to project_path(@current_project)
+    end
+  end
 
 end

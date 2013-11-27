@@ -1207,3 +1207,4 @@ it:
     error: "troppo breve"
     strong: forte
     weak: debole
+  module_not_enabled: "Module not enabled"

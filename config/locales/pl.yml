@@ -1742,3 +1742,4 @@ pl:
     error: "zbyt krótkie"
     strong: mocne
     weak: słabe
+  module_not_enabled: "Module not enabled"

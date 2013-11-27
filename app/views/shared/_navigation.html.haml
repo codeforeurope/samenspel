@@ -22,8 +22,11 @@
         .el= link_to t('.tasks'), project_task_lists_path(project), :class => 'tasks'
         - if time_tracking_enabled? and project.tracks_time
           .el= link_to t('.time'), project_time_path(project), :class => 'time ajax'
-        .el= link_to t('.pages'), project_pages_path(project), :class => 'pages ajax'
-        .el= link_to t('.files'), project_uploads_path(project), :class => 'files ajax'
+          -#Disable modules in config and Check if these modules are enabled in config //GM
+        - if Teambox.config.enable_pages_module
+          .el= link_to t('.pages'), project_pages_path(project), :class => 'pages ajax'
+        - if Teambox.config.enable_files_module
+          .el= link_to t('.files'), project_uploads_path(project), :class => 'files ajax'
         - if can?(:update, project)
           .el= link_to t('.settings'), project_settings_path(project), :class => 'settings'
           .contained

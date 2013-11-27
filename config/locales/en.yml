@@ -1805,3 +1805,4 @@ en:
     attach: Attach a Google Document
     search_placeholder: Search Google documents
     new_document_placeholder: New document title
+  module_not_enabled: "Module not enabled"

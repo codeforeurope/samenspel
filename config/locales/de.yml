@@ -1516,3 +1516,4 @@ de:
     error: "zu kurz"
     strong: stark
     weak: schwach
+  module_not_enabled: "Module not enabled"

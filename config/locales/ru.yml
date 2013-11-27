@@ -1973,3 +1973,4 @@ ru:
     error: "слишком короткое"
     strong: сильный
     weak: слабый
+  module_not_enabled: "Module not enabled"

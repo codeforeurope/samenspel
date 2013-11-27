@@ -2,6 +2,7 @@
 class PagesController < ApplicationController
   before_filter :load_page, :only => [ :show, :edit, :update, :reorder, :destroy ]
   before_filter :set_page_title
+  before_filter :check_module_enabled
 
   rescue_from CanCan::AccessDenied do |exception|
     handle_cancan_error(exception)
@@ -155,6 +156,13 @@ class PagesController < ApplicationController
 
       unless @page
         flash[:error] = t('not_found.page', :id => page_id)
+        redirect_to project_path(@current_project)
+      end
+    end
+
+    def check_module_enabled
+      unless Teambox.config.enable_pages_module
+        flash[:error] = t('module_not_enabled')
         redirect_to project_path(@current_project)
       end
     end

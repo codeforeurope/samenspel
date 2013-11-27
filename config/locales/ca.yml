@@ -1050,7 +1050,7 @@ ca:
     task: "La tasca %{id} no es troba en aquest projecte."
     task_list: "LLista de tasques %{id} no es troba en aquest projecte."
     user: "L'usuari no existeix"
-  notes: 
+  notes:
     actions: 
       delete_confirm: "Segur que vols esborrar aquesta nota?"
     edit: 
@@ -2031,3 +2031,4 @@ ca:
     error: "massa curt"
     strong: fort
     weak: feble
+  module_not_enabled: "Module not enabled"

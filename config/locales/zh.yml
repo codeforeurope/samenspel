@@ -1268,3 +1268,4 @@ zh:
     error: 太短
     strong: 强
     weak: 弱
+  module_not_enabled: "Module not enabled"

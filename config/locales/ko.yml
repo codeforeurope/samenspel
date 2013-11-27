@@ -1526,3 +1526,4 @@ ko:
     error: "너무 짧습니다"
     strong: 강함
     weak: 약함
+  module_not_enabled: "Module not enabled"
