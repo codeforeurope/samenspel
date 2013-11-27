@@ -50,9 +50,9 @@ gem 'rake', '0.9.2'
 gem 'thin'
 
 
-group :development do
-  #gem 'debugger'
-end
+#group :development do
+#  #gem 'debugger'
+#end
 
 group :sqlite do
   #gem 'sqlite3'
