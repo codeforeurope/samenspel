@@ -3,6 +3,11 @@
   = f.text_field :name, :placeholder => t('projects.fields.name_example'), :autofocus => 'true'
   = errors_for project, :name
 
+.goal.text_field
+  = f.label :goal, t('projects.fields.goal_html')
+  = f.text_area :goal , :rows => 10, :placeholder => t('projects.fields.goal_example')
+  = errors_for project, :goal
+
 .organization.text_field
   - if current_user.organizations.empty?
     = f.fields_for :organization do |org_fields|

@@ -399,6 +399,8 @@ en:
       owner_description: "The owner is the main responsible for a project. He or she cannot be removed from the project before ownership is transferred to another user."
       name_html: "Project Name <em>Keep it short and descriptive, for example: Taggart Transcontinental.</em>"
       name_example: Project name
+      goal_html: "Project Goal <em>Make clear what is the expected result of this project</em>"
+      goal_example: "Project goal"
       permalink_html: "Permalink <em>Short identifier for the project</em>"
       permalink_description: "This will be the web address for your project. Keep it as short as possible. No spaces allowed."
       archived_html: "Archive this Project <em>This will keep it accessible for its members, but not writable anymore.</em>"
