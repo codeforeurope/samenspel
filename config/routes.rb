@@ -1,5 +1,7 @@
 Teambox::Application.routes.draw do
 
+  resources :contacts
+
   # If secure_logins is true, constrain matches to ssl requests
   class SSLConstraints
     def self.matches?(request)

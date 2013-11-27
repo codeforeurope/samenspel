@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127132711) do
+ActiveRecord::Schema.define(:version => 20131127154803) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -100,6 +100,18 @@ ActiveRecord::Schema.define(:version => 20131127132711) do
   end
 
   add_index "comments_read", ["target_type", "target_id", "user_id"], :name => "index_comments_read_on_target_type_and_target_id_and_user_id"
+
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "organization"
+    t.string   "location"
+    t.string   "email"
+    t.string   "phone_number"
+    t.text     "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversations", :force => true do |t|
     t.integer  "project_id"
