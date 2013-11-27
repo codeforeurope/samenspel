@@ -20,8 +20,8 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :organization %><br />
-    <%= f.text_field :organization %>
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
@@ -38,6 +38,10 @@
   <div class="field">
     <%= f.label :address %><br />
     <%= f.text_area :address %>
+  </div>
+  <div class="field">
+    <%= f.label :organization_id, t('.choose_organization.choose_org_html') %><br />
+    <%= f.select  :organization_id, options_for_organizations(current_user.organizations) %>
   </div>
   <div class="actions">
     <%= f.submit %>

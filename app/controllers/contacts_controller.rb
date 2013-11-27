@@ -25,6 +25,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new.xml
   def new
     @contact = Contact.new
+    @contact.build_organization
 
     respond_to do |format|
       format.html # new.html.erb

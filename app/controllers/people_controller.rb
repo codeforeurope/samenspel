@@ -59,7 +59,7 @@ class PeopleController < ApplicationController
     if params[:id]
       @project = Project.find params[:id]
     else
-      @project = Project.where('permalink = (?)', params[:project_id]).first
+      @project = Project.find_by_id_or_permalink params[:project_id]
     end
 
 
