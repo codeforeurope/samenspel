@@ -76,6 +76,7 @@ Teambox::Application.routes.draw do
         get :external_view
         get :delete
         get :appearance
+        get :contacts
       end
       resources :memberships do
         member do

@@ -1,4 +1,13 @@
 class ContactsController < ApplicationController
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |f|
+      flash[:error] = t('common.not_allowed')
+      f.any(:html, :m) { redirect_to root_path }
+      handle_api_error(f, @organization)
+    end
+  end
+
   # GET /contacts
   # GET /contacts.xml
   def index

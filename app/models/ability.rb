@@ -56,6 +56,22 @@ class Ability
       invitation.editable?(user)
     end
 
+    # Contact permissions
+
+    can :create, Contact do |contact|
+      true
+    end
+
+    can :destroy, Contact do |contact|
+      #Contact can be deleted only if it belongs to an Organization accessible to the user
+      contact.organization.is_admin?(user)
+    end
+
+    can :update, Contact do |contact|
+      #Contact can be updated only if it belongs to an Organization accessible to the user
+      contact.organization.is_admin?(user)
+    end
+
     # Project permissions
 
     can :converse, Project do |project|

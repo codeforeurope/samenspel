@@ -486,6 +486,7 @@ en:
       appearance: Appearance
       admin_users: Manage users
       admin_projects: Manage projects
+      admin_contacts: Manage contacts
       billing: Plans and Billing
       invoices: Invoices
       delete: Delete this organization...
@@ -594,6 +595,11 @@ en:
       title: Projects in %{organization}
       new_project: New project
       instructions_html: "These are the projects for this organization. If you're an admin, you can transfer a project to <a href='%{organizations_link}'>other organizations</a> by opening the project's settings."
+    contacts:
+      title: Contacts in %{organization}
+      subtitle: All Contacts
+      new_contact: New contact
+      no_contacts: "No Contacts"
     active_projects:
       title: Active projects
       role_html: "you're an <strong>%{role}</strong>"

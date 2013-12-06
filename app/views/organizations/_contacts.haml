@@ -1,0 +1,10 @@
+- if @organization.contacts.any?
+  %h3= t('.subtitle')
+  .projects
+    - @organization.contacts.each do |contact|
+      %p.contact
+        = link_to h(contact.last_name), contact
+        = contact.first_name
+
+- else
+  %p= t('.no_contacts')

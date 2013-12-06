@@ -62,6 +62,7 @@
       .contained
         .el= link_to t('organizations.column.general_settings'), edit_organization_path(organization), :class => 'ajax'
         .el= link_to t('organizations.column.admin_projects'), projects_organization_path(organization), :class => 'ajax'
+        .el= link_to t('organizations.column.admin_contacts'), contacts_organization_path(organization), :class => 'ajax'
         - if can?(:admin, organization)
           .el= link_to t('organizations.column.admin_users'), organization_memberships_path(organization), :class => 'ajax'
           .el= link_to t('organizations.column.appearance'), appearance_organization_path(organization), :class => ''

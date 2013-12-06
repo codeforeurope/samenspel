@@ -1,0 +1,5 @@
+%h2= t('.title', :organization => @organization)
+
+%p.new_contact= link_to t('.new_contact'), new_contact_path, :class => :add_button
+
+= render 'contacts'
