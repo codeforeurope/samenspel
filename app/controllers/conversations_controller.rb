@@ -2,6 +2,7 @@
 class ConversationsController < ApplicationController
   before_filter :load_conversation, :except => [:index, :new, :create]
   before_filter :set_page_title
+  before_filter :check_module_enabled
 
   rescue_from CanCan::AccessDenied do |exception|
     handle_cancan_error(exception)
@@ -48,6 +49,7 @@ class ConversationsController < ApplicationController
   end
 
   def index
+    Teambox.config.enable_conversations_module?
     @conversations = @current_project.conversations.not_simple
 
     respond_to do |f|
@@ -162,5 +164,12 @@ class ConversationsController < ApplicationController
 
     def current_conversation
       [@current_project, @conversation]
+    end
+
+    def check_module_enabled
+      unless Teambox.config.enable_conversations_module
+        flash[:error] = t('module_not_enabled')
+        redirect_to project_path(@current_project)
+      end
     end
 end
