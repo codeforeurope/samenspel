@@ -5,6 +5,6 @@
       %p.project
         = link_to h(project), project
         %span
-          = "Started on #{project.date_start.to_formatted_s(:short)}, closed on #{project.date_end.to_formatted_s(:short)}" unless (project.date_start.nil? && project.date_end.nil?)
+          = t('.started_closed_at_html', :date_start => project.date_start.strftime("%d/%m/%Y"), :date_end => project.date_end.strftime("%d/%m/%Y"))
         %span.status
           = t('.last_activity', :date => project.updated_at.to_date)

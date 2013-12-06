@@ -602,12 +602,14 @@ en:
       no_contacts: "No Contacts"
     active_projects:
       title: Active projects
+      started_at_html: "Started on %{date_start}"
       role_html: "you're an <strong>%{role}</strong>"
       storage: "%{now} of files"
       settings: settings
       no_active_projects: There are no active projects in this organization.
       dont_belong: You're not part of this project
     archived_projects:
+      started_closed_at_html: "Started on %{date_start}, closed on %{date_end}"
       title: Archived projects
       last_activity: "last activity at %{date}"
     you_are_not_admin: You are not an admin of this organization. Only admins can edit its settings and manage users.

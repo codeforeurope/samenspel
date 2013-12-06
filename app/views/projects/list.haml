@@ -12,7 +12,7 @@
           %p.project
             = link_to h(project), project
             %span
-              = "Started on #{project.date_start.to_formatted_s(:short)}" unless project.date_start.nil?
+              = t('organizations.active_projects.started_at_html', :start_date => project.date_start.strftime("%d/%m/%Y")) unless project.date_start.nil?
             %span.status
               = t('organizations.active_projects.role_html', :role => @roles[role])
               - if @roles[role] == 'admin'
