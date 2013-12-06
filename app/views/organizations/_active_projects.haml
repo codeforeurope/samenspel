@@ -6,6 +6,8 @@
       - if role
         %p.project
           = link_to h(project), project
+          %span
+            = "Started on #{project.date_start.to_formatted_s(:short)}" unless project.date_start.nil?
           %span.status
             = t('.role_html', :role => @roles[role])
             - if @roles[role] == 'admin'

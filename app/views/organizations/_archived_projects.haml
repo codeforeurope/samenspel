@@ -4,5 +4,7 @@
     - @organization.projects.archived.each do |project|
       %p.project
         = link_to h(project), project
+        %span
+          = "Started on #{project.date_start.to_formatted_s(:short)}, closed on #{project.date_end.to_formatted_s(:short)}" unless (project.date_start.nil? && project.date_end.nil?)
         %span.status
           = t('.last_activity', :date => project.updated_at.to_date)

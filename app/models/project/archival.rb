@@ -6,6 +6,7 @@ class Project
 
   def archive!
     update_attribute(:archived, true)
+    update_attribute(:date_end, Time.now)
   end
 
 end

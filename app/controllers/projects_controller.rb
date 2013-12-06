@@ -53,6 +53,7 @@ class ProjectsController < ApplicationController
   def new
     authorize! :create_project, current_user
     @project = Project.new
+    @project.date_start = Time.now
     @project.build_organization
 
     respond_to do |f|
