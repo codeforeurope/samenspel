@@ -19,6 +19,8 @@
   - if can? :observe, @user
     - unless @user.biography.blank?
       %p.biography=h @user.biography
+    - unless @user.company.blank?
+      %p.biography=h @user.company
     = render_card(@card)
   
   - if can?(:observe, @user) && current_user != @user && @projects_shared

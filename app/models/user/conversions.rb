@@ -10,6 +10,7 @@ class User
       :time_zone => time_zone,
       :utc_offset => utc_offset,
       :biography => biography,
+      :company => company,
       :created_at => created_at.to_s(:api_time),
       :updated_at => updated_at.to_s(:api_time),
       :avatar_url => avatar_or_gravatar_url(:thumb)
@@ -44,6 +45,7 @@ class User
       xml.tag! 'username', login
       xml.tag! 'time_zone', time_zone
       xml.tag! 'biography', biography
+      xml.tag! 'company', comnpany
       xml.tag! 'created-at', created_at.to_s(:db)
       xml.tag! 'updated-at', updated_at.to_s(:db)
       xml.tag! 'avatar-url', avatar_or_gravatar_url(:thumb)

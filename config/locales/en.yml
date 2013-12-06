@@ -169,6 +169,7 @@ en:
       first_name: First name
       last_name: Last name
       biography: Biography
+      company: Company
       time_zone: Time Zone
       language: Language
       email: Email

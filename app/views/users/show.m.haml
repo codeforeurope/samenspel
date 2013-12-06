@@ -14,6 +14,7 @@
             = "@#{@user.login}"
       .clear
       %p.biography=h @user.biography
+      %p.biography=h @user.company
       = render_card(@card) if @card
   %h2= t('.recent_activity_for', :user_name => h(@user.name))
   #activities

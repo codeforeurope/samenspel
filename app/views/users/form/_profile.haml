@@ -11,4 +11,8 @@
   = f.label :biography, t('users.form.biography')
   = f.text_area :biography
 
+.description.text_field
+  = f.label :company, t('users.form.company')
+  = f.text_field :company
+
 = list_card_fields(f,%w(phone_numbers email_addresses websites addresses ims social_networks))

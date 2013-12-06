@@ -1164,6 +1164,7 @@ nl:
         upload_here_or_at_gravatar_html: "U kunt hier een nieuwe avatar uploaden, of upload het naar %{gravatar} voor een globale avatar die u kunt gebruiken bij Teambox en vele andere websites."
         we_have_this_avatar_html: "Dit is uw tijdelijke avatar:"
       biography: Biografie
+      company: Bedrijf
       change_password: "Wachtwoord veranderen"
       confirm_password: "Bevestig wachtwoord"
       email: E-mail

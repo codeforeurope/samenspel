@@ -64,7 +64,8 @@ class User < ActiveRecord::Base
                   :notify_tasks,
                   :splash_screen,
                   :wants_task_reminder,
-                  :uses_ldap_authentication
+                  :uses_ldap_authentication,
+                  :company
 
   attr_accessor   :activate, :old_password
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127170230) do
+ActiveRecord::Schema.define(:version => 20131206090948) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -473,6 +473,7 @@ ActiveRecord::Schema.define(:version => 20131127170230) do
     t.boolean  "deleted",                                  :default => false,    :null => false
     t.text     "settings"
     t.boolean  "uses_ldap_authentication",                 :default => false
+    t.string   "company"
   end
 
   add_index "users", ["deleted"], :name => "index_users_on_deleted"
