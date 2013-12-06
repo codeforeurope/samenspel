@@ -64,6 +64,9 @@ defaults: &defaults
   #Sets the Files module to enabled/disabled
   enable_files_module: false
 
+  #Sets the Conversations link to enabled/disabled
+  enable_conversations_module: false
+
 
 
 ########## System settings ##########
