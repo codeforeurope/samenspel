@@ -45,7 +45,7 @@ defaults: &defaults
   daily_task_reminder_email_time: 8
 
   # Enable time tracking
-  allow_time_tracking: true
+  allow_time_tracking: false
   
   # Gravatar fallback type in case a user doesn't have an avatar
   # One of: wavatar, monsterid, identicon
@@ -65,7 +65,7 @@ defaults: &defaults
   enable_files_module: false
 
   #Sets the Conversations link to enabled/disabled
-  enable_conversations_module: false
+  enable_conversations_module: true
 
 
 
