@@ -79,7 +79,7 @@ defaults: &defaults
   # Set to true to use S3 storage instead of local filesystem storage.
   # Automatically true on Heroku.
   # See "config/amazon_s3.yml" for info about credentials.
-  amazon_s3: false
+  amazon_s3: true
 
   # Upload expiration for public URL, in minutes
   # Take fragment caching into consideration when setting this value
