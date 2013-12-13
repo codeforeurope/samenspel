@@ -936,6 +936,8 @@ nl:
       all_projects: "Alle Projecten"
       new_project: +
       welcome: Welkom
+      organizations: Teams
+      conversations: Conversaties
     project_navigation: 
       all_conversations: "Alle Conversaties"
       all_pages: "Alle Paginas"

@@ -410,23 +410,23 @@ en:
         you_cant_unarchive: "You have %{active} active projects, and your current plan only allows %{max} projects"
         upgrade_html: "In order to <b>unarchive this project</b> and be able to edit it, you must <a href='%{link}'>upgrade your account and get more storage and features</a> or archive other projects."
       extra_options: "More options"
-      organization: Organization
-      select_an_organization: "Select an organization"
+      organization: Team
+      select_an_organization: "Select a team"
       organizations:
         available_projects: "project slots available: %{number_of_projects}"
-        current_organization: current organization
-        organization_has_too_many_project_in: "This organization has too many projects for its plan."
-        upgrade_organization: "You should now upgrade this organization."
+        current_organization: current team
+        organization_has_too_many_project_in: "This team has too many projects for its plan."
+        upgrade_organization: "You should now upgrade this team."
         upgrade: upgrade
       new:
         time_tracking_docs: Learn more.
         choose_organization:
-          new_org_name_html: "Organization name <em>You may later add more projects to this same organization</em>"
-          choose_org_html: "Organization <em>Which organization does this project belong to?</em>"
-          or_create_a_new_org_html: "or create a <a href='%{link}'>new organization</a>"
+          new_org_name_html: "Team name <em>You may later add more projects to this same organization</em>"
+          choose_org_html: "Team <em>Which organization does this project belong to?</em>"
+          or_create_a_new_org_html: "or create a <a href='%{link}'>new team</a>"
       settings:
-        you_cant_transfer_this_project_html: "This project belongs to the <b>%{organization}</b> organization. You don't have the rights to transfer it."
-        manage_organizations: Manage organizations.
+        you_cant_transfer_this_project_html: "This project belongs to the <b>%{organization}</b> team. You don't have the rights to transfer it."
+        manage_organizations: Manage teams.
     new:
       title: Create a Project
       explain1_html: A project is a shared group with your teammates. Use it to post Conversations, Tasks and Files.
@@ -445,11 +445,11 @@ en:
       upgrade:
         to_2_html: "<a href='%{link}'>Upgrade your account now</a> to create <b>up to %{projects} projects</b>, store up to <b>%{storage} Gb</b> of files and use the <b>search bar across all projects</b>."
       not_allowed: "You can't create any more projects with your current account."
-      select_an_organization: "You need to select an organization for your project"
+      select_an_organization: "You need to select an team for your project"
       sending: Creating the project…
     invite_people:
       title: Invite people to %{project}
-      invite_from_this_organization: Invite users already in the %{organization} organization
+      invite_from_this_organization: Invite users already in the %{organization} team
       invite_by_email: Invite users by entering their email addresses
       explain_invitations: Choose who will have access to this project. You can add or remove people later.
       submit: Send invitations and start collaborating
@@ -468,7 +468,7 @@ en:
       deleted: You deleted the project
     not_in_project:
       title: "Join '%{project}' project?"
-      explain_admin_html: "In order to view this project, you must join it. This will give you access to its conversation wall, tasks, pages and files. You can do this because you're an administrator of the <b>%{organization}</b> organization."
+      explain_admin_html: "In order to view this project, you must join it. This will give you access to its conversation wall, tasks, pages and files. You can do this because you're an administrator of the <b>%{organization}</b> team."
       explain_public_html: "In order to view this project, you must join it. This will give you access to its conversation wall, tasks, pages and files. You can do this because this is a <b>public project</b>."
       not_allowed: This is a private project and you're not authorized to access it.
       join: Join this project
@@ -489,31 +489,31 @@ en:
       admin_contacts: Manage contacts
       billing: Plans and Billing
       invoices: Invoices
-      delete: Delete this organization...
+      delete: Delete this team...
     edit:
       title: Settings for %{organization}
       there_are: "There are"
       number_of_users: "%{count} users"
-      public_site: "Your organization's public site is %{link}"
+      public_site: "Your team's public site is %{link}"
       number_of_projects: "%{count} projects"
       submit: Save changes
       saved: Changes saved
-      invalid: Invalid organization
+      invalid: Invalid team
     appearance:
       title: Appearance for %{organization}
       submit: Save changes
     external_view:
-      create_your_own_org_html: "However, you can <a href='%{link}'>create your own organization</a> for your projects."
-      request_permission: "To access this organization, you must request permission to some of the administrators:"
+      create_your_own_org_html: "However, you can <a href='%{link}'>create your own team</a> for your projects."
+      request_permission: "To access this team, you must request permission to some of the administrators:"
       title: "%{name}"
-      you_cant_access: You don't have permission to access or edit this organization.
+      you_cant_access: You don't have permission to access or edit this team.
     usage:
       active_projects:
         title: "%{now} / %{max} active projects"
         explain: Deleted and archived projects don't count against the limit.
       storage:
         title: "%{now} / %{max}"
-        explain: Attached files on your organization.
+        explain: Attached files on your team.
     invoices:
       invoices: Your Invoices
       update_billing_details: Update your billing address
@@ -549,11 +549,11 @@ en:
         save_with_yearly_plans_html: <b>Save 20%</b>. You can also sign up for any plan yearly and <b>get two months free</b>.
         signup_links_html: "Sign up yearly for <a href='%{corporate}'>Corporate ($2990)</a>, <a href='%{pro}'>Pro ($990)</a>, <a href='%{basic}'>Basic ($290)</a> or <a href='%{personal}'>Personal ($120)</a>."
     fields:
-      name_html: "Organization name"
-      name_placeholder: Your organization
-      permalink_html: Short organization code <em>No spaces allowed. Will be used for the web address.</em>
-      domain_html: "Domain <em>You can use your own domain for your organization, check the <a href='http://help.teambox.com/faqs/more-ways-to-access-teambox/custom-domain' title='How to use your own domain for your organization in Teambox'>documentation</a>.</em>"
-      default_html: Default organization for new users. <em>Every newly signed user will be added to this organization as participant, i.e. will be able to create projects. Change will not affect existing users.</em>
+      name_html: "Team name"
+      name_placeholder: Your team
+      permalink_html: Short team code <em>No spaces allowed. Will be used for the web address.</em>
+      domain_html: "Domain <em>You can use your own domain for your team, check the <a href='http://help.teambox.com/faqs/more-ways-to-access-teambox/custom-domain' title='How to use your own domain for your team in Teambox'>documentation</a>.</em>"
+      default_html: Default team for new users. <em>Every newly signed user will be added to this team as participant, i.e. will be able to create projects. Change will not affect existing users.</em>
     appearance_fields:
       colours: Site colors
       logo_html: Logo <em>Ideally should be 134x36 pixels</em>
@@ -565,23 +565,23 @@ en:
       description_html: HTML to be displayed on the entrance page <a href="http://help.teambox.com/faqs/more-ways-to-access-teambox/customize-organizations">Learn how to use this</a>
     index:
       about:
-        title: About Organizations
-        explain1: An organization allows you to group projects and users under a brand name.
+        title: About Teams
+        explain1: A team allows you to group projects and users under a brand name.
         explain2: "You can link them to your own domain to customize your Teambox space. Use your own logo and login page, and share it with your clients."
       new:
-        create: "+ Create a new Organization"
+        create: "+ Create a new Team"
         explain: "Brand it with your own logo and website, and create projects inside."
-      title: Organizations
+      title: Teams
     not_admin: "You can't access the billing page because you are not an administrator."
-    not_in_community: "The community version doesn't support multiple organizations"
+    not_in_community: "The community version doesn't support multiple teams"
     new:
-      title: New Organization
-      explain: Organize your people and projects inside an organization.
-      submit: Create Organization
-      created: Your organization has been created!
-      invalid_organization: Invalid organization, correct errors and try again.
+      title: New Team
+      explain: Organize your people and projects inside an team.
+      submit: Create Team
+      created: Your team has been created!
+      invalid_organization: Invalid team, correct errors and try again.
     organization:
-      you_are_html: "You're an <strong>%{role}</strong> of this organization"
+      you_are_html: "You're an <strong>%{role}</strong> of this team"
       admin: admin
       participant: participant
       external: external worker
@@ -594,7 +594,7 @@ en:
     projects:
       title: Projects in %{organization}
       new_project: New project
-      instructions_html: "These are the projects for this organization. If you're an admin, you can transfer a project to <a href='%{organizations_link}'>other organizations</a> by opening the project's settings."
+      instructions_html: "These are the projects for this team. If you're an admin, you can transfer a project to <a href='%{organizations_link}'>other teams</a> by opening the project's settings."
     contacts:
       title: Contacts in %{organization}
       subtitle: All Contacts
@@ -606,45 +606,45 @@ en:
       role_html: "you're an <strong>%{role}</strong>"
       storage: "%{now} of files"
       settings: settings
-      no_active_projects: There are no active projects in this organization.
+      no_active_projects: There are no active projects in this team.
       dont_belong: You're not part of this project
     archived_projects:
       started_closed_at_html: "Started on %{date_start}, closed on %{date_end}"
       title: Archived projects
       last_activity: "last activity at %{date}"
-    you_are_not_admin: You are not an admin of this organization. Only admins can edit its settings and manage users.
+    you_are_not_admin: You are not an admin of this team. Only admins can edit its settings and manage users.
     delete:
-      need_to_be_admin: You need to be an administrator to destroy this organization
-      not_with_projects: You can't destroy this organization because it still has projects
-      go_delete_some_projects_html: "You can't delete an organization while it still has projects inside. Please <a href='%{link}'>delete or transfer</a> all the projects from this organization before deleting it."
-      not_paid_plan: You can't delete an organization with a paid plan.
-      go_downgrade_to_free_plan: "You need to <a href='%{link}'>unsubscribe</a> from the paid plan before deleting the organization. You can downgrade your account to the free plan from the <a href='%{link}'>billing</a> section."
-      delete: Delete this organization
-      clarification: "If you delete this organization, all the information that's attached to it organization will be lost forever. The users that belong to this organization will still be able to login to Teambox and work with their other organizations."
-      confirm: I understand that deleting this organization is irreversible and I all the content related to this organization will be lost.
-      deleted: You deleted the organization
+      need_to_be_admin: You need to be an administrator to destroy this team
+      not_with_projects: You can't destroy this team because it still has projects
+      go_delete_some_projects_html: "You can't delete an team while it still has projects inside. Please <a href='%{link}'>delete or transfer</a> all the projects from this team before deleting it."
+      not_paid_plan: You can't delete an team with a paid plan.
+      go_downgrade_to_free_plan: "You need to <a href='%{link}'>unsubscribe</a> from the paid plan before deleting the team. You can downgrade your account to the free plan from the <a href='%{link}'>billing</a> section."
+      delete: Delete this team
+      clarification: "If you delete this team, all the information that's attached to it team will be lost forever. The users that belong to this team will still be able to login to Teambox and work with their other teams."
+      confirm: I understand that deleting this team is irreversible and I all the content related to this team will be lost.
+      deleted: You deleted the team
   memberships:
     index:
       title: Users in %{name}
       admins:
         title: Admins
-        explain: "Can access any project and manage the organization's settings."
+        explain: "Can access any project and manage the team's settings."
       users:
         title: Participants
-        explain: "Can create projects inside the organization, but only access the projects they're invited to."
+        explain: "Can create projects inside the team, but only access the projects they're invited to."
       in_projects_but_not_in_the_organization:
         title: External people
-        explain: Can access only the projects they are invited to. Can't create projects inside the organization.
+        explain: Can access only the projects they are invited to. Can't create projects inside the team.
       no_users: No users here
-      add_to_the_org: Add to the organization as a participant
+      add_to_the_org: Add to the team as a participant
       add_as_admin: add as an admin
       make_admin: Give admin rights
       remove_admin: Remove admin rights
-      remove: remove from this organization
+      remove: remove from this team
     roles:
-      external: Don't invite. User won't be able to create projects in this organization.
+      external: Don't invite. User won't be able to create projects in this team.
       participant: As a participant. Will be able to create his own projects.
-      admin: As an administrator. Will be able to add new users and manage the organization.
+      admin: As an administrator. Will be able to add new users and manage the team.
   invitations:
     fields:
       user_or_email: "Enter your teammate's username or email:"
@@ -657,7 +657,7 @@ en:
       pending: "An email was sent to this user, but they still haven't confirmed."
       discard: Discard invitation
     new:
-      also_invite_to_organization: "Invite also to the organization '%{organization}'"
+      also_invite_to_organization: "Invite also to the team '%{organization}'"
     sent:
       email_sent: "Email invitation has been sent"
     pending:
@@ -765,14 +765,14 @@ en:
       assigned_to: People
       tasks: Tasks
       projects: Projects
-      organizations: Organizations
+      organizations: Teams
     filter_assigned:
       anybody: "Anybody"
       my_tasks: "My tasks"
     filter_project:
       all: "All projects"
     filter_organization:
-      all: "All organizations"
+      all: "All teams"
 
   tasks:
     errors:
@@ -1091,7 +1091,7 @@ en:
       select_file: Please choose a file containing your data.
       service: "Which service did you export your data from?"
       please_supply_user_map: We detected the following users in your import. Please confirm which users correspond to which user on Teambox.
-      in_organization: "Put all projects in this organization"
+      in_organization: "Put all projects in this team"
       user: User
       teambox_user: Teambox user
     new_export:
@@ -1135,8 +1135,8 @@ en:
       new_file: Upload a File
       cant_create: "You don't have permission to upload files to this project"
       max_upload_size: "Max upload size is %{mb} Mb"
-      current_storage_size: "You can upload %{bytes} more in the organization %{organization_name}.<br/><br/><a href='%{url}'>Upgrade</a> your plan to store more documents."
-      no_storage_left: "You have reached the storage limit for your organization.<br/><br/><a href='%{url}'>Upgrade</a> your plan now."
+      current_storage_size: "You can upload %{bytes} more in the team %{organization_name}.<br/><br/><a href='%{url}'>Upgrade</a> your plan to store more documents."
+      no_storage_left: "You have reached the storage limit for your team.<br/><br/><a href='%{url}'>Upgrade</a> your plan now."
     form:
       presence: "You can't upload a blank file"
       max_size: "File size can't exceed %{mb} MB"
@@ -1184,8 +1184,8 @@ en:
       you_can_now_create: "You can now create up to %{projects} projects."
       reset_your_password: Please enter a new password and confirm it.
     show:
-      title: Which organization would you like to upgrade?
-      usage: "You can create <b>%{available_projects} more projects</b> on this organization"
+      title: Which team would you like to upgrade?
+      usage: "You can create <b>%{available_projects} more projects</b> on this team"
       plan: Teambox plans
       current_plan_html: "Your current plan is <strong>%{name}</strong>."
       max_projects: "You can have up to %{max} projects."
@@ -1226,8 +1226,8 @@ en:
       my_tasks: My Tasks
       open_my_tasks: Open all my tasks
       show_all_tasks: View all tasks in my projects...
-      organizations: Organizations
-      show_all_organizations: "Manage organizations..."
+      organizations: Teams
+      show_all_organizations: "Manage teams..."
       gantt_and_calendars: Gantts and calendars
       show_more: Show more
       show_less: Show less
@@ -1253,8 +1253,8 @@ en:
       signup: Signup
       files: Files
       invitations: Invitations
-      organizations: Organizations
-      organization: Organization
+      organizations: Teams
+      organization: Team
       affiliate_area: Affiliate Area
     global_navigation:
       project_invitations: Project Invitations
@@ -1626,13 +1626,14 @@ en:
       task_list: Task List
       task: Task
       comment: Comment
-      conversation: Conversation
+      conversation: Reflection
       page: Page
       divider: Divider
       note: Text
       invitation: Invitation
       upload: Upload
-      organization: Organization
+      organization: Team
+      contact: Contact
     attributes:
       address:
         city: City
