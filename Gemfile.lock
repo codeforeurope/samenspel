@@ -75,7 +75,8 @@ GEM
     activesupport (3.0.20)
     addressable (2.3.5)
     arel (2.0.10)
-    aws-sdk (1.29.1)
+    aws-sdk (1.5.8)
+      httparty (~> 0.7)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
@@ -96,7 +97,10 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
-    cocaine (0.3.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -138,6 +142,9 @@ GEM
     hashie (2.0.5)
     headless (1.0.1)
     hpricot (0.8.6)
+    httparty (0.10.0)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.5.0)
     icalendar (1.1.6)
     jammit (0.6.6)
@@ -175,10 +182,10 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    paperclip (2.7.5)
-      activerecord (>= 2.3.0)
-      activesupport (>= 2.3.2)
-      cocaine (~> 0.3.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
       mime-types
     pg (0.17.0)
     pickle (0.4.11)
@@ -275,7 +282,7 @@ PLATFORMS
 DEPENDENCIES
   SystemTimer (~> 1.2.0)
   active_reload
-  aws-sdk
+  aws-sdk (~> 1.5.7)
   barista (~> 1.0)
   builder (~> 2.1.2)
   cancan (~> 1.4.1)
@@ -301,7 +308,7 @@ DEPENDENCIES
   net-ldap
   nokogiri
   oa-oauth
-  paperclip (~> 2.7.5)
+  paperclip (~> 3.5.2)
   pg
   pickle (~> 0.4.4)
   rack-ssl-enforcer

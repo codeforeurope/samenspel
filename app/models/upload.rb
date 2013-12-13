@@ -29,7 +29,9 @@ class Upload < RoleRecord
 
   has_attached_file :asset,
     :styles => { :thumb => "150x150>" },
-    :url  => DOWNLOADS_URL,
+    :url  => Teambox.config.amazon_s3 ?
+      ':s3_domain_url' :
+      DOWNLOADS_URL,
     :path => Teambox.config.amazon_s3 ?
       "assets/:id/:style/:filename" :
       ":rails_root/assets/:id/:style/:filename",

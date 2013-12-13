@@ -14,6 +14,12 @@ defaults: &defaults
   # set to HTTPS when read permissions are more restrictive
   s3_protocol: http
 
+  #Set host name for EU region
+  #  s3_host_name: 's3-eu-west-1.amazonaws.com'
+
+  #Set default permissions of uploaded files
+  #  s3_permissions: 'authenticated_read'
+
 development:
   <<: *defaults
   # bucket: teambox-dev
