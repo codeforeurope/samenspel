@@ -222,23 +222,27 @@ nl:
       tooltips: 
         body: "Stel een vraag, vertel uw teammaten wat er nieuw is, start een discussie"
         name: "Zo kort mogelijk, Dit zal in de onderwerpen van dekennisgeving e-mails verschijnen"
-    index: 
-      rss: 
-        description: "Conversaties voor het project %{name}"
+    index:
+      title: Reflectie in %{project}
+      new_conversation: "Nieuwe reflectie"
+      view_single: "Bekijk meer"
+      rss:
+        title: "%{name} reflecties"
+        description: "Reflecties voor project %{name}"
     link: 
       edit: Wijzigen
     new: 
       submit: Aanmaken
-      title: "Nieuwe conversatie"
+      title: "Nieuwe reflectie"
     primer: 
-      create_first: "Maak uw eerste conversatie aan in dit project!"
-      define_html: "Gebruik conversaties om <b>beslissingen te bespreken</b> en <b>update uw team</b> in een gecentraliseerde manier.<br/>Elke conversatie is een draad van opmerkingen, die rommelige e-mails vervangen."
+      create_first: "Maak uw eerste reflection aan in dit project!"
+      define_html: "Gebruik reflecties om <b>beslissingen te bespreken</b> en <b>update uw team</b> in een gecentraliseerde manier.<br/>Elke conversatie is een draad van opmerkingen, die rommelige e-mails vervangen."
       empty: "Dit project heeft nog geen conversaties."
-      footer1_html: "Conversaties zijn goed voor <b>een ontwerp te delen</b>, <b>een datum te beslissen</b> voor bijeenkomsten of nieuws te <b>raporteren</b>."
+      footer1_html: "Reflecties zijn goed voor <b>een ontwerp te delen</b>, <b>een datum te beslissen</b> voor bijeenkomsten of nieuws te <b>raporteren</b>."
       item1_html: "<b>Deel bestanden</b>. Reacties kunnen ook bijlagen bestanden hebben."
-      item2_html: "<b>Registreer</b> in een conversatie om op de hoogte gehouden te worden voor toekomstige reacties door e-mail of RSS."
+      item2_html: "<b>Registreer</b> in een reflection om op de hoogte gehouden te worden voor toekomstige reacties door e-mail of RSS."
       item3_html: "<b>Impress</b>. Elke reactie kan worden geformatteerd met tekststijlen."
-      item4_html: "<b>Inbox-driven?</b> U kunt door middel van uw e-mail reacties plaatsen op conversaties."
+      item4_html: "<b>Inbox-driven?</b> U kunt door middel van uw e-mail reacties plaatsen op reflecties."
     short_conversation: 
       comment: reactie
       comments: reacties
@@ -937,7 +941,7 @@ nl:
       new_project: +
       welcome: Welkom
       organizations: Teams
-      conversations: Conversaties
+      conversations: Reflecties
     project_navigation: 
       all_conversations: "Alle Conversaties"
       all_pages: "Alle Paginas"
