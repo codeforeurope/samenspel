@@ -1,0 +1,6 @@
+<div>
+  <h2>Timeline for projects in all Teams</h2>
+  <% @organizations.each do |organization| %>
+    <%= render 'timeline_organization', :organization => organization %>
+  <% end %>
+</div>

@@ -487,6 +487,7 @@ en:
       admin_users: Manage users
       admin_projects: Manage projects
       admin_contacts: Manage contacts
+      timeline: Projects Timeline
       billing: Plans and Billing
       invoices: Invoices
       delete: Delete this team...
@@ -1219,6 +1220,7 @@ en:
       conversations: Reflections
       tasks: Tasks
       time: Time tracking
+      timeline: Timeline
       pages: Pages
       files: Files
       contacts: Contacts

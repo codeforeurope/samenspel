@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class OrganizationsController < ApplicationController
   skip_before_filter :load_project
-  before_filter :load_organization, :only => [:show, :edit, :appearance, :update, :projects, :contacts, :delete, :destroy]
+  before_filter :load_organization, :only => [:show, :edit, :appearance, :update, :projects, :contacts, :delete, :destroy, :timeline]
   before_filter :load_page_title, :only => [:show, :members, :projects, :edit, :appearance, :update, :delete]
   before_filter :redirect_community, :only => [:index, :new, :create]
 
@@ -98,6 +98,11 @@ class OrganizationsController < ApplicationController
       flash[:notice] = t('organizations.delete.deleted')
       redirect_to organizations_path
     end
+  end
+
+  def timeline
+    authorize! :view_timeline, @organization
+    @year = Time.current.year
   end
 
   protected

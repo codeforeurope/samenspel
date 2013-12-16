@@ -72,6 +72,16 @@ class Ability
       contact.organization.is_admin?(user)
     end
 
+    # Timeline permissions
+
+    can :view_all_timelines, User do |the_user|
+      the_user.admin?
+    end
+
+    can :view_timeline, Organization do |organization|
+      organization.is_admin?(user)
+    end
+
     # Project permissions
 
     can :converse, Project do |project|
