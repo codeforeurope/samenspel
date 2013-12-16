@@ -67,6 +67,9 @@ defaults: &defaults
   #Sets the Conversations link to enabled/disabled
   enable_conversations_module: false
 
+  #Enables the "Beta testing" feature for users
+  enable_beta_test_user_option: false
+
 
 ########## System settings ##########
 

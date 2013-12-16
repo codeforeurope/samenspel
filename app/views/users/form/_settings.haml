@@ -45,5 +45,6 @@
   = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Eastern Time (US & Canada)"
 
 .betatester.check_box
-  = f.check_box :betatester
-  = f.label :betatester, t('users.form.betatester'), :style => 'float: none'
+  - if Teambox.config.enable_beta_test_user_option
+    = f.check_box :betatester
+    = f.label :betatester, t('users.form.betatester'), :style => 'float: none'

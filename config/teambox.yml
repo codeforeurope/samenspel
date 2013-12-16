@@ -21,7 +21,7 @@ defaults: &defaults
   # to create organizations (see below), than only supervisors will be allowed 
   # to do that. Provide their usernames or comment it out if you don't want
   # supervisor role.
-#  supervisors: admin
+  supervisors: gmaggini
 
 
 ########## Users settings ##########
@@ -32,7 +32,7 @@ defaults: &defaults
   
   # Allow users to create new organizations?
   # If false then only supervisors are allowed to do that.
-  user_can_create_organization: true
+  user_can_create_organization: false
   
   # Email confirmaiton is require to login
   email_confirmation_require: true
@@ -67,6 +67,8 @@ defaults: &defaults
   #Sets the Conversations link to enabled/disabled
   enable_conversations_module: true
 
+  #Enables the "Beta testing" feature for users
+  enable_beta_test_user_option: false
 
 
 ########## System settings ##########
