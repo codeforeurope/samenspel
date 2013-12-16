@@ -1,4 +1,5 @@
 %h2= t('.title', :project => @current_project)
+%p.subtitle= @current_project.organization
 
 - if @pending_projects.any?
   .invitations
