@@ -22,8 +22,6 @@
 
 - content_for :column do
   = render 'goal', :project => @current_project
-  - if Teambox.config.enable_conversations_module
-    = render 'recent_conversations', :project => @current_project, :recent_conversations => @recent_conversations
   - if Teambox.config.enable_pages_module
     = render 'pages', :project => @current_project, :pages => @current_project.pages
 
