@@ -31,6 +31,8 @@
         .el= link_to t('.contacts'), project_contacts_path(project), :class => 'addressbook'
         - if can?(:update, project)
           .el= link_to t('.settings'), project_settings_path(project), :class => 'settings'
+        - if can?(:update, project)
+          .el= link_to t('.timeline'), timeline_project_path(project), :class => 'timeline'
           .contained
             .el= link_to t('shared.project_settings_navigation.general'), project_settings_path(project.permalink), :class => 'general_settings'
             .el= link_to t('shared.project_settings_navigation.deletion'), project_deletion_path(project.permalink, :sub_action => 'deletion'), :class => 'deletion'
