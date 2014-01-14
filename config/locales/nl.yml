@@ -809,10 +809,10 @@ nl:
     edit: 
       submit: "Update Persoon"
     fields: 
-      admin: Beheerder
-      commenter: Commentator
-      observer: Observeerder
-      participant: Deelnemer
+      admin: "Beheerder (Admin. Can invite users to the project, and delete comments.)"
+      commenter: "Commentator(Commenter. Can comment, but not create new elements.)"
+      observer: "Observeerder (Observer. Read-only access to the project.)"
+      participant: "Deelnemer (Participant. Can do everything, but not invite users.)"
       role: Rol
     header: 
       admin: Beheerder
@@ -938,7 +938,7 @@ nl:
       settings: Instellingen
     navigation: 
       all_projects: "Alle Projecten"
-      new_project: +
+      new_project: "+ Nieuw Project"
       welcome: Welkom
       organizations: Teams
       conversations: Reflecties
