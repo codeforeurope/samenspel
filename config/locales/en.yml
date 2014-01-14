@@ -784,7 +784,7 @@ en:
       title: New Task
       task: "Choose an actionable task. The more specific, the better."
       name_html: Enter a Task title <i>eg. Upload Logo Proposal</i>
-      optional: You can provide better instructions for this Task below.
+      optional: "You can provide better instructions for this Task below. <br>You can mention somebody's @username in the Task"
       body_html: What needs to be done? <i>optional</i>
       due_on_html: Needs to be done before... <i>optional</i>
       assigned_to: Who is responsible?
