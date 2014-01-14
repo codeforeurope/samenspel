@@ -6,4 +6,5 @@
 = form_for @project do |f|
   = project_fields(f,@project)
   .submit
+    = link_to t('.cancel'), :back, :type => 'button'
     = f.submit t('.submit'), :'data-disable-with' => t('.sending')
