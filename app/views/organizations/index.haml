@@ -1,9 +1,10 @@
 %h2= t('.title')
 
 .organizations
-  .new_organization
-    %h3= link_to t('.new.create'), new_organization_path
-    %p= t('.new.explain')
+  - if can?(:create_organization, current_user)
+    .new_organization
+      %h3= link_to t('.new.create'), new_organization_path
+      %p= t('.new.explain')
   - @organizations.each do |organization|
     = render 'organizations/organization', :organization => organization
 
