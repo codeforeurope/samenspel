@@ -19,6 +19,8 @@ class Project < ActiveRecord::Base
                   :organization_attributes, :organization_id,
                   :goal, :date_start, :date_end
   has_many :google_docs
+  has_many :project_contacts
+  has_many :contacts, through: :project_contacts
 
   attr_accessor :is_importing
   attr_accessor :import_activities

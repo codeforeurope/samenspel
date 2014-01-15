@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206133923) do
+ActiveRecord::Schema.define(:version => 20140115114800) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -302,6 +302,14 @@ ActiveRecord::Schema.define(:version => 20131206133923) do
     t.string  "name"
     t.integer "account_type", :default => 0
   end
+
+  create_table "project_contacts", :force => true do |t|
+    t.integer "project_id"
+    t.integer "contact_id"
+  end
+
+  add_index "project_contacts", ["contact_id"], :name => "index_project_contacts_on_contact_id"
+  add_index "project_contacts", ["project_id"], :name => "index_project_contacts_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"

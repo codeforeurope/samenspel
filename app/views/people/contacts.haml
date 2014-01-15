@@ -1,3 +1,4 @@
+%h3=t('.users')
 - if @contacts.any?
   %ol
     = list_of @contacts do |user|
@@ -6,3 +7,17 @@
 
 - else
   %p= t('people.column.no_contacts')
+
+%h3=t('.contacts')
+- if @project_contacts.any?
+  %table
+    %tbody
+      - @project_contacts.each do |contact|
+        %tr
+          %td= contact.first_name
+          %td= link_to contact.last_name, contact
+          %td= contact.company
+          %td= contact.phone_number
+          %td= contact.email
+- else
+  %p= t('.no_contacts')
