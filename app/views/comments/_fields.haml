@@ -1,4 +1,5 @@
 - task_form = nil unless local_assigns[:task_form]
+- top_text_field = false unless local_assigns[:top_text_field]
 
 .field.text_area
   %a.micro_avatar.my_avatar{ :href => '#' }
@@ -19,7 +20,7 @@
     = f.fields_for :uploads do |fields|
       = fields.file_field :asset, :id => 'upload_file'
 
-  .add_watchers_box{ :style => 'display: none' }
+  .add_watchers_box{ :style => (top_text_field == true ? '' : 'display: none') }
     %p= t('comments.watchers.explain') 
 
   .actions

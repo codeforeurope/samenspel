@@ -12,7 +12,7 @@
     - form.object.comments.build
     = form.fields_for :comments do |fields|
       = render 'comments/fields', :f => fields,
-        :placeholder => t('comments.new.project'), :project => @current_project
+        :placeholder => t('comments.new.project'), :project => @current_project, :top_text_field => true
   
 #activities
   = list_threads(@threads)
