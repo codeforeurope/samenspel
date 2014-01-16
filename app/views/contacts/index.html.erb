@@ -23,13 +23,13 @@
     <td><%= contact.email %></td>
     <td><%= contact.phone_number %></td>
     <td><%= contact.address %></td>
-    <td><%= link_to 'Show', contact %></td>
-    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-    <td><%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', organization_contact_path(@organization, contact) %></td>
+    <td><%= link_to 'Edit', edit_organization_contact_path(@organization, contact) %></td>
+    <td><%= link_to 'Destroy', [@organization, contact], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Contact', new_contact_path %>
+<%= link_to 'New Contact', new_organization_contact_path(@organization) %>

@@ -3,7 +3,7 @@
   .projects
     - @organization.contacts.each do |contact|
       %p.contact
-        = link_to h(contact.last_name), contact
+        = link_to h(contact.last_name), organization_contact_path(@organization, contact)
         = contact.first_name
 
 - else

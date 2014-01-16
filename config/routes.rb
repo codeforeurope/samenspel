@@ -1,6 +1,5 @@
 Teambox::Application.routes.draw do
 
-  resources :contacts
   match 'timeline' => 'timeline#index'
   #match 'timeline/:year' => 'timeline#index', :as => :timeline_by_year, :via => :get
   #match 'timeline_for_organization/:id' => 'timeline#for_organization', :as => :timeline_for_organization
@@ -90,6 +89,12 @@ Teambox::Application.routes.draw do
           get :remove
         end
       end
+      resources :contacts do
+        member do
+          put :assign_to_project
+          put :remove_from_project
+        end
+      end
     end
 
     match '/account/settings' => 'users#edit', :as => :account_settings, :sub_action => 'settings'
@@ -137,6 +142,8 @@ Teambox::Application.routes.draw do
         post :decline
         put :transfer
         get :join
+        match 'remove_contact/:contact_id' => 'projects#remove_contact', :as => :remove_contact, :method => :put
+        match 'add_contact/:contact_id' => 'projects#add_contact', :as => :add_contact, :method => :put
       end
 
       match 'time/:year/:month' => 'hours#index', :as => :hours_by_month, :via => :get

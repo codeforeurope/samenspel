@@ -73,6 +73,8 @@ class PeopleController < ApplicationController
       @contacts -= @current_project.users
 
       @project_contacts = @project.contacts
+      @available_contacts = @current_project.organization.contacts
+      @available_contacts -= @project.contacts
     end
 
     respond_to do |wants|

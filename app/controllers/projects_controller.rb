@@ -190,6 +190,24 @@ class ProjectsController < ApplicationController
     end.sort {|a,b| a[:organization].name <=> b[:organization].name}
   end
 
+  def add_contact
+    @project = Project.find_by_id_or_permalink(params[:id])
+    @contact = Contact.find_by_id(params[:contact_id])
+    @project.contacts << @contact
+    @project.save
+
+    redirect_to :back
+  end
+
+  def remove_contact
+    @project = Project.find_by_id_or_permalink(params[:id])
+    @contact = Contact.find_by_id(params[:contact_id])
+    @project.contacts.delete(@contact)
+    @project.save
+
+    redirect_to :back
+  end
+
   protected
 
     def load_task_lists

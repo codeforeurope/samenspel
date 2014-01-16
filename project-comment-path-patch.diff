@@ -1,0 +1,30 @@
+From a9f324c694177bc220530b4532c08128d1ef77df Mon Sep 17 00:00:00 2001
+From: Giovanni Maggini <giovanni.maggini@gmail.com>
+Date: Wed, 27 Nov 2013 17:43:08 +0100
+Subject: [PATCH] this fixes the projects/:project_id/contacts route
+
+---
+ app/controllers/people_controller.rb | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/app/controllers/people_controller.rb b/app/controllers/people_controller.rb
+index a7e4ff3..c09a3cb 100644
+--- a/app/controllers/people_controller.rb
++++ b/app/controllers/people_controller.rb
+@@ -56,7 +56,12 @@ class PeopleController < ApplicationController
+   end
+ 
+   def contacts
+-    @project = Project.find params[:id]
++    if params[:id]
++      @project = Project.find params[:id]
++    else
++      @project = Project.where('permalink = (?)', params[:project_id]).first
++    end
++
+ 
+     if current_user.in_project(@project)
+       users = @project.users
+-- 
+1.8.4.2
+
