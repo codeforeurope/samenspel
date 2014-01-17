@@ -7,23 +7,25 @@
   %br
   Teambox produces standard JSON documents that you can import from any system supporting it.
 
+- if Teambox.config.allow_import_export
+  %h3= t('.imports')
+  #data_imports
+    %p= t('.imports_explain')
+    - if @data_imports.any?
+      = render :partial => 'data', :collection => @data_imports
+    - else
+      %p= t('.no_imports')
 
-%h3= t('.imports')
-#data_imports
-  %p= t('.imports_explain')
-  - if @data_imports.any?
-    = render :partial => 'data', :collection => @data_imports
-  - else
-    %p= t('.no_imports')
+    = new_teambox_import_link
 
-  = new_teambox_import_link
+  %h3= t('.exports')
 
-%h3= t('.exports')
+  #data_exports
+    - if @data_exports.any?
+      = render :partial => 'data', :collection => @data_exports
+    - else
+      %p= t('.no_exports')
 
-#data_exports
-  - if @data_exports.any?
-    = render :partial => 'data', :collection => @data_exports
-  - else
-    %p= t('.no_exports')
-
-  = new_teambox_export_link
+    = new_teambox_export_link
+- else
+  %p= t('.functionality_not_enabled')

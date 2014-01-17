@@ -212,6 +212,7 @@ en:
         delete_my_account: "Delete my account now"
         account_deleted: "Your account has been deleted. We will miss you!"
         couldnt_delete_account: "We can't delete your account because you still have active or archived projects."
+        please_contact_an_administrator: "Please contact an administrator for requesting account deletion."
       picture:
         field: New avatar
         presence: "You can't upload a blank file"
@@ -1110,6 +1111,7 @@ en:
       exports: "Export your projects"
       no_imports: "There are no recent imports."
       no_exports: "There are no recent exports."
+      functionality_not_enabled: "This functionality is not enabled on the current installation."
     show_export:
       title: "Import / Export"
       projects: "Projects exported:"

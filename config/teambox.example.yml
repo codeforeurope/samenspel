@@ -70,6 +70,11 @@ defaults: &defaults
   #Enables the "Beta testing" feature for users
   enable_beta_test_user_option: false
 
+  #Allows import/export function
+  allow_import_export: true
+
+  #Allows user account deletion
+  allow_user_account_deletion: true
 
 ########## System settings ##########
 
