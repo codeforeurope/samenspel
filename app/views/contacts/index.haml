@@ -1,0 +1,12 @@
+%h2= t('.title', :name => h(@organization))
+
+- if @contacts.any?
+  #people.people
+    - @contacts.each do |contact|
+      %div.person
+        = render 'contacts/header', :contact => contact
+
+- else
+  %p= t('.no_contacts')
+
+%p.new_contact= link_to t('.new_contact'), new_organization_contact_path(@organization), :class => :add_button

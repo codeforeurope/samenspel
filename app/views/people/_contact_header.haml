@@ -1,0 +1,14 @@
+.person_header
+  .name
+    %h2== #{contact_link(project.organization, contact)}
+    %p
+      %strong= contact.company
+
+    %p= mail_to(contact.email) + " #{contact.phone_number}"
+
+  - if request.format != :m
+    .actions
+      - if assigned == true
+        = link_to t('users.user.remove_from_project'), remove_contact_project_path(project, contact), :method => :put
+      - else
+        = link_to t('.assign_to_project'), add_contact_project_path(project, contact), :method => :put

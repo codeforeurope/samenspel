@@ -79,7 +79,6 @@ Teambox::Application.routes.draw do
         get :external_view
         get :delete
         get :appearance
-        get :contacts
         match 'timeline' => 'organizations#timeline', :as => :timeline
       end
       resources :memberships do

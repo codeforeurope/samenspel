@@ -9,6 +9,14 @@ module UsersHelper
     end
   end
 
+  def contact_link(organization, contact)
+    if contact.first_name.blank?
+      link_to contact.last_name, organization_contact_path(organization, contact)
+    else
+       link_to "#{contact.first_name} #{contact.last_name}", organization_contact_path(organization, contact)
+    end
+  end
+
   def show_user_password_fields
     update_page do |page|
       page['change_password_link'].hide

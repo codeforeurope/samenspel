@@ -383,6 +383,8 @@ en:
       pending_invitations:
         one: One invitation pending
         other: "%{count} invitations pending"
+    contacts_list:
+      contacts_in_project: Contacts in this project
     recent_conversations:
       title: Recent conversations
       view_all: View all conversations
@@ -596,11 +598,6 @@ en:
       title: Projects in %{organization}
       new_project: New project
       instructions_html: "These are the projects for this team. If you're an admin, you can transfer a project to <a href='%{organizations_link}'>other teams</a> by opening the project's settings."
-    contacts:
-      title: Contacts in %{organization}
-      subtitle: All Contacts
-      new_contact: New contact
-      no_contacts: "No Contacts"
     active_projects:
       title: Active projects
       started_at_html: "Started on %{date_start}"
@@ -624,6 +621,12 @@ en:
       clarification: "If you delete this team, all the information that's attached to it team will be lost forever. The users that belong to this team will still be able to login to Teambox and work with their other teams."
       confirm: I understand that deleting this team is irreversible and I all the content related to this team will be lost.
       deleted: You deleted the team
+  contacts:
+    index:
+      title: Contacts in %{name}
+      subtitle: All Contacts
+      new_contact: New Contact
+      no_contacts: No Contacts
   memberships:
     index:
       title: Users in %{name}

@@ -1,0 +1,5 @@
+.people_list{ :class => "#{'compact' if compact}" }
+  %h2= t '.contacts_in_project'
+  .list
+    = render :partial => 'contacts/status', :collection => project.contacts, :as => :contact
+    .clear

@@ -1,16 +1,16 @@
+# -*- encoding : utf-8 -*-
 class ContactsController < ApplicationController
 
   skip_before_filter :load_project
-  before_filter :load_organization, :only => :index
-  before_filter :load_organization_by_name, :except=> :index
+  before_filter :load_organization
 
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |f|
-      flash[:error] = t('common.not_allowed')
-      f.any(:html, :m) { redirect_to root_path }
-      handle_api_error(f, @organization)
-    end
-  end
+  #rescue_from CanCan::AccessDenied do |exception|
+  #  respond_to do |f|
+  #    flash[:error] = t('common.not_allowed')
+  #    f.any(:html, :m) { redirect_to root_path }
+  #    handle_api_error(f, @organization)
+  #  end
+  #end
 
   # GET /contacts
   # GET /contacts.xml
@@ -70,6 +70,7 @@ class ContactsController < ApplicationController
   # PUT /contacts/1
   # PUT /contacts/1.xml
   def update
+    @contact = @organization.contacts.find(params[:id])
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         format.html { redirect_to([@organization, @contact], :notice => 'Contact was successfully updated.') }
@@ -102,20 +103,22 @@ class ContactsController < ApplicationController
   end
 
   def remove_from_project
-    @project = Project.find params[:project_id]
-  else
-    @project = Project.find_by_id_or_permalink params[:project_id]
-  end
-  @contact = @organization.contacts.find(params[:id])
-  @contact.projects.delete(@project)
+    if params[:project_id]
+      @project = Project.find params[:project_id]
+    else
+      @project = Project.find_by_id_or_permalink params[:project_id]
+    end
+    @contact = @organization.contacts.find(params[:id])
+    @contact.projects.delete(@project)
 
-  @contact.save! do |success, failure|
-    success.html {
-      redirect_to :back
+    @contact.save! do |success, failure|
+      success.html {
+        redirect_to :back
+      }
+      failure.html {
+        redirect_to :back
     }
-    failure.html {
-      redirect_to :back
-    }
+    end
   end
 
   # DELETE /contacts/1
@@ -133,13 +136,6 @@ class ContactsController < ApplicationController
   protected
 
   def load_organization
-    unless @organization = current_user.organizations.find_by_permalink(params[:id])
-      flash[:error] = "Invalid organization"
-      redirect_to root_path
-    end
-  end
-
-  def load_organization_by_name
     unless @organization = current_user.organizations.find_by_permalink(params[:organization_id])
       flash[:error] = "Invalid organization"
       redirect_to root_path

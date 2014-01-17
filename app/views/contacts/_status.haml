@@ -1,0 +1,6 @@
+.person
+  .more
+    %span.name
+      = contact_link(contact.organization, contact)
+    %span.login
+      = mail_to (contact.email)

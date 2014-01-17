@@ -1,0 +1,14 @@
+.person_header
+  .name
+    %h2== #{contact_link(contact.organization, contact)}
+    %p
+      %strong= contact.company
+
+    %p= mail_to(contact.email) + "#{contact.phone_number}"
+
+  - if request.format != :m
+    .actions
+      - if can? :edit, contact
+        = link_to t('.edit'), edit_organization_contact_path(contact.organization, contact)
+      - if contact.organization.is_admin? (current_user)
+        = link_to t('.delete'), [contact.organization, contact], :confirm => 'Are you sure?', :method => :delete

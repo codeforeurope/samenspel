@@ -1,6 +1,6 @@
 .person_header
   .name
-    %h2== #{user_link(person.user)} @#{person.user.login}
+    %h2= link_to "#{contact.first_name} #{contact.last_name}", organization_contact_path(contact.organization, contact)
     %p
       %strong= t(person.owner?? '.owner' : ".#{person.role_name}")
       

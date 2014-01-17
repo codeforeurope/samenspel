@@ -30,9 +30,6 @@ class OrganizationsController < ApplicationController
                 Person::ROLES[:admin] =>       t('roles.admin') }
   end
 
-  def contacts
-  end
-
   def new
     authorize! :create_organization, current_user
     @organization = current_user.organizations.build
