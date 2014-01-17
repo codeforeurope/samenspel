@@ -1,0 +1,28 @@
+<h1>Listing principles</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @principles.each do |principle| %>
+  <tr>
+    <td><%= principle.title %></td>
+    <td><%= if can? :update, principle
+        link_to 'Edit', edit_organization_principle_path(@organization, principle)
+    end %></td>
+    <td><%= if can? :destroy, principle
+        link_to 'Destroy', [@organization, principle], :confirm => 'Are you sure?', :method => :delete
+    end%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= if can? :create, Principle
+      link_to 'New Principle', new_organization_principle_path(@organization)
+    end %>

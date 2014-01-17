@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @principle.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_principle_path(@organization, @principle) %> |
+<%= link_to 'Back', organization_principles_path(@organization) %>

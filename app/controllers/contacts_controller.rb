@@ -4,13 +4,13 @@ class ContactsController < ApplicationController
   skip_before_filter :load_project
   before_filter :load_organization
 
-  #rescue_from CanCan::AccessDenied do |exception|
-  #  respond_to do |f|
-  #    flash[:error] = t('common.not_allowed')
-  #    f.any(:html, :m) { redirect_to root_path }
-  #    handle_api_error(f, @organization)
-  #  end
-  #end
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |f|
+      flash[:error] = t('common.not_allowed')
+      f.any(:html, :m) { redirect_to root_path }
+      handle_api_error(f, @organization)
+    end
+  end
 
   # GET /contacts
   # GET /contacts.xml

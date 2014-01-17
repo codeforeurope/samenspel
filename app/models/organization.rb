@@ -8,6 +8,7 @@ class Organization < ActiveRecord::Base
   has_many :projects #, :dependent => :destroy
   has_many :memberships, :dependent => :destroy
   has_many :contacts, :dependent => :destroy
+  has_many :principles, :dependent => :destroy
 
   has_many :users, :through => :memberships
   has_many :admins, :through => :memberships, :source => :user, :conditions => {'memberships.role' => Membership::ROLES[:admin]}

@@ -131,6 +131,16 @@ class Ability
       organization.is_admin?(user)
     end
 
+    #Principles permissions
+
+    can :create, Principle do |organization|
+      organization.is_admin?(user)
+    end
+
+    can [:update, :destroy], Principle do |principle|
+      principle.organization.is_admin?(user)
+    end
+
     # User permissions
 
     can :create_project, User do |the_user|

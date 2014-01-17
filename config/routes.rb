@@ -94,6 +94,7 @@ Teambox::Application.routes.draw do
           put :remove_from_project
         end
       end
+      resources :principles
     end
 
     match '/account/settings' => 'users#edit', :as => :account_settings, :sub_action => 'settings'

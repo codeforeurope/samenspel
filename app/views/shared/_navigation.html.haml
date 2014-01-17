@@ -66,6 +66,7 @@
         .el= link_to t('organizations.column.admin_projects'), projects_organization_path(organization), :class => 'ajax'
         .el= link_to t('organizations.column.admin_contacts'), organization_contacts_path(organization), :class => 'ajax'
         .el= link_to t('organizations.column.timeline'), timeline_organization_path(organization), :class => 'ajax'
+        .el= link_to t('organizations.column.principles'), organization_principles_path(organization), :class => 'ajax'
         - if can?(:admin, organization)
           .el= link_to t('organizations.column.admin_users'), organization_memberships_path(organization), :class => 'ajax'
           .el= link_to t('organizations.column.appearance'), appearance_organization_path(organization), :class => ''

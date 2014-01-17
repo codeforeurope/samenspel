@@ -494,6 +494,7 @@ en:
       billing: Plans and Billing
       invoices: Invoices
       delete: Delete this team...
+      principles: Principles
     edit:
       title: Settings for %{organization}
       there_are: "There are"
