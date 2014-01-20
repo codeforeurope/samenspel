@@ -22,22 +22,6 @@
     %p= t('.no_contacts')
 
 
--#%h3=t('.contacts')
--#%p= "These are the contacts assigned to this project"
--#- if @project_contacts.any?
--#  %table
--#    %tbody
--#      - @project_contacts.each do |contact|
--#        %tr
--#          %td= contact.first_name
--#          %td= link_to contact.last_name, organization_contact_path(@project.organization, contact)
--#          %td= contact.company
--#          %td= contact.phone_number
--#          %td= contact.email
--#          %td= link_to t('users.user.remove_from_project'), remove_contact_project_path(@project, contact), :method => :put
--#- else
--#  %p= t('.no_contacts')
-
 %h3=t('.contacts')
 %p= "These are the contacts available to be added to this project"
 #people.people
@@ -48,22 +32,6 @@
   - else
     %p= t('.no_contacts')
 
-
--#%h3=t('.available_contacts')
--#%p="These are the contacts available to be added to this project"
--#- if @available_contacts.any?
--#  %table
--#    %tbody
--#      - @available_contacts.each do |contact|
--#        %tr
--#          %td= contact.first_name
--#          %td= link_to contact.last_name, organization_contact_path(@project.organization, contact)
--#          %td= contact.company
--#          %td= contact.phone_number
--#          %td= contact.email
--#          %td= link_to t('.assign_to_project'), add_contact_project_path(@project, contact), :method => :put
--#- else
--#  %p= t('.no_contacts')
 
 %p= link_to t('.new_contact'), new_organization_contact_path(@project.organization)
 

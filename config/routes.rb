@@ -89,10 +89,11 @@ Teambox::Application.routes.draw do
         end
       end
       resources :contacts do
-        member do
-          put :assign_to_project
-          put :remove_from_project
-        end
+        #member do
+        #  put :assign_to_project  #see add_contact/:contact_id
+        #  put :remove_from_project #see remove_contact/:contact_id
+        #end
+      end
       end
       resources :principles
     end

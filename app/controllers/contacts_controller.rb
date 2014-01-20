@@ -58,7 +58,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to(@contact, :notice => 'Contact was successfully created.') }
+        format.html { redirect_to(organization_contact_path(@organization, @contact), :notice => 'Contact was successfully created.') }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }
@@ -73,51 +73,12 @@ class ContactsController < ApplicationController
     @contact = @organization.contacts.find(params[:id])
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to([@organization, @contact], :notice => 'Contact was successfully updated.') }
+        format.html { redirect_to(organization_contact_path(@organization, @contact), :notice => 'Contact was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  def assign_to_project
-    if params[:project_id]
-      @project = Project.find params[:project_id]
-    else
-      @project = Project.find_by_id_or_permalink params[:project_id]
-    end
-    @contact = @organization.contacts.find(params[:id])
-    @contact.projects << @project
-
-
-    @contact.save! do |success, failure|
-      success.html {
-          redirect_to :back
-      }
-      failure.html {
-        redirect_to :back
-      }
-    end
-  end
-
-  def remove_from_project
-    if params[:project_id]
-      @project = Project.find params[:project_id]
-    else
-      @project = Project.find_by_id_or_permalink params[:project_id]
-    end
-    @contact = @organization.contacts.find(params[:id])
-    @contact.projects.delete(@project)
-
-    @contact.save! do |success, failure|
-      success.html {
-        redirect_to :back
-      }
-      failure.html {
-        redirect_to :back
-    }
     end
   end
 
