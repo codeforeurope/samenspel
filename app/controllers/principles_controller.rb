@@ -93,45 +93,6 @@ class PrinciplesController < ApplicationController
     end
   end
 
-  #def assign_to_project
-  #  if params[:project_id]
-  #    @project = Project.find params[:project_id]
-  #  else
-  #    @project = Project.find_by_id_or_permalink params[:project_id]
-  #  end
-  #  @principle = @organization.principles.find(params[:id])
-  #  @principle.projects << @project
-  #
-  #
-  #  @principle.save! do |success, failure|
-  #    success.html {
-  #      redirect_to :back
-  #    }
-  #    failure.html {
-  #      redirect_to :back
-  #    }
-  #  end
-  #end
-  #
-  #def remove_from_project
-  #  if params[:project_id]
-  #    @project = Project.find params[:project_id]
-  #  else
-  #    @project = Project.find_by_id_or_permalink params[:project_id]
-  #  end
-  #  @principle = @organization.principles.find(params[:id])
-  #  @principle.projects.delete(@project)
-  #
-  #  @principle.save! do |success, failure|
-  #    success.html {
-  #      redirect_to :back
-  #    }
-  #    failure.html {
-  #      redirect_to :back
-  #    }
-  #  end
-  #end
-
   protected
 
   def load_organization
