@@ -386,6 +386,12 @@ en:
         other: "%{count} invitations pending"
     contacts_list:
       contacts_in_project: Contacts in this project
+    principles_list:
+      principles_for_project: Principles for this project
+    principles:
+      title: Principles for %{name}
+      assigned_principles: Assigned principles
+      unassigned_principles: Unassigned principles
     recent_conversations:
       title: Recent conversations
       view_all: View all conversations
@@ -1230,6 +1236,7 @@ en:
       pages: Pages
       files: Files
       contacts: Contacts
+      principles: Principles
       settings: Settings
       people: "People & Permissions"
       my_tasks: My Tasks

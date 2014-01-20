@@ -1,0 +1,9 @@
+.people_list{ :class => "#{'compact' if compact}" }
+  %h2= t ('.principles_for_project')
+  .list
+    - project.principles.each do |principle|
+      .person
+        .more
+          %span.name
+            = link_to truncate(principle.title, :length => 25, :omission => '...'), organization_principle_path(principle.organization, principle)
+      .clear

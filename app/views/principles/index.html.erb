@@ -1,8 +1,7 @@
-<h1>Listing principles</h1>
+<h1><%= t('.principles') %></h1>
 
 <table>
   <tr>
-    <th>Title</th>
     <th></th>
     <th></th>
     <th></th>
@@ -24,5 +23,5 @@
 <br />
 
 <%= if can? :create, Principle
-      link_to 'New Principle', new_organization_principle_path(@organization)
+      link_to t('.new_principle'), new_organization_principle_path(@organization)
     end %>

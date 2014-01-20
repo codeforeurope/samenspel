@@ -94,8 +94,12 @@ Teambox::Application.routes.draw do
         #  put :remove_from_project #see remove_contact/:contact_id
         #end
       end
+      resources :principles do
+        #member do
+        #  put :assign_to_project #see add_principle/:principle_id
+        #  put :remove_from_project #see remove_principle/:principle_id
+        #end
       end
-      resources :principles
     end
 
     match '/account/settings' => 'users#edit', :as => :account_settings, :sub_action => 'settings'
@@ -145,6 +149,9 @@ Teambox::Application.routes.draw do
         get :join
         match 'remove_contact/:contact_id' => 'projects#remove_contact', :as => :remove_contact, :method => :put
         match 'add_contact/:contact_id' => 'projects#add_contact', :as => :add_contact, :method => :put
+        match 'remove_principle/:principle_id' => 'projects#remove_principle', :as => :remove_principle, :method => :put
+        match 'add_principle/:principle_id' => 'projects#add_principle', :as => :add_principle, :method => :put
+        match 'principles' => 'projects#principles', :as => :principles, :method => :get
       end
 
       match 'time/:year/:month' => 'hours#index', :as => :hours_by_month, :via => :get

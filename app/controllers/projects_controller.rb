@@ -208,6 +208,34 @@ class ProjectsController < ApplicationController
     redirect_to :back
   end
 
+  def add_principle
+    @project = Project.find_by_id_or_permalink(params[:id])
+    @principle = Principle.find_by_id(params[:principle_id])
+    @project.principles << @principle
+    @project.save
+
+    redirect_to :back
+  end
+
+  def remove_principle
+    @project = Project.find_by_id_or_permalink(params[:id])
+    @principle = Principle.find_by_id(params[:principle_id])
+    @project.principles.delete(@principle)
+    @project.save
+
+    redirect_to :back
+  end
+
+  def principles
+    @project = Project.find_by_id_or_permalink(params[:id])
+    @assigned_principles = @project.principles
+    @unassigned_principles = @project.organization.principles - @assigned_principles
+
+    respond_to do |f|
+      f.any(:html, :m)
+    end
+  end
+
   protected
 
     def load_task_lists

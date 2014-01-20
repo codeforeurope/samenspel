@@ -896,6 +896,12 @@ nl:
       text_styling: "Tekst Stylen"
       tip: "Iemands @username melden. Ze zullen een e-mail ontvangen met uw bericht"
       update_your_status: "Update uw status..."
+    principles:
+      title: Doelstellingen voor %{name
+      assigned_principles: Toegewezen doelstellingen
+      unassigned_principles: Niet toegewezen doelstellingen
+    principles_list:
+          principles_for_project: Principles for this project
   reset_passwords: 
     create: 
       invalid: "De URL om het wachtwoord te veranderen is ongeldig of verlopen. Probeer 'Ik heb mijn wachtwoord vergeten' nog een keer op de startpagina.<br/>Als dat niet werkt, neem dan contact met ons op, op %{support}"
@@ -936,7 +942,8 @@ nl:
       logout: Uitloggen
       project_invitations: "Uitnodigingen (%{count})"
       settings: Instellingen
-    navigation: 
+    navigation:
+      principles: Doelstellingen
       all_projects: "Alle Projecten"
       new_project: "+ Nieuw Project"
       welcome: Welkom

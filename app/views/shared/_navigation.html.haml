@@ -29,6 +29,7 @@
         - if Teambox.config.enable_files_module
           .el= link_to t('.files'), project_uploads_path(project), :class => 'files'
         .el= link_to t('.contacts'), project_contacts_path(project), :class => 'addressbook'
+        .el= link_to t('.principles'), principles_project_path(project), :class => 'principles'
         - if can?(:update, project)
           .el= link_to t('.settings'), project_settings_path(project), :class => 'settings'
           .contained

@@ -1,0 +1,32 @@
+%h2= t('.title', :name => h(@current_project))  #contacts in ... project name
+
+%h3=t('.assigned_principles')
+-#%p= "These are the principles assigned to this project"
+#people.people
+  - if @assigned_principles.any?
+    - @assigned_principles.each do |principle|
+      %div.person
+        .person_header
+          .name
+            %h4= principle.title
+          - if request.format != :m
+            .actions
+              = link_to t('users.user.remove_from_project'), remove_principle_project_path(@project, principle), :method => :put
+  - else
+    %p= t('.no_principles')
+
+
+%h3=t('.unassigned_principles')
+-#%p= "These are the principles available to be assigned to this project"
+#people.people
+  - if @unassigned_principles.any?
+    - @unassigned_principles.each do |principle|
+      %div.person
+        .person_header
+          .name
+            %h4= principle.title
+          - if request.format != :m
+            .actions
+              = link_to t('.assign_to_project'), add_principle_project_path(@project, principle), :method => :put
+  - else
+    %p= t('.no_contacts')

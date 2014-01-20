@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140117210959) do
+ActiveRecord::Schema.define(:version => 20140120210132) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -317,6 +317,14 @@ ActiveRecord::Schema.define(:version => 20140117210959) do
 
   add_index "project_contacts", ["contact_id"], :name => "index_project_contacts_on_contact_id"
   add_index "project_contacts", ["project_id"], :name => "index_project_contacts_on_project_id"
+
+  create_table "project_principles", :force => true do |t|
+    t.integer "project_id"
+    t.integer "principle_id"
+  end
+
+  add_index "project_principles", ["principle_id"], :name => "index_project_principles_on_principle_id"
+  add_index "project_principles", ["project_id"], :name => "index_project_principles_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"

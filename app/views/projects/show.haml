@@ -30,6 +30,7 @@
     .tip= t('.tip')
 
   = render 'contacts_list', :project => @current_project, :compact => false
+  = render 'principles_list', :project => @current_project, :compact => false
 
   = instructions_for_feeds
   = instructions_for_calendars
