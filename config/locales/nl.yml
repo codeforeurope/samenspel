@@ -178,8 +178,8 @@ nl:
     new: 
       assigned_to: "Toegewezen aan:"
       assigned_to_nobody: Niet-toegewezen
-      conversation: "Zend een bericht naar de rest van de groep."
-      project: "Wat bent u aan het doen? Deel ideeën, links, updates."
+      conversation: "Wat moeten anderen nu weten over dit project."
+      project: "Wat is belangrijk om te onthouden voor dit project."
       submit: Reactie
       task: "Defineer wat er gedaan moet worden door commentaar te geven."
       task_list: "Deel ideeën voor deze takenlijst. Om taken aan te maken en toe te wijzen, maak gebruik van de sidebar."
@@ -897,7 +897,7 @@ nl:
       tip: "Iemands @username melden. Ze zullen een e-mail ontvangen met uw bericht"
       update_your_status: "Update uw status..."
     principles:
-      title: Doelstellingen voor %{name
+      title: Doelstellingen voor %{name}
       assigned_principles: Toegewezen doelstellingen
       unassigned_principles: Niet toegewezen doelstellingen
     principles_list:

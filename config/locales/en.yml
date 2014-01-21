@@ -1072,8 +1072,8 @@ en:
       assigned_to: "Assigned to:"
       submit: Save
       sending: Sending…
-      project: "What are you working on? Share ideas, links, updates."
-      conversation: "Send a message to the rest of the group."
+      project: "Share what is important to remember for this project."
+      conversation: ""
       task_list: "Share ideas for this task list. To create and assign tasks, use the sidebar."
       task: "Define what needs to be done, assign this task to somebody."
     convert_form:
