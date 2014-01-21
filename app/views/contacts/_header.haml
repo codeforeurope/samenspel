@@ -8,7 +8,7 @@
 
   - if request.format != :m
     .actions
-      - if can? :edit, contact
+      - if can? :update, contact, @current_user
         = link_to t('.edit'), edit_organization_contact_path(contact.organization, contact)
-      - if contact.organization.is_admin? (current_user)
+      - if can? :destroy, contact, @current_user
         = link_to t('.delete'), [contact.organization, contact], :confirm => 'Are you sure?', :method => :delete

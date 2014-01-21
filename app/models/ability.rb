@@ -62,14 +62,14 @@ class Ability
       true
     end
 
-    can :destroy, Contact do |contact|
+    can :destroy, Contact do |contact, user|
       #Contact can be deleted only if it belongs to an Organization accessible to the user
-      contact.organization.is_admin?(user)
+      contact.organization.is_admin?(user) || contact.organization.is_participant?(user)
     end
 
-    can :update, Contact do |contact|
+    can :update, Contact do |contact, user|
       #Contact can be updated only if it belongs to an Organization accessible to the user
-      contact.organization.is_admin?(user)
+      contact.organization.is_admin?(user)|| contact.organization.is_participant?(user)
     end
 
     # Timeline permissions
@@ -133,12 +133,16 @@ class Ability
 
     #Principles permissions
 
-    can :create, Principle do |organization|
+    can :create_principle, Organization do |organization|
       organization.is_admin?(user)
     end
 
     can [:update, :destroy], Principle do |principle|
       principle.organization.is_admin?(user)
+    end
+
+    can [:add_to_project, :remove_from_project], Principle do |principle, project|
+      can? :update, project
     end
 
     # User permissions

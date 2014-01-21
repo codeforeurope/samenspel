@@ -1,10 +1,17 @@
 <p id="notice"><%= notice %></p>
-
+<h3>Contact</h3>
 <p>
   <b>Title:</b>
   <%= @principle.title %>
+  <% if @principle.projects.any? %>
+    <br><b>Projects:</b>
+    <ul>
+      <% @principle.projects.each do |project| %>
+        <li><%= link_to project.name, project %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </p>
 
 
-<%= link_to 'Edit', edit_organization_principle_path(@organization, @principle) %> |
 <%= link_to 'Back', organization_principles_path(@organization) %>

@@ -6,22 +6,24 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @principles.each do |principle| %>
-  <tr>
-    <td><%= principle.title %></td>
-    <td><%= if can? :update, principle
-        link_to 'Edit', edit_organization_principle_path(@organization, principle)
-    end %></td>
-    <td><%= if can? :destroy, principle
-        link_to 'Destroy', [@organization, principle], :confirm => 'Are you sure?', :method => :delete
-    end%></td>
-  </tr>
-<% end %>
+  <% @principles.each do |principle| %>
+    <tr>
+      <td>
+        <%= principle.title %>
+      </td>
+      <td><%= link_to 'Projects', organization_principle_path(@organization, principle) %></td>
+      <td><%= if can? :update, principle
+                link_to 'Edit', edit_organization_principle_path(@organization, principle)
+              end %></td>
+      <td><%= if can? :destroy, principle
+                link_to 'Destroy', [@organization, principle], :confirm => 'Are you sure?', :method => :delete
+              end %></td>
+    </tr>
+  <% end %>
 </table>
 
-<br />
+<br/>
 
-<%= if can? :create, Principle
+<%= if can? :create_principle, @organization
       link_to t('.new_principle'), new_organization_principle_path(@organization)
     end %>
