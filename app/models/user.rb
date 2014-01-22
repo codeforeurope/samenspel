@@ -207,6 +207,16 @@ class User < ActiveRecord::Base
     !organizations.empty? or supervisor? or Teambox.config.user_can_create_organization
   end
 
+  def is_team_leader?
+    #is admin of at least one organization?
+    organizations.each do |organization|
+      if organization.is_admin?(self)
+        return true
+      end
+    end
+    return false
+  end
+
   DELETED_TAG = "deleted"
   DELETED_REGEX = /#{DELETED_TAG}\d+__(.*)/i
 

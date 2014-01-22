@@ -148,7 +148,7 @@ class Ability
     # User permissions
 
     can :create_project, User do |the_user|
-      the_user.can_create_project?
+      the_user.can_create_project? && the_user.is_team_leader?
     end
 
     can :create_organization, User do |the_user|
