@@ -59,7 +59,7 @@ defaults: &defaults
 
   # Default language in which the app is displayed.
   # See translations in "config/locales/"
-  default_locale: :nl
+  default_locale: :en
 
   #Sets the Pages module to enabled/disabled
   enable_pages_module: false
