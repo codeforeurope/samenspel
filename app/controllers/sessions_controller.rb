@@ -31,6 +31,9 @@ class SessionsController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset_session
       self.current_user = user
+      if user.global_observer?
+        assign_all_to_global_observer
+      end
       handle_remember_cookie! true
       flash[:error] = nil
 
@@ -112,4 +115,19 @@ protected
       end
     end
   end
+
+  #be careful with this!
+  def assign_all_to_global_observer
+    Organization.all.each do |organization|
+      if !organization.is_user?(current_user)  #means current user is not in organization
+        organization.add_member(current_user, role=Membership::ROLES[:admin])
+      end
+      organization.projects.each do |project|
+        if !project.has_member?(current_user)
+          project.add_user(current_user, {role: Person::ROLES[:observer]})
+        end
+      end
+    end
+  end
+
 end

@@ -4,6 +4,14 @@ class Ability
 
   def initialize(user)
 
+    #Global Observer option
+
+    if user.global_observer?
+      can :read, :all
+      can :view_timeline, Organization
+      can :view_all_timelines
+    end
+
     # Comment & commentable permissions
 
     can :update, Comment do |comment|
@@ -161,10 +169,6 @@ class Ability
 
     can :observe, User do |the_user|
       user.observable?(the_user)
-    end
-
-    can :view, :all do |the_user|
-      the_user.global_observer?
     end
   end
 end
