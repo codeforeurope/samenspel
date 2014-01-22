@@ -106,6 +106,7 @@ class OrganizationsController < ApplicationController
     end
 
     @projects = @organization.projects
+    #build the JSON source for chart
     @source = []
     @projects.each do |project|
       p_date_start = project.date_start.nil? ? project.created_at.to_date : project.date_start.to_date
@@ -121,7 +122,6 @@ class OrganizationsController < ApplicationController
                     }]
           }
       @source << s
-    #sample = { name: "test", desc: "test", values: { from: "" }}
     end
 
 
