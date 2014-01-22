@@ -168,6 +168,7 @@ GEM
     multi_xml (0.4.4)
     multipart-post (1.2.0)
     net-ldap (0.3.1)
+    newrelic_rpm (3.7.1.188)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oa-core (0.3.2)
@@ -306,6 +307,7 @@ DEPENDENCIES
   libxml-ruby
   memcache-client (>= 1.7.4)
   net-ldap
+  newrelic_rpm
   nokogiri
   oa-oauth
   paperclip (~> 3.5.2)
