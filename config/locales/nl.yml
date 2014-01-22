@@ -178,8 +178,8 @@ nl:
     new: 
       assigned_to: "Toegewezen aan:"
       assigned_to_nobody: Niet-toegewezen
-      conversation: "Wat moeten anderen nu weten over dit project."
-      project: "Wat is belangrijk om te onthouden voor dit project."
+      conversation: "Wat is belangrijk om te onthouden voor dit project."
+      project: "Wat moeten anderen nu weten over dit project."
       submit: Reactie
       task: "Defineer wat er gedaan moet worden door commentaar te geven."
       task_list: "Deel ideeën voor deze takenlijst. Om taken aan te maken en toe te wijzen, maak gebruik van de sidebar."
