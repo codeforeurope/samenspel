@@ -99,7 +99,32 @@ class OrganizationsController < ApplicationController
 
   def timeline
     authorize! :view_timeline, @organization
-    @year = Time.current.year
+    if params[:year].nil?
+      @year = Time.current.year
+    else
+      @year = Time.current.year
+    end
+
+    @projects = @organization.projects
+    @source = []
+    @projects.each do |project|
+      p_date_start = project.date_start.to_date
+      p_date_end = project.date_end.nil? ? Date.today.to_date : project.date_end.to_date
+      s = { name: project.name,
+            desc: '',
+            url:  project_url(project),
+            values: [{ from: p_date_start,
+                      to: p_date_end,
+                      label: project.name,
+                      customclass: '',
+                      #dataObj: project_path(project)
+                    }]
+          }
+      @source << s
+    #sample = { name: "test", desc: "test", values: { from: "" }}
+    end
+
+
   end
 
   protected

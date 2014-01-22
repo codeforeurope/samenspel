@@ -18,6 +18,8 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :permalink, :archived, :tracks_time, :public,
                   :organization_attributes, :organization_id,
                   :goal, :date_start, :date_end
+
+  before_save :set_date_start
   has_many :google_docs
 
   has_many :project_contacts
@@ -28,6 +30,10 @@ class Project < ActiveRecord::Base
 
   attr_accessor :is_importing
   attr_accessor :import_activities
+
+  def set_date_start
+    self.date_start = self.created_at
+  end
 
   def self.find_by_id_or_permalink(param)
     if param.to_s =~ /^\d+$/

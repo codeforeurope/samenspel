@@ -1,34 +1,47 @@
 <div>
   Timeline for <%= @organization.name %>
-  <div class="center"><%= @year %></div>
-  <table border="1" width="100%">
-    <tr>
-      <th width="25%">Project</th>
-      <% Date::ABBR_MONTHNAMES[1..-1].each do |m| %>
-        <th>
-          <%= m %>
-        </th>
-      <% end %>
-    </tr>
-    <% @organization.projects.each do |project|
-      p_date_start = project.date_start.nil? ? project.created_at.to_date : project.date_start.to_date
-      p_date_end = project.date_end.nil? ? Date.today.to_date : project.date_end.to_date
-      project_range = p_date_start..p_date_end
-    %>
-      <tr>
-        <td><%= link_to project.name, project %></td>
-
-        <% (1..12).each do |m|
-          month = Date.new(2013, m)
-          month_begin = month.beginning_of_month
-          month_end = month.end_of_month
-          month_range = month_begin..month_end %>
-          <td>
-            <%= project_range.overlaps?(month_range) ? "-" : "" %>
-          </td>
-
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+  <div class="gantt"></div>
 </div>
+
+
+<%= javascript_include_tag 'jquery_min' %>
+<%= javascript_include_tag 'jquery_fn_gantt' %>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+<script>
+  var $j = jQuery.noConflict();
+  $j(function() {
+
+    "use strict";
+
+    $j(".gantt").gantt({
+      source: <%= raw @source.to_json %>,
+      navigate: "buttons",
+      scale: "years",
+      maxScale: "months",
+      itemsPerPage: <%= @source.count %>,
+      onItemClick: function(data) {
+        alert("Item clicked - show some details");
+        console.log(data);
+      },
+      onAddClick: function(dt, rowId) {
+        alert("Empty space clicked - add an item!");
+      },
+      onRender: function() {
+        if (window.console && typeof console.log === "function") {
+          console.log("chart rendered");
+        }
+      }
+    });
+
+//    $j(".gantt").popover({
+//      selector: ".bar",
+//      title: "I'm a popover",
+//      content: "And I'm the content of said popover.",
+//      trigger: "hover"
+//    });
+
+//    prettyPrint();
+
+  });
+</script>
