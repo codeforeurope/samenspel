@@ -32,7 +32,9 @@ class Project < ActiveRecord::Base
   attr_accessor :import_activities
 
   def set_date_start
-    self.date_start = self.created_at
+    if self.date_start.nil?
+      self.date_start = Time.now
+    end
   end
 
   def self.find_by_id_or_permalink(param)

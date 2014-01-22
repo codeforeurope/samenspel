@@ -108,11 +108,11 @@ class OrganizationsController < ApplicationController
     @projects = @organization.projects
     @source = []
     @projects.each do |project|
-      p_date_start = project.date_start.to_date
+      p_date_start = project.date_start.nil? ? project.created_at.to_date : project.date_start.to_date
       p_date_end = project.date_end.nil? ? Date.today.to_date : project.date_end.to_date
       s = { name: project.name,
             desc: '',
-            url:  project_url(project),
+            url:  project_path(project),
             values: [{ from: p_date_start,
                       to: p_date_end,
                       label: project.name,
