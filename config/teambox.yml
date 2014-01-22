@@ -21,7 +21,7 @@ defaults: &defaults
   # to create organizations (see below), than only supervisors will be allowed 
   # to do that. Provide their usernames or comment it out if you don't want
   # supervisor role.
-  supervisors: gmaggini
+  supervisors: admin
 
   # Global Observers are users that can see everything in the system, but are not administrators.
   global_observers: mvanrijn, gmaggini
@@ -216,8 +216,8 @@ defaults: &defaults
   # Destination where your users could write to ask for help. Accepts an email or website.
   support: https://github.com/codeforeurope/teambox
 
-  help_url: https://codeforeurope.github.io/teambox
-  support_url: https://codeforeurope.github.io/teambox
+  help_url: http://codeforeurope.github.io/samenspel
+  support_url: http://codeforeurope.github.io/samenspel
 
   heroku: <%= !!ENV['HEROKU_TYPE'] %>
 
