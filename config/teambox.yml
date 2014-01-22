@@ -8,7 +8,7 @@ defaults: &defaults
 ########## Basic settings ##########
 
   # The domain from where your app is served
-  app_domain: samenspel.herokuapp.com
+  app_domain: bpt.samenspel.net
 
   # Enable secure signup and logins over HTTPS.
   # Make sure your domain has a valid SSL certificate
@@ -24,7 +24,7 @@ defaults: &defaults
   supervisors: admin
 
   # Global Observers are users that can see everything in the system, but are not administrators.
-  global_observers: mvanrijn, gmaggini
+  global_observers: mjansen
 
 
 ########## Users settings ##########
@@ -59,7 +59,7 @@ defaults: &defaults
 
   # Default language in which the app is displayed.
   # See translations in "config/locales/"
-  default_locale: :en
+  default_locale: :nl
 
   #Sets the Pages module to enabled/disabled
   enable_pages_module: false
@@ -109,7 +109,7 @@ defaults: &defaults
   # With Heroku and the Sendgrid add-on, no configuration is needed here.
   #   $ heroku addons:add sendgrid:free
   smtp_settings:
-    :domain:         domain.com         # the domain your emails will come from
+    :domain:         bpt.samenspel.net         # the domain your emails will come from
     :address:        smtp.sendgrid.net  # SMTP server used to send emails
     :port:           25
     :authentication: :plain
@@ -208,10 +208,10 @@ defaults: &defaults
   allow_default_organizations: false
 
   # If you want to use Google Analytics, uncomment this and fill your Tracking ID.
-#  analytics_tracking_id:
+  analytics_tracking_id: UA-47383216-1
 
   # Allow teambox.com to gather statistics about this installation
-  tracking_enabled: false
+  tracking_enabled: true
 
   # Destination where your users could write to ask for help. Accepts an email or website.
   support: https://github.com/codeforeurope/teambox
