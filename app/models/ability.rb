@@ -162,5 +162,9 @@ class Ability
     can :observe, User do |the_user|
       user.observable?(the_user)
     end
+
+    can :view, :all do |the_user|
+      the_user.global_observer?
+    end
   end
 end

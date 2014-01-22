@@ -284,6 +284,10 @@ class User < ActiveRecord::Base
     Teambox.config.supervisors? and Teambox.config.supervisors.include?(login)
   end
 
+  def global_observer?
+    Teambox.config.global_observers? and Teambox.config.global_observers.include?(login)
+  end
+
   def join_default_organizations
     Organization.find_all_by_default(true).each do |target|
       target.add_member(self, Membership::ROLES[:participant])

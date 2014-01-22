@@ -23,6 +23,9 @@ defaults: &defaults
   # supervisor role.
   supervisors: gmaggini
 
+  # Global Observers are users that can see everything in the system, but are not administrators.
+  global_observers: mvanrijn, gmaggini
+
 
 ########## Users settings ##########
 
