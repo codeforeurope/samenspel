@@ -1,15 +1,15 @@
 language: ruby
 rvm:
   - 1.9.3
-  - 2.0.0
+#  - 2.0.0
 bundler_args: --without development
 env:
-  - DB=sqlite
-  - DB=mysql
+#  - DB=sqlite
+#  - DB=mysql
   - DB=postgres
 branches:
   except:
-    - fit-pages
+    - gh-pages
 before_script:
   - "cp -v config/database.${DB}.yml config/database.yml"
   - "cp -v config/teambox.example.yml config/teambox.yml"
