@@ -141,8 +141,8 @@ class Ability
       principle.organization.is_admin?(user)
     end
 
-    can [:add_to_project, :remove_from_project], Principle do |principle, project|
-      can? :update, project
+    can [:add_principle_to_project, :remove_principle_from_project], Project do |project|
+      can? :admin, project || project.organization.is_admin?(user)
     end
 
     # User permissions
