@@ -208,7 +208,7 @@ defaults: &defaults
   allow_default_organizations: false
 
   # If you want to use Google Analytics, uncomment this and fill your Tracking ID.
-  analytics_tracking_id: UA-47383216-1
+  analytics_tracking_id: <%= ENV['GOOGLE_ANALYTICS_ID'] %>
 
   # Allow teambox.com to gather statistics about this installation
   tracking_enabled: true
