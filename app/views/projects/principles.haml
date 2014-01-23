@@ -10,7 +10,7 @@
           .name
             %h4= principle.title
           - if request.format != :m
-            -if can? :remove_from_project, principle, @project
+            -if can? :remove_principle_from_project, @project
               .actions
                 = link_to t('users.user.remove_from_project'), remove_principle_project_path(@project, principle), :method => :put
   - else
@@ -27,7 +27,7 @@
           .name
             %h4= principle.title
           - if request.format != :m
-            -if can? :assign_to_project, principle, @project
+            -if can? :add_principle_to_project, @project
               .actions
                 = link_to t('.assign_to_project'), add_principle_project_path(@project, principle), :method => :put
   - else

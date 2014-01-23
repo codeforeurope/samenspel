@@ -702,6 +702,7 @@ nl:
     search: 
       invite: Uitnodigen
       invite_people: "Nodig mensen uit bij dit project"
+      all_people_you_can_invite: "U kunt de volgende mensen uitnodigen door het schrijven van hun gebruikersnamen gescheiden door een spatie:"
       submit: Zenden
       username_or_email: "Vul uw teammaat zijn gebruikersnaam of e-mail in"
     sent: 
