@@ -684,6 +684,7 @@ en:
     search:
       username_or_email: "Enter your teammate's username or email"
       invite_people: Invite people to this project
+      all_people_you_can_invite: "You can invite the following people by writing their usernames separated by space:"
       invite: Invite
       role: "Select a role for this project"
       submit: Send
@@ -975,7 +976,7 @@ en:
       tasks_for_all_projects_explain: "Displaying all tasks. In order to manage task lists and reorder tasks, open each project's tasks."
       tasks_for_project: Task lists for %{project}
       other_views: Other views
-      gantt_view: Project Gantt and calendar
+      gantt_view: Agenda and Calendar
       rss:
         title: "%{name} task updates"
         description: "Tasks activity for project %{name}"
@@ -1002,7 +1003,7 @@ en:
       cant_create: You don't have permission to create tasks in this project
       subscribe: Subscribe to the news feed
       other_views: Other views
-      gantt_view: Project Gantt and calendar
+      gantt_view: Agenda and Calendar
     show:
       title: "Task List: %{name}"
     destroy_message:

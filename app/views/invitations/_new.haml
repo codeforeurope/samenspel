@@ -3,6 +3,11 @@
     = t('invitations.search.invite_people')
   .documentation{:style => 'float:right'}
     = formatting_invitations_link
+  %p
+    = t('invitations.search.all_people_you_can_invite')
+    %ul
+      - @current_project.organization.users.each do |user|
+        %li= "#{user.login}    (#{user.email})"
   .text_field
     = f.label :user_or_email, t('invitations.search.username_or_email')
     = f.text_field :user_or_email
