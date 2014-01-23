@@ -12,7 +12,7 @@ defaults: &defaults
 
   # Enable secure signup and logins over HTTPS.
   # Make sure your domain has a valid SSL certificate
-  secure_logins: false
+  secure_logins: true
 
   # Set community to false to allow support for multiple organizations (just like in hosted version).
   community: false
