@@ -10,6 +10,9 @@ defaults: &defaults
   # The domain from where your app is served
   app_domain: localhost
 
+  # The application name
+  application_name: Teambox
+
   # Enable secure signup and logins over HTTPS.
   # Make sure your domain has a valid SSL certificate
   secure_logins: false

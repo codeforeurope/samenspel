@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def logo_image
     logo = @organization ? @organization.logo(:top) : "header_logo_black.png"
-    image_tag(logo, :alt => "Teambox")
+    image_tag(logo, :alt => Teambox.config.application_name)
   end
 
   def archived_project_strip(project)
