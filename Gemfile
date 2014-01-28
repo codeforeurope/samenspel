@@ -50,6 +50,7 @@ gem 'jammit'
 gem 'rake', '0.9.2'
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'heroku'
 
 
 #group :development do
