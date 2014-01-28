@@ -15,14 +15,12 @@ Teambox::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
   # RAILS3 check
-  # if ENV['MEMCACHE_SERVERS']
-  #   # Heroku setup: heroku addons:add memcached
-  #   memcache_config = ENV['MEMCACHE_SERVERS'].split(',')
-  #   memcache_config << { :namespace => ENV['MEMCACHE_NAMESPACE'] }
-  #   config.cache_store = :mem_cache_store, memcache_config
-  # else
-  #   config.cache_store = :file_store, Rails.root + "tmp/cache"
-  # end
+  if ENV['MEMCACHE_SERVERS']
+  #   # Heroku setup: heroku addons:add memcachedcloud
+    config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  else
+     config.cache_store = :file_store, Rails.root + "tmp/cache"
+  end
 
   # Specifies the header that your server uses for sending files, Apache version
   # config.action_dispatch.x_sendfile_header = "X-Sendfile"
