@@ -5,9 +5,9 @@ ruby '1.9.3'
 group :rails do
   gem 'rails', '~> 3.0.20'
   gem 'builder', '~> 2.1.2'
-  gem 'memcache-client', '>= 1.7.4', :require => nil
+  gem 'dalli' #Memcache client
   gem 'tzinfo', '~> 0.3.12'
-  gem 'i18n', '>= 0.1.3'
+  gem 'i18n', '0.5.0'
   gem 'tmail', '~> 1.2.3'
   gem 'text-format', git: 'git://github.com/ccarruitero/text-format.git'
 end
@@ -15,7 +15,7 @@ end
 #Temporary hack - Fix once this ticket: is resolved
 #gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
 
-gem 'nokogiri'
+gem 'nokogiri', '=1.6.0' #I fixed version 1.6.0 for heroku-api
 gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer', :platform => :mri_18
 gem 'whenever', '~> 0.4.1', :require => nil
 gem 'icalendar', '~> 1.1.3'
@@ -36,13 +36,13 @@ gem 'tilt'
 gem 'choices', :git => "git://github.com/teambox/choices.git"
 
 gem "will_paginate", :git=>"git://github.com/mislav/will_paginate.git", :branch=>"rails3"
-gem 'thinking-sphinx', '2.0.1', :require => 'thinking_sphinx'
-gem 'sprockets-rails', '~> 0.0.1'
+gem 'thinking-sphinx', '~> 2.1.0', require: 'thinking_sphinx'
+gem 'sprockets-rails'
 gem 'sprockets', '1.0.2'
 gem 'barista', '~> 1.0'
 gem 'vestal_versions', '~> 1.2.2', :git => 'git://github.com/adamcooper/vestal_versions'
 gem 'paperclip', '~> 3.5.2'
-gem 'teambox-permalink_fu', :require => 'permalink_fu',  :git => 'https://github.com/teambox/permalink_fu.git'     #Uses Iconv, that is now deprecated
+gem 'teambox-permalink_fu', :require => 'permalink_fu',  :git => 'https://github.com/teambox/permalink_fu.git'
 gem 'cancan', '~> 1.4.1'
 gem 'immortal', :git => 'git://github.com/davidmm/immortal.git', :branch => 'postgresql_fix'
 gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
@@ -50,6 +50,7 @@ gem 'jammit'
 gem 'rake', '0.9.2'
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'heroku-api', '~> 0.3.17', :require => false
 
 
 #group :development do
@@ -67,6 +68,7 @@ group :test, :development do
   gem 'faker', :require => nil
   gem 'timecop', :require => 'timecop'
   gem 'active_reload'
+  gem 'better_errors'
 end
 
 # we don't call the group :test because we don't want them auto-required

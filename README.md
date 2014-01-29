@@ -1,53 +1,51 @@
-# Teambox
-## Collaboration just got better
+# Samenspel
 
-[Teambox is project management software](http://teambox.com/) built on Ruby on Rails with a focus on collaboration.
+Samenspel is a project management software built on Ruby on Rails with a focus on team collaboration, based on the [crewmate fork](https://github.com/crewmate/crewmate) of [Teambox](https://github.com/teambox/teambox).
 
-Teambox workflow is project-centered; each project being visible only to people invited to it.
+Workflow is project-centered; each project being visible only to people invited to it.
 Projects have a status wall, conversations, tasks, shared pages and file uploads. You can even post
 to everywhere just using email.
 
-You can [try Teambox online](http://teambox.com/) for free to see how it works. Teambox is open-source software, meaning you
-can also download it, change its code and host yourself.
+This fork of the Crewmate repository (a maintained fork of Teambox) has been developed by "@maggix":https://github.com/maggix and "@ohyoonkwn":https://github.com/ohyoonkwon for the 2013 edition of "Code for Europe":http://www.codeforeurope.net in Amsterdam. 
+
 
 Project info
 ------------
 
-- Official website: <http://teambox.com/>
-- Code repository: <http://github.com/teambox/teambox>
-- End user guide: <http://guide.teambox.com>
-- Open-source contributors: <http://github.com/teambox/teambox/contributors>
-- License: [GNU Affero GPL 3](https://github.com/teambox/teambox/blob/master/LICENSE)
+- Code repository: <http://github.com/codeforeurope/samenspel>
+- Open-source contributors: <http://github.com/codeforeurope/samenspel/contributors>
+- License: [GNU Affero GPL 3](https://github.com/codeforeurope/samenspel/blob/master/LICENSE)
 
 Code statuses
 -------------
 
-* [![Build Status](https://travis-ci.org/cvut/teambox.png)](https://travis-ci.org/cvut/teambox) 
-* [![Code Climate](https://codeclimate.com/github/cvut/teambox.png)](https://codeclimate.com/github/cvut/teambox) 
-* [![Dependency Status](https://gemnasium.com/cvut/teambox.png)](https://gemnasium.com/cvut/teambox)
+* [![Build Status](https://travis-ci.org/cvut/teambox.png)](https://travis-ci.org/codeforeurope/samenspel) 
 
 Installation
 ------------
 
-Hop to [our wiki](http://wiki.github.com/teambox/teambox/ "Teambox wiki") to get detailed information on
-installing Teambox.
+Hop to [our wiki](http://wiki.github.com/codeforeurope/samenspel/ "Wiki") to get detailed information on
+installing the app.
 
 Support
 -------
 
-Community support for the open source user of Teambox is at [Teambox community](http://teambox.com/community). Its a Teambox-powered public project, free for anyone to join on [Teambox.com](http://teambox.com).
-
-The support for the hosted version of Teambox, [Teambox.com](http://teambox.com), is available at [help.teambox.com](http://help.teambox.com/).
+Community support for the app is at [https://github.com/codeforeurope/samenspel](https://github.com/codeforeurope/samenspel). 
 
 Contributing
 ------------
 
-Follow our [contributor guide](https://github.com/teambox/teambox/wiki/Contributing) on our github wiki.
+Follow our [contributor guide](https://github.com/codeforeurope/samenspel/wiki/Contributing) on our github wiki.
 
 Thanks to the many Ruby projects we're using and the Famfamfam icon collection.
 
 What's new in this fork?
 ------------------------
+
+### Code for Europe specific
+- Added management of Team Principles upon which Projects are managed
+- New Timeline functionality to view the story of Projects
+- Contact management (a sort of shared 'address book')
 
 ### Features
 - Disabled 'community mode' so you can now create more than one organizations. Every organization may have its own projects (like as in hosted version).
