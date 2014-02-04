@@ -24,10 +24,14 @@ defaults: &defaults
   # to create organizations (see below), than only supervisors will be allowed 
   # to do that. Provide their usernames or comment it out if you don't want
   # supervisor role.
+  # Consider also the following configuration:
+  # supervisors: <%= ENV['TEAMBOX_SUPERVISORS'] %>
 #  supervisors: admin
 
   # Global Observers are users that can see everything in the system, but are not administrators.
-#    global_observers: admin
+  # Consider also using the following configuration:
+  # global_observers: <%= ENV['TEAMBOX_GLOBAL_OBSERVERS'] %>
+#  global_observers: admin
 
 
 ########## Users settings ##########
