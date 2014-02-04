@@ -24,10 +24,10 @@ defaults: &defaults
   # to create organizations (see below), than only supervisors will be allowed 
   # to do that. Provide their usernames or comment it out if you don't want
   # supervisor role.
-  supervisors: admin
+  supervisors: <%= ENV['SAMENSPEL_SUPERVISORS'] %>
 
   # Global Observers are users that can see everything in the system, but are not administrators.
-  global_observers: mjansen
+  global_observers: <%= ENV['SAMENSPEL_GLOBAL_OBSERVERS'] %>
 
 
 ########## Users settings ##########
