@@ -111,12 +111,13 @@ module ActivitiesHelper
     when 'create_comment'
       # one of Project, Task or Conversation
       object = object.target
+      linktitle = object.name == nil ? 'conversation' : h(object.name)
       type << "_#{object.class.name.underscore}"
 
       target = case object
       when Task then link_to_unless(plain, h(object.name), [object.project, object])
       when Project then link_to_unless(plain, h(object.name), object)
-      when Conversation then link_to_unless(plain, h(object.name), [object.project, object])
+      when Conversation then link_to_unless(plain, linktitle, [object.project, object])
       end
       { :target => target }
     else
