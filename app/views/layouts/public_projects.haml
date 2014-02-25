@@ -10,7 +10,7 @@
   %body{ :class => "#{location_name} #{I18n.locale} #{Rails.env}"}
     - unless current_user
       .top{ :style => 'background-color: rgb(255,255,220); border-bottom: 1px solid rgb(200,200,150); width: 100%; display: block; font-size: 12px; padding: 10px 0; text-align: center' }
-        = link_to "Log into Teambox", login_path
+        = link_to "Log in", login_path
         to post to this project. Don't have an account?
         = link_to "Sign up for free", signup_path
         to create your own projects.
@@ -28,7 +28,7 @@
             = yield :column
       .footer
         %p.copyright
-          This community is powered by Teambox.
+          This community is powered by Samenspel.
           - unless current_user
             = link_to "Sign up for a free account", signup_path
             to create your own community.

@@ -2,7 +2,7 @@
   = thumb_avatar(comment.user)
   .container
     .date= posted_date comment.created_at
-    = activity_title(comment, true, true)
+    = activity_title(comment, false, true)
     - comment_task_status(comment) if comment.task_comment?
     = activity_project_link(comment.project) unless comment.target.class == Project
     ~raw comment.body_html
