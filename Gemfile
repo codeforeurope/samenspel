@@ -49,7 +49,7 @@ gem 'rack-ssl-enforcer', :require => 'rack/ssl-enforcer'
 gem 'jammit'
 gem 'rake', '0.9.2'
 gem 'thin'
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 gem 'heroku-api', '~> 0.3.17', :require => false
 
 
