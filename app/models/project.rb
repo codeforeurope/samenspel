@@ -131,7 +131,7 @@ class Project < ActiveRecord::Base
     def self.calendar_for_tasks(tasks, projects, filter_user, host = nil, port = 80)
       calendar_name = case projects
       when Project then projects.name
-      else "Teambox - All Projects"
+      else "All Projects"
       end
 
       if filter_user

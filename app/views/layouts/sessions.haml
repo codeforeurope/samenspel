@@ -16,8 +16,10 @@
           = yield
         .column
           #sidebar
-            = image_tag 'teambox-logo.gif', :alt => 'Teambox logo'
+            = image_tag 'teambox-logo.gif', :alt => 'Samenspel logo'
             = yield :column
       .footer
-        %p.copyright= "Copyright © #{Time.now.year} Teambox and contributors. All rights reserved"
+        %p.copyright
+          Code for Europe
+            = link_to random_keyword, "http://codeforeurope.github.io/samenspel"
 
