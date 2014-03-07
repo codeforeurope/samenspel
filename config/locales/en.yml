@@ -1401,7 +1401,7 @@ en:
       project_link: "Click on the link below to start collaborating on %{project} now"
     invitation:
       subject: "%{user} shared [%{project}] with you"
-      invited_to_hello: "Hello %{recipient_name}!"
+      invited_to_hello: "Hello!"
       collaborate_with: "%{name} wants to collaborate with you on Samenspel."
       you_have_been_invited_to: "You have been invited to the project %{project}"
       invited_to_goal: "What is the goal of %{project_name}?"

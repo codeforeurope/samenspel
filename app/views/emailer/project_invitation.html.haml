@@ -3,7 +3,7 @@
   = dont_answer
 
   .box{ :style => email_box }
-    %p= t('emailer.invitation.invited_to_hello', :recipient_name => h(@invitation.user.name))
+    %p= t('emailer.invitation.invited_to_hello')
     %p= t('emailer.invitation.collaborate_with', :name => h(@referral.name))
     -if @project.goal.length > 0
       %p= t('emailer.invitation.invited_to_goal', :project_name => h(@project.name))
@@ -13,7 +13,7 @@
         = t('emailer.invitation.current_teamleaders')
       = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
     %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start)
-    %p= t('emailer.invitation.')
+    %p= t('emailer.invitation.invited_to_youtube')
     -#%p{ :style => email_text(:big) }
     -#  = t('emailer.invitation.you_have_been_invited_to', :project => h(@project.name))
     %h2{ :style => email_text(:big) }
