@@ -57,9 +57,13 @@
           span.login
             float: none
 
-  .recent_conversations, .project_pages
+  .recent_conversations, .project_pages, .recent_reflections
     a.conversation
       background: url(/images/comment.gif) no-repeat left
+      margin-left: 10px
+      padding-left: 25px
+    a.reflection
+      background: url(/images/flag_red.png) no-repeat left
       margin-left: 10px
       padding-left: 25px
     a.page
@@ -320,7 +324,7 @@ form#invite_contacts
       .project, .project_arr
         display: none
 
-.index_conversations, .show_conversations, .show_tasks
+.index_conversations, .show_conversations, .show_tasks, .index_reflections, .show_reflections
   .comment
     .name
       .project, .project_arr

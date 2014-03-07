@@ -1,0 +1,7 @@
+#page
+  #reflections
+    .reflection
+      = link_to t('.new_reflection'), new_project_reflection_path(@current_project), :class => 'new'
+    - for reflection in reflections
+      .reflection
+        = link_to h(reflection), project_reflection_path(@current_project, reflection)

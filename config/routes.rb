@@ -20,6 +20,8 @@ Teambox::Application.routes.draw do
     match ':id' => 'projects#show', :as => :project
     match ':project_id/conversations' => 'conversations#index', :as => :project_conversations
     match ':project_id/conversations/:id' => 'conversations#show', :as => :project_conversation
+    match ':project_id/reflections' => 'reflections#index', :as => :project_reflections
+    match ':project_id/reflections/:id' => 'reflections#show', :as => :project_reflections
     match ':project_id/:id' => 'pages#show', :as => :project_page
   end
 
@@ -126,6 +128,7 @@ Teambox::Application.routes.draw do
         get :contact_importer
       end
       resources :conversations
+      resources :reflections
       resources :task_lists do
         resources :tasks
       end
@@ -230,6 +233,15 @@ Teambox::Application.routes.draw do
         resources :comments
       end
 
+      resources :reflections do
+        member do
+          put :watch
+          put :unwatch
+        end
+
+        resources :comments
+      end
+
       resources :pages do
         collection do
           post :resort
@@ -267,6 +279,15 @@ Teambox::Application.routes.draw do
             put :watch
             put :unwatch
             post :convert_to_task
+          end
+
+          resources :comments, :except => [:new, :edit]
+        end
+
+        resources :reflections, :except => [:new, :edit] do
+          member do
+            put :watch
+            put :unwatch
           end
 
           resources :comments, :except => [:new, :edit]
@@ -343,6 +364,15 @@ Teambox::Application.routes.draw do
         resources :comments, :except => [:new, :edit]
       end
 
+      resources :reflections, :except => [:new, :edit] do
+        member do
+          put :watch
+          put :unwatch
+        end
+
+        resources :comments, :except => [:new, :edit]
+      end
+
       resources :task_lists, :except => [:new, :edit] do
         resources :tasks, :except => [:new, :edit]
       end
@@ -390,6 +420,7 @@ Teambox::Application.routes.draw do
     end
 
     resources :conversations, :only => [ :create ]
+    resources :reflections, :only => [ :create ]
 
     match 'time/:year/:month' => 'hours#index', :as => :hours_by_month, :via => :get
     match 'time/by_period' => 'hours#by_period', :as => :hours_by_period, :via => :get

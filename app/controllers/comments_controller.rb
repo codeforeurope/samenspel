@@ -69,8 +69,10 @@ class CommentsController < ApplicationController
     # can't use `memoize` because it freezes the object
     @target ||= if params[:conversation_id]
       @current_project.conversations.find params[:conversation_id]
-    else
+    elsif params[:task_id]
       @current_project.tasks.find params[:task_id]
+    elsif params[:reflection_id]
+      @current_project.reflections.find params[:reflection_id]
     end
   end
 

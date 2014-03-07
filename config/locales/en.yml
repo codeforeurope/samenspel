@@ -45,6 +45,7 @@ en:
     data: "There was a problem locating your data."
   deleted:
     conversation: "Deleted %{name} conversation"
+    reflection: "Deleted %{name} reflection"
     task: "Deleted %{name} task"
     task_list: "Deleted %{name} task list"
     page: "Deleted %{name} page"
@@ -58,6 +59,9 @@ en:
     create_conversation:
       create_conversation: started the conversation
       title: "%{user} started a conversation: %{conversation}"
+    create_conversation:
+      create_reflection: started the reflection
+      title: "%{user} started a reflection: %{reflection}"
     create_comment:
       create_comment: created the comment
       title: "%{user} commented on %{target}"
@@ -717,38 +721,86 @@ en:
       name: Title
       body: First comment
     new:
-      title: New Reflection
+      title: New Conversation
       submit: Create
     watcher_fields:
       add_suscribers: Which people will be watching this conversation?
       subscribe_note_html: These people will be notified via email of this message and any following comments.<br/>They can unsubscribe at any time.
       invite_users: You are the only user in this project!
-      no_users_yet_html: "Reflections are more useful when shared. <a href='%{invite_link}'>Invite some users</a> to this project now so they can access this reflection, answer and receive updates."
+      no_users_yet_html: "Conversations are more useful when shared. <a href='%{invite_link}'>Invite some users</a> to this project now so they can access this conversation, answer and receive updates."
+      people_all: "All people in project"
+      cant_notify: "This is a public project. To avoid unwanted emails, we're not showing the list of users that you can notify."
+    edit:
+      submit: 'Update Conversation'
+    index:
+      title: Conversations in %{project}
+      new_conversation: "New Conversation"
+      view_single: Read more
+      cant_create: "You don't have permissions to create a conversation in this project"
+      rss:
+        title: "%{name} conversations"
+        description: "Conversations for project %{name}"
+    primer:
+      empty: This project doesn't have any conversations yet.
+      create_first: Create the first conversation in this project!
+      define_html: "Use conversations to <b>discuss decisions</b> and <b>update your team</b> in a centralized way.<br/>Each conversation is a thread of comments, which replace messy emails."
+      item1_html: "<b>Share files</b>. Comments can have attached files, too."
+      item2_html: "<b>Subscribe</b> to a conversation to be notified about future replies by email or RSS."
+      item3_html: "<b>Impress</b>. Any comment can be formatted with text styles."
+      item4_html: "<b>Inbox-driven?</b> You can reply to a conversation from your email."
+      footer1_html: "Conversations are great to <b>share a design</b>, <b>decide a date</b> for meeting or <b>report</b> some news."
+      footer2_html: "Since they're threaded, it's easy to go back in time and see which files were sent and what did each teammate said. In the system, <b>collaborating is also reporting</b>."
+    column:
+      new_conversation: New Conversation
+      cant_create: You don't have permission to create conversations in this project
+      subscribe: Subscribe to the news feed
+    conversation_with_extract:
+      posted_by: Posted by
+    show:
+      started_by: Started by
+      edit: Edit title
+      message: message
+      messages: messages
+    short_conversation:
+      comment: comment
+      comments: comments
+  reflections:
+    actions:
+      confirm_delete: Are you sure you to delete this reflection?
+    link:
+      edit: Edit
+    fields:
+      name: Title
+      body: First comment
+    new:
+      title: New Reflection
+      submit: Create
+    watcher_fields:
+      add_suscribers: Which people will be watching this reflection?
+      subscribe_note_html: These people will be notified via email of this message and any following comments.<br/>They can unsubscribe at any time.
+      invite_users: You are the only user in this project!
+      no_users_yet_html: "Reflections are more useful when shared. <a href='%{invite_link}'>Invite some users</a> to this project now so they can access this conversation, answer and receive updates."
       people_all: "All people in project"
       cant_notify: "This is a public project. To avoid unwanted emails, we're not showing the list of users that you can notify."
     edit:
       submit: 'Update Reflection'
     index:
       title: Reflections in %{project}
-      new_conversation: "New Reflection"
+      new_reflection: "New Reflection"
       view_single: Read more
-      cant_create: "You don't have permissions to create a conversation in this project"
+      cant_create: "You don't have permissions to create a reflection in this project"
       rss:
         title: "%{name} reflections"
         description: "Reflections for project %{name}"
     primer:
-      empty: This project doesn't have any conversations yet.
+      empty: This project doesn't have any reflection yet.
       create_first: Create the first reflection in this project!
-      define_html: "Use reflections to <b>discuss decisions</b> and <b>update your team</b> in a centralized way.<br/>Each conversation is a thread of comments, which replace messy emails."
-      item1_html: "<b>Share files</b>. Comments can have attached files, too."
-      item2_html: "<b>Subscribe</b> to a reflection to be notified about future replies by email or RSS."
-      item3_html: "<b>Impress</b>. Any comment can be formatted with text styles."
-      item4_html: "<b>Inbox-driven?</b> You can reply to a reflection from your email."
-      footer1_html: "Reflections are great to <b>share a design</b>, <b>decide a date</b> for meeting or <b>report</b> some news."
+      define_html: "Use reflections to <b>discuss important event</b> and <b>review your way of working</b> in a centralized way.<br/>Each reflection is a thread of comments, which replace messy emails."
+      footer1_html: "Reflections are great to <b>share important events</b>, <b>decide how to work in the future</b>."
       footer2_html: "Since they're threaded, it's easy to go back in time and see which files were sent and what did each teammate said. In the system, <b>collaborating is also reporting</b>."
     column:
-      new_conversation: New Conversation
-      cant_create: You don't have permission to create conversations in this project
+      new_reflection: New Reflection
+      cant_create: You don't have permission to create reflections in this project
       subscribe: Subscribe to the news feed
     conversation_with_extract:
       posted_by: Posted by
@@ -1075,6 +1127,7 @@ en:
       sending: Sending…
       project: "Share what is important to remember for this project."
       conversation: ""
+      reflection: ""
       task_list: "Share ideas for this task list. To create and assign tasks, use the sidebar."
       task: "Define what needs to be done, assign this task to somebody."
     convert_form:
@@ -1230,7 +1283,8 @@ en:
       all_projects: Projects
       show_all_projects: Show all projects...
       new_project: + New Project
-      conversations: Reflections
+      conversations: Conversations
+      reflections: Reflections
       tasks: Tasks
       time: Time tracking
       timeline: Timeline
@@ -1333,10 +1387,13 @@ en:
       subscribe_to_feeds: Subscribe to feeds...
       subscribe_to_calendars: Subscribe to calendars...
       send_email: Post a new comment by email...
-      send_email_conversations: Post a new reflection by email...
+      send_email_conversations: Post a new conversation by email...
+      send_email_reflection: Post a new reflection by email...
       send_email_help_project_html: "To post a new comment to this project's activity wall send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the wall."
       send_email_help_conversations_html: "To create a new conversation send an email to <a href=\"mailto:%{email}\">%{email}</a> with Subject for the title and Body for the comment. Only members from the project can create a new conversation."
+      send_email_help_reflections_html: "To create a new reflection send an email to <a href=\"mailto:%{email}\">%{email}</a> with Subject for the title and Body for the comment. Only members from the project can create a new conversation."
       send_email_help_conversation_html: "To post a new comment to this conversation send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the conversation."
+      send_email_help_reflection_html: "To post a new comment to this conversation send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the reflection."
       send_email_help_task_html: "To post a new comment to this task send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can comment to the task."
   affiliate:
     area: Affiliate Area
@@ -1492,6 +1549,7 @@ en:
     show_projects: Overview
     index_task_lists: All Task Lists
     index_conversations: All Conversations
+    index_reflections: All Reflections
     index_pages: All Pages
     index_uploads: All File Uploads
     create_uploads: File Upload
@@ -1506,6 +1564,7 @@ en:
     new_projects: New Project
     archived_task_lists: Archived Tasks
     new_conversations: New Conversation
+    new_reflections: New Reflections
     results_search: Search
     show_plans: Plans
 
@@ -1643,7 +1702,8 @@ en:
       task_list: Task List
       task: Task
       comment: Comment
-      conversation: Reflection
+      conversation: Conversation
+      reflection: Reflection
       page: Page
       divider: Divider
       note: Text
@@ -1706,6 +1766,7 @@ en:
         status: Status
       conversation:
         name: Name
+
       pages:
         name: Page
         description: Description

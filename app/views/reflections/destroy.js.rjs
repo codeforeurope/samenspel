@@ -1,0 +1,1 @@
+page.redirect_to project_reflections_path(@current_project)

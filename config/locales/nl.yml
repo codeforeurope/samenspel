@@ -696,7 +696,7 @@ nl:
       name: "Titel"
       body: "Eerste reactie"
     new:
-      title: "Nieuwe reflectie"
+      title: "Nieuwe conversatie"
       submit: "Aanmaken"
     watcher_fields:
       add_suscribers: "Welke mensen zullen deze conversatie bekijken?"
@@ -708,22 +708,22 @@ nl:
     edit:
       submit: "Update Conversatie"
     index:
-      title: "Reflectie in %{project}"
-      new_conversation: "Nieuwe reflectie"
+      title: "Conversatie in %{project}"
+      new_conversation: "Nieuwe conversatie"
       view_single: "Bekijk meer"
       cant_create: "You don't have permissions to create a conversation in this project"
       rss:
-        title: "%{name} reflecties"
-        description: "Reflecties voor project %{name}"
+        title: "%{name} conversaties"
+        description: "Conversaties voor project %{name}"
     primer:
       empty: "Dit project heeft nog geen conversaties."
       create_first: "Maak uw eerste reflection aan in dit project!"
-      define_html: "Gebruik reflecties om <b>beslissingen te bespreken</b> en <b>update uw team</b> in een gecentraliseerde manier.<br/>Elke conversatie is een draad van opmerkingen, die rommelige e-mails vervangen."
+      define_html: "Gebruik conversaties om <b>beslissingen te bespreken</b> en <b>update uw team</b> in een gecentraliseerde manier.<br/>Elke conversatie is een draad van opmerkingen, die rommelige e-mails vervangen."
       item1_html: "<b>Deel bestanden</b>. Reacties kunnen ook bijlagen bestanden hebben."
       item2_html: "<b>Registreer</b> in een reflection om op de hoogte gehouden te worden voor toekomstige reacties door e-mail of RSS."
       item3_html: "<b>Impress</b>. Elke reactie kan worden geformatteerd met tekststijlen."
-      item4_html: "<b>Inbox-driven?</b> U kunt door middel van uw e-mail reacties plaatsen op reflecties."
-      footer1_html: "Reflecties zijn goed voor <b>een ontwerp te delen</b>, <b>een datum te beslissen</b> voor bijeenkomsten of nieuws te <b>raporteren</b>."
+      item4_html: "<b>Inbox-driven?</b> U kunt door middel van uw e-mail reacties plaatsen op conversaties."
+      footer1_html: "Conversaties zijn goed voor <b>een ontwerp te delen</b>, <b>een datum te beslissen</b> voor bijeenkomsten of nieuws te <b>raporteren</b>."
       footer2_html: "Since they're threaded, it's easy to go back in time and see which files were sent and what did each teammate said. In the system, <b>collaborating is also reporting</b>."
     column:
       new_conversation: "Nieuwe Conversatie"
@@ -1052,6 +1052,7 @@ nl:
       sending: "Verzenden..."
       project: "Wat moeten anderen nu weten over dit project."
       conversation: "Wat is belangrijk om te onthouden voor dit project."
+      reflection: ""
       task_list: "Deel ideeën voor deze takenlijst. Om taken aan te maken en toe te wijzen, maak gebruik van de sidebar."
       task: "Defineer wat er gedaan moet worden door commentaar te geven."
     convert_form:
@@ -1206,7 +1207,8 @@ nl:
       all_projects: "Alle Projecten"
       show_all_projects: "Show all projects..."
       new_project: "+ Nieuw Project"
-      conversations: "Reflecties"
+      conversations: "Conversaties"
+      reflections: "Reflecties"
       tasks: "Taken"
       time: "Time tracking"
       timeline: "Timeline"
@@ -1308,10 +1310,11 @@ nl:
       subscribe_to_feeds: "Subscribe to feeds..."
       subscribe_to_calendars: "Subscribe to calendars..."
       send_email: "Post a new comment by email..."
-      send_email_conversations: "Stuur een nieuwe reflectie per email... "
       send_email_help_project_html: "To post a new comment to this project's activity wall send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the wall."
       send_email_help_conversations_html: "To create a new conversation send an email to <a href=\"mailto:%{email}\">%{email}</a> with Subject for the title and Body for the comment. Only members from the project can create a new conversation."
+      send_email_help_reflections_html: "To create a new reflection send an email to <a href=\"mailto:%{email}\">%{email}</a> with Subject for the title and Body for the comment. Only members from the project can create a new conversation."
       send_email_help_conversation_html: "To post a new comment to this conversation send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the conversation."
+      send_email_help_reflection_html: "To post a new comment to this conversation send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can post to the reflection."
       send_email_help_task_html: "To post a new comment to this task send an email to <a href=\"mailto:%{email}\">%{email}</a>. Only members from the project can comment to the task."
   affiliate:
     area: "Affiliate Area"

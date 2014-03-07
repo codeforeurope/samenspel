@@ -15,6 +15,7 @@ class Project
 
     delete.with_options :order => 'id DESC' do |ordered|
       ordered.has_many :conversations
+      ordered.has_many :reflections
       ordered.has_many :activities
       ordered.has_many :comments
     end

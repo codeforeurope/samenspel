@@ -8,7 +8,7 @@
   .comment.comment_header
     %span.time= posted_date(comments.first ? comments.first.created_at : thread.created_at)
     .info
-      - icon = { "Conversation" => "comment", "Task" => "tick" }[thread.class.to_s]
+      - icon = { "Conversation" => "comment", "Task" => "tick", "Reflection" => "flag_red"}[thread.class.to_s]
       %img{ :src => "/famfamfam/#{icon}.png", :style => 'padding: 4px' }
     .block
       - case thread

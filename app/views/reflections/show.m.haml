@@ -1,0 +1,11 @@
+%h2=h @reflection
+
+= people_watching(@current_project,current_user,@reflection)
+
+#page
+  #activities
+    = list_comments(@reflection.comments,@reflection)
+
+- if can? :comment, @reflection
+  = form_for [@current_project, @reflection, @reflection.comments.build], :html => {:id => nil, 'data-project-id' => @current_project.id} do |form|
+    = render 'comments/fields', :f => form, :placeholder => t("comments.new.reflection")

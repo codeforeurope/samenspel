@@ -17,22 +17,22 @@ class Ability
           Time.now < 15.minutes.since(comment.created_at) )
     end
 
-    can :comment, [Task, Conversation] do |object, project|
+    can :comment, [Task, Conversation, Reflection] do |object, project|
       project ||= object.project
       project.commentable?(user)
     end
 
-    can :watch, [Task, Conversation] do |object|
+    can :watch, [Task, Conversation, Reflection] do |object|
       object.project.commentable?(user)
     end
 
     # Core object permissions
 
-    can :update, [Conversation, Task, TaskList, Page, Upload] do |object|
+    can :update, [Conversation, Task, TaskList, Page, Upload, Reflection] do |object|
       object.editable?(user)
     end
 
-    can :destroy, [Conversation, Task, TaskList, Page, Upload] do |object|
+    can :destroy, [Conversation, Task, TaskList, Page, Upload, Reflection] do |object|
       object.owner?(user) or object.project.admin?(user)
     end
 
@@ -86,6 +86,10 @@ class Ability
 
     can :converse, Project do |project|
       project.commentable?(user)
+    end
+
+    can :reflect, Project do |project|
+      project.reflectable?(user)
     end
 
     can :make_tasks, Project do |project|

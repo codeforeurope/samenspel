@@ -9,6 +9,10 @@ class Project
     check_role(user,Person::ROLES[:commenter])
   end
 
+  def reflectable?(user)
+    check_role(user,Person::ROLES[:commenter])
+  end
+
   def observable?(user)
     check_role(user,Person::ROLES[:observer])
   end
