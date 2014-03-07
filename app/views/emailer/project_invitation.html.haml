@@ -11,7 +11,7 @@
     %p
       %strong
         = t('emailer.invitation.current_teamleaders')
-      = @project.people.map(&:user).select { |user| @current_project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
+      = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
     %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start)
     %p= t('emailer.invitation.')
     -#%p{ :style => email_text(:big) }
