@@ -168,6 +168,7 @@ class Emailer < ActionMailer::Base
     @invitation = Invitation.find_with_deleted(invitation_id)
     @project    = @invitation.project
     @recipient  = @invitation.invited_user
+    @referral    = @invitation.user
     mail({
       :to            => @invitation.invited_user.email,
       :subject       => I18n.t("emailer.project_membership_notification.subject",
