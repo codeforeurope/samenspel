@@ -1401,15 +1401,20 @@ en:
       project_link: "Click on the link below to start collaborating on %{project} now"
     invitation:
       subject: "%{user} shared [%{project}] with you"
-      collaborate_with: "%{name} wants to collaborate with you on Teambox:"
+      invited_to_hello: "Hello %{recipient_name}!"
+      collaborate_with: "%{name} wants to collaborate with you on Samenspel."
       you_have_been_invited_to: "You have been invited to the project %{project}"
+      invited_to_goal: "What is the goal of %{project_name}?"
+      invited_to_youtube: 'What is Samenspel and why should I use it? <br> <iframe width="480" height="360" src="//www.youtube.com/embed/JmANgm6V22c?rel=0" frameborder="0" allowfullscreen></iframe>'
+      invited_to_project_startdate: "This project started on %{project_startdate}"
       accept_the_invitation: Accept the invitation to start collaborating
       current_users: "Current users in this project:"
+      current_teamleaders: "Teamleaders for this project:"
       plaintext_link: "If the above link doesn't work, copy and paste the following code into your browser bar: "
-      teambox_is_a_pm_platform: "Teambox is a project management platform made for real-world collaboration."
+      teambox_is_a_pm_platform: "Samenspel is a project management platform made for real-world collaboration."
       plan_share_and_collaborate: "Plan, share and keep track of what's been done. Simple as it should be."
       report_abuse: "This email was sent to you at your contact's request. Please report any abuse."
-      subject_without_project: "%{name} invited you to Teambox"
+      subject_without_project: "%{name} invited you to Samenspel"
     teamboxdata:
         hey: "Hey, %{user_name}!"
         data_imported: "Your data has been successfully imported into Teambox. To view details, please visit the following link:"
@@ -1421,11 +1426,11 @@ en:
         imported: "Your data has been imported"
         import_failed: "Your data could not be imported"
     confirm:
-      subject: "Get started with Teambox"
+      subject: "Get started"
       hey: "Hey, %{user_name}!"
       follow_this_link: "In order to %{complete} for Teambox, we need you to log in by clicking here:"
       complete: complete your signup
-      log_in: "Log into Teambox now!"
+      log_in: "Log in now!"
       plaintext_link: "If this doesn't work, copy and paste the following link in your browser's bar:"
       report_abuse: "You received this message because you signed up for a Teambox account with %{email}"
       problems_html: "If you have any problems, please contact us at %{support}"

@@ -1,8 +1,10 @@
 <%= dont_answer %>
 
+<%= t('emailer.invitation.invited_to_hello', :recipient_name => h(@invitation.user.name)) %>
 <%= t('emailer.invitation.collaborate_with', :name => h(@referral.name)) %>
-
-<%= t('emailer.invitation.you_have_been_invited_to', :project => h(@project.name)) %>
+<%= t('emailer.invitation.invited_to_goal', :project_name, h(@project.name), :project_goal => h(@project.goal)) %>
+<%= t('emailer.invitation.current_teamleaders') %>
+<%= @project.people.map(&:user).select { |user| @current_project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence %>
 
 <%= t('emailer.invitation.accept_the_invitation') %>:
 <%= projects_url(:invitation => @invitation.token) %>

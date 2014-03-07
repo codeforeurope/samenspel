@@ -631,18 +631,24 @@ nl:
       do_not_answer: "Beantwoord deze mail niet."
     confirm: 
       hey: "Hey, %{user_name}!"
-      log_in: "Log nu in op Teambox!"
+      log_in: "Log nu in op Samenspel!"
       plaintext_link: "Als het niet werkt, kopiëer the volgende link in uw browser:"
       problems_html: "Als u enkele problemen ondervindt, alstublieft neem contact met ons op, op %{support}"
       report_abuse: "U heeft dit bericht ontvangen, omdat u zich heeft ingeschreven voor een Teambox account met %{email}"
-    invitation: 
+    invitation:
+      invited_to_hello: "Hallo %{recipient_name}!"
+      collaborate_with: "%{name} wil met je samenwerken op Samenspel."
+      invited_to_goal: "Wat is het doel van het %{project_name}?"
+      invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken?<br> <iframe width="480" height="360" src="//www.youtube.com/embed/JmANgm6V22c?rel=0" frameborder="0" allowfullscreen></iframe>'
+      invited_to_project_startdate: "Dit project is gestart op %{project_startdate}"
+      current_teamleaders: "Je teamleden in dit project:"
       accept_the_invitation: "Accepteer de uitnodiging om de samenwerking te starten"
-      collaborate_with: "%{name} wilt met u samenwerken in Teambox:"
+      collaborate_with: "%{name} wilt met u samenwerken in Samenspel:"
       current_users: "Huidige gebruikers in dit project"
       plaintext_link: "Als de bovenstaande link niet werkt, kopiëer en plak de volgende code in uw browser: "
       plan_share_and_collaborate: "Plan, deel en houd bij wat er is gebeurd. Eenvoudig zoals het zou moeten zijn."
       report_abuse: "Deze e-mail is naar u verzonden op verzoek van uw contactpersoon. Alstubleeft report misbruik."
-      teambox_is_a_pm_platform: "Teambox is een project management platform gemaakt voor 'real-world' samenwerking."
+      teambox_is_a_pm_platform: "Samenspel is een project management platform gemaakt voor 'real-world' samenwerking."
       you_have_been_invited_to: "U bent uitgenodigd in het project <b>%{project}</b>"
     notify: 
       are_watching: " zijn ingeschreven in deze conversatie, en zullen op de hoogte gebracht worden van toekomstige antwoorden."
@@ -653,7 +659,7 @@ nl:
       due_on: "Vervalt op %{date}"
       my_tasks: "Meer taken toegewezen aan u in %{project}"
       notification_settings: "U kunt uw <a href='%{url}'>aanmelding instellingen</a> veranderen voor verdere emails."
-      project: "Teambox Project:"
+      project: "Project:"
       reply: "U kunt ook antwoorden op deze e-mail om een antwoord te geven op de conversatie."
       status: "Status: %{status}"
       stop_watching: "<a href='%{stop_watching_url}'>Uitschrijven</a> van email berichten voor deze thread."
@@ -662,7 +668,7 @@ nl:
       view_online: "U kunt <a href='%{link}'>deze conversatie online bekijken</a> om te beantwoorden en bestanden mee geven."
     reset_password: 
       hey: "Hey, %{user_name}!"
-      log_in: "Log nu in op Teambox!"
+      log_in: "Log nu in!"
       plaintext_link: "Als het niet werkt, kopiëer the volgende link in uw browser:"
       problems_html: "Als u enkele problemen ondervindt, alstublieft neem contact met ons op, op %{support}"
       report_abuse: "U heeft dit bericht ontvangen, omdat u zich heeft ingeschreven voor een Teambox account met %{email}"
