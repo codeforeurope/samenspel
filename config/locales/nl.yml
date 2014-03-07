@@ -639,7 +639,7 @@ nl:
       invited_to_hello: "Hallo!"
       collaborate_with: "%{name} wil met je samenwerken op Samenspel."
       invited_to_goal: "Wat is het doel van het %{project_name}?"
-      invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken?<br> <iframe width="480" height="360" src="//www.youtube.com/embed/JmANgm6V22c?rel=0" frameborder="0" allowfullscreen></iframe>'
+      invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken? Klik hier! #{youtube_link}'
       invited_to_project_startdate: "Dit project is gestart op %{project_startdate}"
       current_teamleaders: "Je teamleden in dit project:"
       accept_the_invitation: "Accepteer de uitnodiging om de samenwerking te starten"

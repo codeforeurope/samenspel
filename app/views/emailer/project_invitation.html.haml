@@ -12,16 +12,16 @@
       %strong
         = t('emailer.invitation.current_teamleaders')
       = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
-    %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start)
-    %p= t('emailer.invitation.invited_to_youtube')
+    %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start.strftime("%e %B %Y"))
+    %p= t('emailer.invitation.invited_to_youtube', :youtube_link => "http://www.youtube.com/embed/JmANgm6V2")
     -#%p{ :style => email_text(:big) }
     -#  = t('emailer.invitation.you_have_been_invited_to', :project => h(@project.name))
     %h2{ :style => email_text(:big) }
       = link_to t('emailer.invitation.accept_the_invitation'), projects_url(:invitation => @invitation.token)
-    %p
-      %strong
-        = t('emailer.invitation.current_users')
-      = @project.people.collect { |p| h(p.name) }.to_sentence
+    -#%p
+    -#  %strong
+    -#    = t('emailer.invitation.current_users')
+    -#  = @project.people.collect { |p| h(p.name) }.to_sentence
 
   %p{ :style => email_text(:small) }
     = t('emailer.invitation.plaintext_link')
