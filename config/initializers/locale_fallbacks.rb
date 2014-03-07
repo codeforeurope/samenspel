@@ -6,3 +6,5 @@ I18n::Backend::Simple.send(:include, I18n::Backend::MissingInterpolationFallback
 
 # people speaking Catalan also speak Spanish as spoken in Spain
 I18n.fallbacks.map(:ca => :es)
+#Fallback for NL
+I18n.fallbacks.map(:nl => :en)
