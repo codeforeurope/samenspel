@@ -1,0 +1,21 @@
+- if comment = reflection.comments.first(:order => 'id asc')
+  .reflection
+    .comment
+      .info= thumb_avatar(comment.user)
+      .block
+        .body
+          %h2.title
+            = link_to h(reflection), [@current_project, reflection]
+            %span= t('common.comment', :count => reflection.comments_count)
+          .textilized
+            ~raw comment.body_html
+        - if comment.uploads.any?
+          - if comment.uploads.all? { |upload| upload.image? }
+            .upload_images
+              = list_uploads_inline_with_thumbnails(comment.uploads)
+          - else
+            .upload_list
+              = list_uploads_inline(comment.uploads)
+        %p.go_to_thread
+          = link_to t('reflections.index.view_single'), [@current_project, reflection]
+      .clear

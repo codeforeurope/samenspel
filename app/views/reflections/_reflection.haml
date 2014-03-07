@@ -1,0 +1,6 @@
+- classes = "reflection_item"
+- classes += ' active' if defined?(current_target) && current_target == reflection
+.reflection{ :id => "Reflection_#{reflection.id}", :class => classes }
+  %span.comments_count= reflection.comments_count
+  = the_reflection_link(reflection)
+.clear

@@ -1,0 +1,8 @@
+#primer
+  %p= t('.empty') if location_name?('index_reflections')
+  %div{ :class => "#{ 'box' if location_name?('index_reflections')}"}
+    - if can?(:reflect, project) && location_name?('index_reflections')
+      %h2= link_to t('.create_first'), new_project_reflection_path(project)
+    %p= t('.define_html')
+    %p= t('.footer1_html')
+    %p= t('.footer2_html')

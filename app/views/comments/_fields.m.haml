@@ -35,7 +35,7 @@
         = t('comments.watchers.popup_note_html')
 
     - if local_assigns[:conversation_form] && local_assigns[:project]
-      - if f.object.target && can?(:update, f.object.target) && can?(:make_tasks, local_assigns[:project])
+      - if f.object.target && can?(:update, f.object.target) && can?(:make_tasks, local_assigns[:project]) && f.object.target.class != Reflection
         %span.convert_to_task
           = link_to t('comments.conversations.convert_to_task'), '#convert_to_task'
         .convert_to_task{:style => 'display:none;'}

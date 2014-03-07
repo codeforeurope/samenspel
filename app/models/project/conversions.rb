@@ -58,6 +58,10 @@ class Project
       base[:conversations] = conversations.map {|p| p.to_api_hash(options)}
     end
 
+    if Array(options[:include]).include? :reflections
+      base[:reflections] = conversations.map {|p| p.to_api_hash(options)}
+    end
+
     base
   end
 end

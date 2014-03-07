@@ -1,0 +1,5 @@
+= reflection_column(@current_project, @reflections, :reflection => @reflection)
+= render 'reflections/header', :project => @current_project, :reflection => @reflection
+
+= people_watching(@current_project,current_user,@reflection)
+= render 'activities/thread', :thread => @reflection

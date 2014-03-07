@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120210132) do
+ActiveRecord::Schema.define(:version => 20140307101805) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -346,6 +346,21 @@ ActiveRecord::Schema.define(:version => 20140120210132) do
 
   add_index "projects", ["deleted"], :name => "index_projects_on_deleted"
   add_index "projects", ["permalink"], :name => "index_projects_on_permalink"
+
+  create_table "reflections", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "last_comment_id"
+    t.integer  "comments_count",  :default => 0,     :null => false
+    t.text     "watcher_ids"
+    t.boolean  "deleted",         :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reflections", ["deleted"], :name => "index_reflections_on_deleted"
+  add_index "reflections", ["project_id"], :name => "index_reflections_on_project_id"
 
   create_table "reset_passwords", :force => true do |t|
     t.integer  "user_id"

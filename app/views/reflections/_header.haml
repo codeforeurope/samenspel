@@ -1,0 +1,21 @@
+.reflection_header
+
+  - if can? :update, reflection
+    .text_actions
+      = link_to t('common.edit'), [:edit, project, reflection]
+      
+      - if can? :destroy, reflection
+        = t('common.or')
+        = link_to t('common.delete'), [project, reflection],
+          :'data-method' => 'delete', :'data-confirm' => t('reflections.actions.confirm_delete'),
+          :class => 'delete_reflection_link'
+  
+  %h2=h reflection.name
+
+- if can? :update, reflection
+  = form_for [project, reflection], :html => { :'data-remote' => true, :style => 'display: none', :class => 'edit_reflection app_form' } do |f|
+    = render 'fields', :f => f, :project => @current_project
+    .submit
+      = f.submit t('reflections.edit.submit')
+      = t('common.or')
+      = link_to t('common.cancel'), '#cancel'

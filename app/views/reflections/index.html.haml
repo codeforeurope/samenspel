@@ -1,0 +1,18 @@
+%h2= t('.title', :project => @current_project)
+%p.subtitle= @current_project.organization
+
+= reflection_column(@current_project,@reflections, :show_reflection_settings => true)
+
+.create_bar
+  - if can? :reflect, @current_project
+    = new_reflection_link(@current_project)
+    = t('common.or')
+    = instructions_for_email(@current_project)
+  - else
+    = t('.cant_create')
+
+- if @reflections.any?
+  #reflections
+    = render :partial => 'reflections/short_conversation', :as => :reflection, :collection => @reflections
+- else
+  = reflections_primer(@current_project)

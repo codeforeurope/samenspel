@@ -17,15 +17,16 @@
       - next if project.new_record?
       .el= link_to project, project, :class => 'project'
       .contained
-        .el= link_to t('.recent_activity'), project_path(project), :class => 'recent_activity'
+        .el= link_to t('.recent_activity'), project_path(project), :class => 'recent_activity ajax'
         .el= link_to t('.tasks'), project_task_lists_path(project), :class => 'tasks'
         - if Teambox.config.enable_conversations_module
-          .el= link_to t('.conversations'), project_conversations_path(project), :class => 'conversations'
+          .el= link_to t('.conversations'), project_conversations_path(project), :class => 'conversations ajax'
+        .el= link_to t('.reflections'), project_reflections_path(project), :class => 'reflections ajax'
         - if time_tracking_enabled? and project.tracks_time
-          .el= link_to t('.time'), project_time_path(project), :class => 'time'
+          .el= link_to t('.time'), project_time_path(project), :class => 'time ajax'
           -#Disable modules in config and Check if these modules are enabled in config //GM
         - if Teambox.config.enable_pages_module
-          .el= link_to t('.pages'), project_pages_path(project), :class => 'pages'
+          .el= link_to t('.pages'), project_pages_path(project), :class => 'pages ajax'
         - if Teambox.config.enable_files_module
           .el= link_to t('.files'), project_uploads_path(project), :class => 'files'
         .el= link_to t('.contacts'), project_contacts_path(project), :class => 'addressbook'
@@ -33,11 +34,11 @@
         - if can?(:update, project)
           .el= link_to t('.settings'), project_settings_path(project), :class => 'settings'
           .contained
-            .el= link_to t('shared.project_settings_navigation.general'), project_settings_path(project.permalink), :class => 'general_settings'
-            .el= link_to t('shared.project_settings_navigation.deletion'), project_deletion_path(project.permalink, :sub_action => 'deletion'), :class => 'deletion'
+            .el= link_to t('shared.project_settings_navigation.general'), project_settings_path(project.permalink), :class => 'general_settings ajax'
+            .el= link_to t('shared.project_settings_navigation.deletion'), project_deletion_path(project.permalink, :sub_action => 'deletion'), :class => 'deletion ajax'
             - if project.owner?(current_user)
-              .el= link_to t('shared.project_settings_navigation.ownership'), project_ownership_path(project.permalink, :sub_action => 'ownership'), :class => 'ownership'
-        .el= link_to t('.people'), project_people_path(project), :class => 'people'
+              .el= link_to t('shared.project_settings_navigation.ownership'), project_ownership_path(project.permalink, :sub_action => 'ownership'), :class => 'ownership ajax'
+        .el= link_to t('.people'), project_people_path(project), :class => 'people ajax'
     - if projects_archived > 0
       .el= link_to t('.show_all_projects'), all_projects_path, :class => 'more ajax'
     - if can?(:create_project, current_user) && (!Teambox.config.community || (Teambox.config.community && !@community_organization) || (@community_organization && @community_role))

@@ -16,6 +16,10 @@ class Comment < ActiveRecord::Base
     self.target_type == "Task"
   end
 
+  def reflection_comment?
+    self.target_type == "Reflection"
+  end
+
   def user
     @user ||= user_id ? User.with_deleted.find_by_id(user_id) : nil
   end

@@ -12,11 +12,17 @@ require 'action_view/helpers/text_helper'
 # proj-permalink+conversation@app.server.com
 #   → find or create conversation with Subject as a title and Body as a comment
 #
+# proj-permalink+reflection@app.server.com
+#   → find or create reflection with Subject as a title and Body as a comment
+#
 # proj-permalink+task@app.server.com
 #   → new task with Subject (or the Body if not present) as title
 #
 # proj-permalink+conversation+5@app.server.com
 #   → new comment for the conversation #5
+#
+# proj-permalink+reflection+5@app.server.com
+#   → new comment for the reflection #5
 #
 # proj-permalink+task+12@app.server.com
 #   → new comment for the task #12
@@ -89,6 +95,10 @@ module Emailer::Incoming
     when :conversation
       if @target then post_to(@target)
       else create_conversation
+      end
+    when :reflection
+      if @target then post_to(@target)
+      else create_reflection
       end
     when :task
       unless @target
@@ -247,6 +257,8 @@ module Emailer::Incoming
         case @type
         when :conversation
           @target = @project.conversations.find_by_name(@subject)
+        when :reflection
+          @target = @project.reflections.find_by_name(@subject)
         when :task then # do nothing
         else
           raise ArgumentError, "unknown type: #{@type}"
@@ -306,6 +318,16 @@ module Emailer::Incoming
       comment = target.comments.new_by_user(@user, :body => @body, :uploads_attributes => attributes)
       comment.save!
     end
+  end
+
+  def create_reflection
+    Rails.logger.info "Creating reflection '#{@subject}'"
+
+    attributes = @files.collect {|f| { :asset => f }}
+
+    reflection = @project.reflection.new_by_user(@user, :comments_attributes => [{:body => @body, :uploads_attributes => attributes}])
+
+    reflection.save!
   end
 
   def create_conversation

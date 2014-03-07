@@ -1052,6 +1052,7 @@ nl:
       sending: "Verzenden..."
       project: "Wat moeten anderen nu weten over dit project."
       conversation: "Wat is belangrijk om te onthouden voor dit project."
+      reflection: ""
       task_list: "Deel ideeën voor deze takenlijst. Om taken aan te maken en toe te wijzen, maak gebruik van de sidebar."
       task: "Defineer wat er gedaan moet worden door commentaar te geven."
     convert_form:

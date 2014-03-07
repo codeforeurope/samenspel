@@ -15,7 +15,7 @@ Teambox::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
   # RAILS3 check
-  if ENV['MEMCACHE_SERVERS']
+  if ENV['MEMCACHEDCLOUD_SERVERS']
   #   # Heroku setup: heroku addons:add memcachedcloud
     config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
   else
