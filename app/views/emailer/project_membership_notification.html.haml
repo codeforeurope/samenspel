@@ -4,18 +4,18 @@
 
   .box{ :style => email_box }
     %p= t('emailer.invitation.invited_to_hello')
-      %p= t('emailer.invitation.collaborate_with', :name => h(@referral.name))
-      -if @project.goal.length > 0
-        %p= t('emailer.invitation.invited_to_goal', :project_name => h(@project.name))
-        %p= h(@project.goal)
-      %p
-        %strong
-          = t('emailer.invitation.current_teamleaders')
-        = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
-      %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start.strftime("%e %B %Y"))
-      %p= t('emailer.invitation.invited_to_youtube', :youtube_link => "http://www.youtube.com/embed/JmANgm6V2")
-      %h2{ :style => email_text(:big) }
-        = link_to t('emailer.invitation.accept_the_invitation'), project_url(@project)
+    %p= t('emailer.invitation.collaborate_with', :name => h(@referral.name))
+    -if @project.goal.length > 0
+      %p= t('emailer.invitation.invited_to_goal', :project_name => h(@project.name))
+      %p= h(@project.goal)
+    %p
+      %strong
+        = t('emailer.invitation.current_teamleaders')
+      = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
+    %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start.strftime("%e %B %Y"))
+    %p= t('emailer.invitation.invited_to_youtube', :youtube_link => "http://www.youtube.com/embed/JmANgm6V2")
+    %h2{ :style => email_text(:big) }
+      = link_to t('emailer.invitation.accept_the_invitation'), project_url(@project)
 
 
   %p{ :style => email_text(:small) }
