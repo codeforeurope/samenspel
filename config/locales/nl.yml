@@ -1380,7 +1380,7 @@ nl:
       you_have_been_added_to: "You are now a member of the project %{project}"
       project_link: "Click on the link below to start collaborating on %{project} now"
     invitation:
-      invited_to_hello: "Hallo!"
+      invited_to_hello: "Hallo %{recipient_name}!"
       collaborate_with: "%{name} wil met je samenwerken op Samenspel."
       invited_to_goal: "Wat is het doel van het %{project_name}?"
       invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken? %{youtube_link}'

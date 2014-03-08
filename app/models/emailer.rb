@@ -91,6 +91,7 @@ class Emailer < ActionMailer::Base
     @invitation = Invitation.find(invitation_id)
     @referral   = @invitation.user
     @project    = @invitation.project
+    @recipient  = @invitation.invited_user
     mail(
       :to         => @invitation.email,
       :from       => self.class.from_user(nil, @invitation.user),
