@@ -13,7 +13,8 @@
         = t('emailer.invitation.current_teamleaders')
       = @project.people.map(&:user).select { |user| @project.admin?(user) }.collect{ |p| h(p.name)}.to_sentence
     %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start.strftime("%e %B %Y"))
-    %p= t('emailer.invitation.invited_to_youtube', :youtube_link => "https://www.youtube.com/watch?v=JmANgm6V22c")
+    - linkstr = '<a href="http://www.youtube.com/watch?v=JmANgm6V22c" style="text-decoration:none;display:block" class="nonplayable" target="_blank"><img src="https://ci4.googleusercontent.com/proxy/t6C-pmTNFoCSffpJzrnzIMYU-td3tAObDqg5YpCOp__v5xEjDm7tYs9zYJYn3ES-szLDlf4x8oV9CYY53ZsRMnXa6ONPoW-S85mbCEmrOQAgTiMNBQs7kH3Zm1w6Gk9tpN9o12ENtGgB2Ohzmc7-WT57sbgpnc9sldMRyOoy9mxiTSGDO-taVQK3=s0-d-e1-ft#http://i.ytimg.com/vi/JmANgm6V22c/sddefault.jpg?w=640&amp;h=360&amp;sigh=NGDL-EBKxxipnPjtI7Il9zSV4uc" width="500" height="281" border="0"></a>'
+    %p= t('emailer.invitation.invited_to_youtube', :youtube_link => linkstr)
     %h2{ :style => email_text(:big) }
       = link_to t('emailer.invitation.accept_the_invitation'), project_url(@project)
 
