@@ -1462,7 +1462,7 @@ en:
       collaborate_with: "%{name} wants to collaborate with you on Samenspel."
       you_have_been_invited_to: "You have been invited to the project %{project}"
       invited_to_goal: "What is the goal of %{project_name}?"
-      invited_to_youtube: 'What is Samenspel and why should I use it? Click here! %{youtube_link}'
+      invited_to_youtube: 'What is Samenspel and why should I use it? %{youtube_link}'
       invited_to_project_startdate: "This project started on %{project_startdate}"
       accept_the_invitation: Accept the invitation to start collaborating
       current_users: "Current users in this project:"
