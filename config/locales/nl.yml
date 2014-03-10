@@ -1382,7 +1382,7 @@ nl:
     invitation:
       invited_to_hello: "Hallo %{recipient_name}!"
       collaborate_with: "%{name} wil met je samenwerken op Samenspel."
-      invited_to_goal: "Wat is het doel van het %{project_name}?"
+      invited_to_goal: "Wat is het doel van %{project_name}?"
       invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken? %{youtube_link}'
       invited_to_project_startdate: "Dit project is gestart op %{project_startdate}"
       accept_the_invitation: "Accepteer deze uitnodiging dan kunnen we beginnen samen te werken."
