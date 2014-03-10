@@ -1465,8 +1465,7 @@ en:
       invited_to_youtube: 'What is Samenspel and why should I use it? %{youtube_link}'
       invited_to_project_startdate: "This project started on %{project_startdate}"
       accept_the_invitation: Accept the invitation to start collaborating
-      current_users: "Current users in this project:"
-      current_teamleaders: "Teamleaders for this project:"
+      current_users: "Current team for this project:"
       plaintext_link: "If the above link doesn't work, copy and paste the following code into your browser bar: "
       teambox_is_a_pm_platform: "Samenspel is a project management platform made for real-world collaboration."
       plan_share_and_collaborate: "Plan, share and keep track of what's been done. Simple as it should be."

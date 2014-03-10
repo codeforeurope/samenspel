@@ -1385,10 +1385,9 @@ nl:
       invited_to_goal: "Wat is het doel van het %{project_name}?"
       invited_to_youtube: 'Wat is SamenSpel en waarom moet ik dit gebruiken? %{youtube_link}'
       invited_to_project_startdate: "Dit project is gestart op %{project_startdate}"
-      current_teamleaders: "Je teamleden in dit project:"
       accept_the_invitation: "Accepteer deze uitnodiging dan kunnen we beginnen samen te werken."
       collaborate_with: "%{name} wilt met je samenwerken op Samenspel:"
-      current_users: "Huidige gebruikers in dit project"
+      current_users: "Je teamleden in dit project:"
       plaintext_link: "Als de bovenstaande link niet werkt, kopiëer en plak de volgende code in uw browser: "
       plan_share_and_collaborate: "Plan, deel en houd bij wat er is gebeurd. Eenvoudig zoals het zou moeten zijn."
       report_abuse: "Deze e-mail is naar u verzonden op verzoek van uw contactpersoon. Alstubleeft report misbruik."
