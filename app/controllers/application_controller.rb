@@ -174,7 +174,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    MobileClients = /(iPhone|iPod|Android|Opera mini|Blackberry|Palm|Windows CE|Opera mobi|iemobile|webOS)/i
+    MobileClients = /(iPhone|iPod|Android|Opera mini|Blackberry|Palm|Windows CE|Opera mobi|iemobile|webOS|Mobile)/i
 
     def set_client
       if [:html, :m].include?(request.format.try(:to_sym)) and session[:format]
