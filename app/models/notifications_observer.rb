@@ -22,6 +22,7 @@ class NotificationsObserver < ActiveRecord::Observer
 
       case target = comment.target
         when Conversation then conversation_new_comment(target, comment)
+        when Reflection then reflection_new_comment(target, comment)
         when Task then task_new_comment(target, comment)
       end
     end
@@ -30,6 +31,14 @@ class NotificationsObserver < ActiveRecord::Observer
       (target.watchers - [comment.user]).each do |user|
         if user.notify_conversations
           Emailer.send_with_language(:notify_conversation, user.locale, user.id, comment.project.id, target.id) # deliver_notify_conversation
+        end
+      end
+    end
+
+    def reflection_new_comment(target, comment)
+      (target.watchers - [comment.user]).each do |user|
+        if user.notify_conversations
+          Emailer.send_with_language(:notify_reflection, user.locale, user.id, comment.project.id, target.id) # deliver_notify_reflection
         end
       end
     end
