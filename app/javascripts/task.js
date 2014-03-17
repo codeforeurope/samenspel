@@ -34,9 +34,13 @@ document.on('ajax:success', '.task_header + form.edit_task', function(e, form) {
 
 // update task counter
 document.on('ajax:success', 'form.edit_task', function(e, form) {
-  var task_data = e.memo.headerJSON
-  var counter = $$('.task_counter[data-task-id='+ task_data.id +']').first()
-  if (counter) counter.update(parseInt(counter.innerHTML) + 1)
+  //NOTE: If the user uploaded a new file, e.memo.headerJSON is NULL
+  if(e.memo.headerJSON)
+  {
+    var task_data = e.memo.headerJSON
+    var counter = $$('.task_counter[data-task-id='+ task_data.id +']').first()
+    if (counter) counter.update(parseInt(counter.innerHTML) + 1)
+  }
 })
 
 document.on('click', '.date_picker', function(e, element) {
