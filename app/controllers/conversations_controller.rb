@@ -50,7 +50,7 @@ class ConversationsController < ApplicationController
 
   def index
     Teambox.config.enable_conversations_module?
-    @conversations = @current_project.conversations.not_simple
+    @conversations = @current_project.conversations
 
     respond_to do |f|
       f.any(:html, :m)
