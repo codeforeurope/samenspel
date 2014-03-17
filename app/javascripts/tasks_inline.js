@@ -49,31 +49,35 @@ document.on('ajax:success', '.task_inline form', function(e, form) {
   var task = form.up('.task.expanded')
   if(!task) return
 
-  var task_data = e.memo.headerJSON
+  //NOTE: If the user uploaded a new file, e.memo.headerJSON is NULL
+  if(e.memo.headerJSON)
+  {
+    var task_data = e.memo.headerJSON
 
-  var status = task_data.status
-  var status_name = $w("new open hold resolved rejected")[status]
+    var status = task_data.status
+    var status_name = $w("new open hold resolved rejected")[status]
 
-  var person = task_data.assigned_id
+    var person = task_data.assigned_id
 
-  // Cleanup the current status of the task
-  task.className = task.className.replace(/(^|\s+)user_(.+?)(\s+|$)/, ' ').strip()
-  task.className = task.className.replace(/(^|\s+)status_(.+?)(\s+|$)/, ' ').strip()
-  task.down('.assigned_user') && task.down('.assigned_user').remove()
+    // Cleanup the current status of the task
+    task.className = task.className.replace(/(^|\s+)user_(.+?)(\s+|$)/, ' ').strip()
+    task.className = task.className.replace(/(^|\s+)status_(.+?)(\s+|$)/, ' ').strip()
+    task.down('.assigned_user') && task.down('.assigned_user').remove()
 
 
-  // Update the status of the task
-  task.addClassName('status_'+status_name)
+    // Update the status of the task
+    task.addClassName('status_'+status_name)
 
-  // Show new assigned user name if there's an assigned user
-  if (status == 1) {
-    task.addClassName('user_'+task_data.assigned.user_id)
-    var short_name = task_data.assigned.user.first_name[0]+". "+task_data.assigned.user.last_name
-    task.down('a.name').insert({after: " <span class='assigned_user'>"+short_name+"</span> "})
-  }
-  
-  // Hide dates for resolved tasks
-  if (status == 3 || status == 4) {
-    task.down('.assigned_date') && task.down('.assigned_date').remove()
+    // Show new assigned user name if there's an assigned user
+    if (status == 1) {
+      task.addClassName('user_'+task_data.assigned.user_id)
+      var short_name = task_data.assigned.user.first_name[0]+". "+task_data.assigned.user.last_name
+      task.down('a.name').insert({after: " <span class='assigned_user'>"+short_name+"</span> "})
+    }
+
+    // Hide dates for resolved tasks
+    if (status == 3 || status == 4) {
+      task.down('.assigned_date') && task.down('.assigned_date').remove()
+    }
   }
 })
