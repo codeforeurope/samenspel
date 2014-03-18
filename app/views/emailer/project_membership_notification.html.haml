@@ -15,7 +15,7 @@
         = t('emailer.invitation.current_users')
       = @project.people.collect { |p| h(p.name) }.to_sentence
     %p= t('emailer.invitation.invited_to_project_startdate', :project_startdate => @project.date_start.strftime("%e %B %Y"))
-    - linkstr = '<a href="http://vimeo.com/88661169" style="text-decoration:none;display:block" class="nonplayable" target="_blank"><img src="https://secure-b.vimeocdn.com/ts/467/191/467191456_150.=jpg" width="500" height="281" border="0"></a>'
+    - linkstr = '<a href="http://vimeo.com/88661169" style="text-decoration:none;display:block" class="nonplayable" target="_blank"><img src="https://secure-b.vimeocdn.com/ts/467/191/467191456_640.jpg" width="500" border="0"></a>'
     %p
       %strong
         = t('emailer.invitation.invited_to_youtube', :youtube_link => "")
