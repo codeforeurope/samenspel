@@ -11,7 +11,7 @@ defaults: &defaults
   app_domain: bpt.samenspel.net
 
   # The application name
-  application_name: Buurt Praktijk Team
+  application_name: Samenspel
 
   # Enable secure signup and logins over HTTPS.
   # Make sure your domain has a valid SSL certificate
