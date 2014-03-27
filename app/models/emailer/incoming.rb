@@ -90,6 +90,10 @@ module Emailer::Incoming
       if @target then post_to(@target)
       else create_conversation
       end
+    when :reflection
+      if @target then post_to(@target)
+      else create_reflection
+      end
     when :task
       unless @target
         @target = create_task
@@ -322,6 +326,22 @@ module Emailer::Incoming
     end
 
     conversation.save!
+  end
+
+  def create_reflection
+    Rails.logger.info "Creating reflection '#{@subject}'"
+
+    attributes = @files.collect {|f| { :asset => f }}
+
+    reflection = @project.reflections.new_by_user(@user, :comments_attributes => [{:body => @body, :uploads_attributes => attributes}])
+
+    if @subject.blank?
+    #  nothing
+    else
+      reflection.name = @subject
+    end
+
+    reflection.save!
   end
 
   def create_task
