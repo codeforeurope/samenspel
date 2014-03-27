@@ -1,4 +1,5 @@
 @import shared
+@import buttons
 
 $background: #edeff4
 $color: #333
@@ -337,10 +338,20 @@ div.task_list, div.task_list_closed
     a
       color: #ccc
 
-.show_projects
+.show_projects, .contacts_people
   .comment, .activity
     .project, .project_arr
       display: none
+    .container
+      .actions
+        float: right
+        text-align: right
+        width: 5.5em
+        padding-top: 5px
+        a
+          +button
+          display: block
+          margin-bottom: 5px
 
 .new_sessions, .create_sessions
   padding-left: 10px

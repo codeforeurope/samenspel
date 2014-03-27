@@ -987,6 +987,12 @@ nl:
     destroy_message:
       deleted_html: "De takenlijst <b>%{name}</b> was succesvol verwijderd!"
   people:
+    contacts:
+      contacts: "Contacten"
+      users: "Gebruikers"
+      no_contacts: "Er zijn geen contacten"
+      these_are_the_contacts_assigned_to_this_project: "Dit zijn de contacten die aan dit project"
+      these_are_the_contacts_that_can_be_added_to_this_project: "Dit zijn de contacten kunnen worden toegevoegd bij het project"
     link:
       edit: "Wijzig"
     update:

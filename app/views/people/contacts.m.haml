@@ -1,0 +1,65 @@
+%h3=t('.users')
+
+- if @contacts.any?
+  #page
+    #activities
+      .activity
+        %p.sectionHeader= "These are the users invited to this project"
+      - @contacts.each do |user|
+        .activity
+          = micro_avatar user
+          .container
+            %h3= link_to h(user.name), user
+            %p= link_to user.email, "mailto:#{user.email}"
+
+        .clear
+- else
+  #page
+    #activities
+      .activity
+        .container
+          %p= t('people.column.no_contacts')
+
+
+%h3=t('.contacts')
+
+- if @project_contacts.any?
+  #page
+    #activities
+      %h4= "These are the contacts assigned to this project"
+      - @project_contacts.each do |contact|
+        .activity
+          .container
+            .actions
+              = link_to t('users.user.remove_from_project'), remove_contact_project_path(@current_project, contact), :method => :put
+            %h3= contact.first_name.nil? ? contact.last_name : "#{contact.first_name} #{contact.last_name}"
+            %p= "#{contact.company}"
+            %p= link_to contact.phone_number, "tel:#{contact.phone_number}" unless contact.phone_number.nil?
+            %p= link_to contact.email, "mailto:#{contact.email}" unless contact.email.nil?
+            %p= link_to contact.address, "https://maps.google.com/maps?q=#{contact.address}",target: "_blank" unless contact.address.nil?
+
+        .clear
+- else
+  #page
+    #activities
+      .activity
+        .container
+          %p= t('.no_contacts')
+
+
+- if @available_contacts.any?
+  #page
+    #activities
+      %h4= "These are the contacts available to be added to this project"
+      - @available_contacts.each do |contact|
+        .activity
+          .container
+            .actions
+              = link_to t('.assign_to_project'), add_contact_project_path(@current_project, contact), :method => :put
+            %h3= contact.first_name.nil? ? contact.last_name : "#{contact.first_name} #{contact.last_name}"
+            %p= "#{contact.company}"
+            %p= link_to contact.phone_number, "tel:#{contact.phone_number}" unless contact.phone_number.nil?
+            %p= link_to contact.email, "mailto:#{contact.email}" unless contact.email.nil?
+            %p= link_to contact.address, "https://maps.google.com/maps?q=#{contact.address}",target: "_blank" unless contact.address.nil?
+
+        .clear

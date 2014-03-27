@@ -1,7 +1,7 @@
 %h2= t('.title', :name => h(@current_project))  #contacts in ... project name
 
 %h3=t('.users')
-%p= "These are the users invited to this project"
+%p=t('.these_are_the_users_in_this_project')
 - if @contacts.any?
   %ol
     = list_of @contacts do |user|
@@ -12,7 +12,7 @@
   %p= t('people.column.no_contacts')
 
 %h3=t('.contacts')
-%p= "These are the contacts assigned to this project"
+%p=t('.these_are_the_contacts_assigned_to_this_project')
 #people.people
   - if @project_contacts.any?
     - @project_contacts.each do |contact|
@@ -23,7 +23,7 @@
 
 
 %h3=t('.contacts')
-%p= "These are the contacts available to be added to this project"
+%p=t('.these_are_the_contacts_that_can_be_added_to_this_project')
 #people.people
   - if @available_contacts.any?
     - @available_contacts.each do |contact|

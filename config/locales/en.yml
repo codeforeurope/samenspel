@@ -1061,6 +1061,13 @@ en:
     destroy_message:
       deleted_html: "The Task List <b>%{name}</b> was successfully deleted!"
   people:
+    contacts:
+      contacts: "Contacts"
+      users: "Users"
+      these_are_the_users_in_this_project: "These are the users invited to this project"
+      no_contacts: "No Contacts"
+      these_are_the_contacts_assigned_to_this_project: "These are the contacts assigned to this project"
+      these_are_the_contacts_that_can_be_added_to_this_project: "These are the contacts available to be added to this project"
     link:
       edit: Edit
     update:
