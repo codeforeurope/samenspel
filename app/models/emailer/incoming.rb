@@ -346,6 +346,22 @@ module Emailer::Incoming
     conversation.save!
   end
 
+  def create_reflection
+    Rails.logger.info "Creating reflection '#{@subject}'"
+
+    attributes = @files.collect {|f| { :asset => f }}
+
+    reflection = @project.reflections.new_by_user(@user, :comments_attributes => [{:body => @body, :uploads_attributes => attributes}])
+
+    if @subject.blank?
+    #  nothing
+    else
+      reflection.name = @subject
+    end
+
+    reflection.save!
+  end
+
   def create_task
     raise "Subject and body cannot be blank when creating task from email" if @subject.blank? && @body.blank?
     Rails.logger.info "Creating task '#{@subject}'"

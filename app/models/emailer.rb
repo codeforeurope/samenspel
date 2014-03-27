@@ -239,6 +239,11 @@ class Emailer < ActionMailer::Base
       ::Emailer.notify_conversation(conversation.user.id, conversation.project.id, conversation.id)
     end
 
+    def notify_reflection
+      reflection = Reflection.find_by_name "Seth Godin's 'What matters now'"
+      ::Emailer.notify_reflection(reflection.user.id, reflection.project.id, reflection.id)
+    end
+
     def daily_task_reminder
       user = User.find_by_login 'frank'
       ::Emailer.daily_task_reminder(user.id)
