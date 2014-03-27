@@ -1,6 +1,5 @@
-%h3=t('.users')
-
 - if @contacts.any?
+  %h3=t('.users')
   #page
     #activities
       .activity
@@ -13,12 +12,6 @@
             %p= link_to user.email, "mailto:#{user.email}"
 
         .clear
-- else
-  #page
-    #activities
-      .activity
-        .container
-          %p= t('people.column.no_contacts')
 
 
 %h3=t('.contacts')
@@ -63,3 +56,5 @@
             %p= link_to contact.address, "https://maps.google.com/maps?q=#{contact.address}",target: "_blank" unless contact.address.nil?
 
         .clear
+
+-#%p= link_to t('.new_contact'), new_organization_contact_path(@project.organization, :project_id => @project.id)
