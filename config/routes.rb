@@ -1,9 +1,6 @@
 Teambox::Application.routes.draw do
 
   match 'timeline' => 'timeline#index'
-  #match 'timeline/:year' => 'timeline#index', :as => :timeline_by_year, :via => :get
-  #match 'timeline_for_organization/:id' => 'timeline#for_organization', :as => :timeline_for_organization
-
 
   # If secure_logins is true, constrain matches to ssl requests
   class SSLConstraints
@@ -91,16 +88,8 @@ Teambox::Application.routes.draw do
         end
       end
       resources :contacts do
-        #member do
-        #  put :assign_to_project  #see add_contact/:contact_id
-        #  put :remove_from_project #see remove_contact/:contact_id
-        #end
       end
       resources :principles do
-        #member do
-        #  put :assign_to_project #see add_principle/:principle_id
-        #  put :remove_from_project #see remove_principle/:principle_id
-        #end
       end
     end
 
