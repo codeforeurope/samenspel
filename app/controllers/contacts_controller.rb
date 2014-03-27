@@ -37,6 +37,9 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   # GET /contacts/new.xml
   def new
+    if !params[:project_id].nil?
+      @project = Project.find_by_id(params[:project_id])
+    end
     @contact = @organization.contacts.new
     @contact.organization = @organization
 
@@ -56,8 +59,18 @@ class ContactsController < ApplicationController
   def create
     @contact = @organization.contacts.new(params[:contact])
 
+    if !params[:project_id].nil?
+      @project = Project.find_by_id(params[:project_id])
+
+    end
+
     respond_to do |format|
       if @contact.save
+        if @project != nil
+          @project.contacts << @contact
+          format.html { redirect_to(project_contacts_path(@project), :notice => 'Contact was successfully created.') }
+          format.xml  { render :xml => @contact, :status => :created, :location => @contact }
+        end
         format.html { redirect_to(organization_contact_path(@organization, @contact), :notice => 'Contact was successfully created.') }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
       else

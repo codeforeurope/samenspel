@@ -39,6 +39,7 @@
     <%= f.label :address %><br />
     <%= f.text_area :address %>
   </div>
+  <%= hidden_field_tag :project_id, @project.id unless @project.nil? %>
   <div class="actions">
     <%= f.submit %>
   </div>
