@@ -133,6 +133,24 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def notify_reflection(user_id, project_id, reflection_id)
+    @project      = Project.find(project_id)
+    @reflection = Reflection.find(reflection_id)
+    @recipient    = User.find(user_id)
+    @organization = @project.organization
+
+    title         = @reflection.name.blank? ?
+                    truncate(@reflection.comments.first(:order => 'id ASC').body.strip) :
+                    @reflection.name
+
+    mail({
+      :to            => @recipient.email,
+      :subject       => "[#{@project.permalink}] #{title}"
+    }.merge(
+      from_reply_to "#{@project.permalink}+reflection+#{@reflection.id}", @reflection.comments.first.user
+    ))
+  end
+
   def notify_conversation(user_id, project_id, conversation_id)
     @project      = Project.find(project_id)
     @conversation = Conversation.find(conversation_id)
@@ -140,15 +158,15 @@ class Emailer < ActionMailer::Base
     @organization = @project.organization
 
     title         = @conversation.name.blank? ?
-                    truncate(@conversation.comments.first(:order => 'id ASC').body.strip) :
-                    @conversation.name
+        truncate(@conversation.comments.first(:order => 'id ASC').body.strip) :
+        @conversation.name
 
     mail({
-      :to            => @recipient.email,
-      :subject       => "[#{@project.permalink}] #{title}"
-    }.merge(
-      from_reply_to "#{@project.permalink}+conversation+#{@conversation.id}", @conversation.comments.first.user
-    ))
+             :to            => @recipient.email,
+             :subject       => "[#{@project.permalink}] #{title}"
+         }.merge(
+             from_reply_to "#{@project.permalink}+conversation+#{@conversation.id}", @conversation.comments.first.user
+         ))
   end
 
   def notify_task(user_id, project_id, task_id)
