@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140307101805) do
+ActiveRecord::Schema.define(:version => 20140328091319) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -251,6 +251,8 @@ ActiveRecord::Schema.define(:version => 20140307101805) do
     t.text     "settings"
     t.boolean  "deleted",           :default => false,    :null => false
     t.boolean  "default",           :default => false,    :null => false
+    t.string   "video_url"
+    t.string   "thumbnail_url"
   end
 
   add_index "organizations", ["deleted"], :name => "index_organizations_on_deleted"

@@ -6,6 +6,14 @@
   %label= t('.permalink_html')
   = errors_for @organization, :permalink
   = f.text_field :permalink
+.text_field
+  %label= t('.invitation_video_url')
+  = errors_for @organization, :video_url
+  = f.text_field :video_url
+.text_field
+  %label= t('.invitation_video_image')
+  = errors_for @organization, :thumbnail_url
+  = f.text_field :thumbnail_url
 - if default_organizations_allowed? or @organization.default?
   .check_box
     = f.check_box :default, :disabled => !default_organizations_allowed?
