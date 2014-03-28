@@ -1,0 +1,44 @@
+%p
+  #notice
+    = notice
+
+%p
+  First Name:
+  = @contact.first_name
+
+%p
+  Last Name:
+  = @contact.last_name
+
+%p
+  Company:
+  = @contact.company
+
+%p
+  Location:
+  = @contact.location
+%p
+  Email:
+  = @contact.email
+
+%p
+  Phone Number:
+  = @contact.phone_number
+
+%p
+  Address:
+  = @contact.address
+
+%p
+  - if @contact.projects.any?
+    %h4= "Projects:"
+    %ul
+      - @contact.projects.each do |project|
+        %li= link_to project.name, project
+
+
+
+- if can? :update, @contact, @current_user
+  = link_to 'Edit', edit_organization_contact_path(@organization, @contact)
+
+= link_to 'Back', organization_contacts_path(@organization)

@@ -68,12 +68,15 @@ class ContactsController < ApplicationController
       if @contact.save
         if @project != nil
           @project.contacts << @contact
+          format.m    { redirect_to(project_contacts_path(@project), :notice => 'Contact was successfully created.') }
           format.html { redirect_to(project_contacts_path(@project), :notice => 'Contact was successfully created.') }
           format.xml  { render :xml => @contact, :status => :created, :location => @contact }
         end
+        format.m    { redirect_to(organization_contact_path(@organization, @contact), :notice => 'Contact was successfully created.') }
         format.html { redirect_to(organization_contact_path(@organization, @contact), :notice => 'Contact was successfully created.') }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
       else
+        format.m    { render :action => "new" }
         format.html { render :action => "new" }
         format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
       end
