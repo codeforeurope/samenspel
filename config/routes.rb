@@ -1,5 +1,13 @@
 Teambox::Application.routes.draw do
 
+  get "admin/index"
+
+  get "admin/users"
+
+  get "admin/projects"
+
+  get "admin/teams"
+
   match 'timeline' => 'timeline#index'
 
   # If secure_logins is true, constrain matches to ssl requests

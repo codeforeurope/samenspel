@@ -81,3 +81,5 @@
   - if Teambox.config.allow_time_tracking
     .el.extra{ :style => 'display: none' }= link_to t('.time'), time_path, :class => 'ajax time'
   -#.el.extra{ :style => 'display: none' }= link_to t('.timeline'), timeline_path, :class => 'ajax time'
+  - if current_user.supervisor?
+    .el.extra{ :style => 'display: none' }= link_to t('.admin'), admin_index_path, :class => 'ajax admin'

@@ -988,6 +988,7 @@ nl:
       deleted_html: "De takenlijst <b>%{name}</b> was succesvol verwijderd!"
   people:
     contacts:
+      title: "Contacten in %{name}"
       contacts: "Contacten"
       users: "Gebruikers"
       no_contacts: "Er zijn geen contacten"
@@ -1217,6 +1218,7 @@ nl:
       reflections: "Reflecties"
       tasks: "Taken"
       time: "Time tracking"
+      admin: "Supervisor"
       timeline: "Timeline"
       pages: "Pages"
       files: "Files"

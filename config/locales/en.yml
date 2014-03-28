@@ -1062,6 +1062,7 @@ en:
       deleted_html: "The Task List <b>%{name}</b> was successfully deleted!"
   people:
     contacts:
+      title: "Contacts in %{name}"
       contacts: "Contacts"
       users: "Users"
       these_are_the_users_in_this_project: "These are the users invited to this project"
@@ -1294,6 +1295,7 @@ en:
       reflections: Reflections
       tasks: Tasks
       time: Time tracking
+      admin: Supervisor
       timeline: Timeline
       pages: Pages
       files: Files

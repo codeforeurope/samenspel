@@ -1,0 +1,14 @@
+%h2
+  Projects
+  %span
+    =link_to t('.back_to_menu'), admin_index_path
+%ul
+  - @projects.each do |project|
+    %li
+      = link_to project.name, project
+      %p
+        ="Participants:"
+        =project.people.map {|p| "#{p.name} (#{p.role_name})"}.join(",")
+
+
+=link_to "Download as CSV", admin_projects_path(:format => 'csv'), :class => :button

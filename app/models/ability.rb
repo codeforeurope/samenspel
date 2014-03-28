@@ -170,5 +170,11 @@ class Ability
     can :view, :all do |the_user|
       the_user.global_observer?
     end
+
+    # Admin pages permissions, non-RESTful actions
+    # authorize! requires 2 arguments, although the second used here is only a "placeholder"  //GM
+
+    can :supervise, :all if user.supervisor?
+
   end
 end

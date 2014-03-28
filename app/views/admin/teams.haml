@@ -1,0 +1,13 @@
+%h2
+  Teams
+  %span
+    =link_to t('.back_to_menu'), admin_index_path
+%ul
+  - @organizations.each do |team|
+    %li
+      = link_to team.name, team
+      %p
+        = "#{team.users.count} members:"
+        = team.users.map { |m| m.login }.join ","
+
+=link_to "Download as CSV", admin_teams_path(:format => 'csv'), :class => :button

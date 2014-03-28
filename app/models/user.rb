@@ -313,4 +313,6 @@ class User < ActiveRecord::Base
       self.last_name = last_name.blank?? nil : last_name.squish
     end
 
+
+
 end
