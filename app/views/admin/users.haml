@@ -13,6 +13,6 @@
         = user.memberships.map { |m| "#{m.organization.name} (#{m.role_name})"}.join ','
       %p
         = "Organization:"
-        = user.company
+        = user.company unless user.company.nil?
 
 =link_to "Download as CSV", admin_users_path(:format => 'csv'), :class => :button
