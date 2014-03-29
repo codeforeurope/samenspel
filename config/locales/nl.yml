@@ -989,6 +989,7 @@ nl:
   people:
     contacts:
       title: "Contacten in %{name}"
+      new_contact: "Nieuwe Contactpersoon"
       contacts: "Contacten"
       users: "Gebruikers"
       no_contacts: "Er zijn geen contacten"

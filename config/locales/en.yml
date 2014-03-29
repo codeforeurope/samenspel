@@ -1063,6 +1063,7 @@ en:
   people:
     contacts:
       title: "Contacts in %{name}"
+      new_contact: New Contact
       contacts: "Contacts"
       users: "Users"
       these_are_the_users_in_this_project: "These are the users invited to this project"

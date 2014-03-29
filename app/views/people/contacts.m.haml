@@ -1,3 +1,6 @@
+%span.right
+  =link_to t('.new_contact'), new_organization_contact_path(@project.organization, :project_id => @project.id), :class => :button
+
 - if @contacts.any?
   %h3=t('.users')
   #page
@@ -56,5 +59,3 @@
             %p= link_to contact.address, "https://maps.google.com/maps?q=#{contact.address}",target: "_blank" unless contact.address.nil?
 
         .clear
-
-%p= link_to t('.new_contact'), new_organization_contact_path(@project.organization, :project_id => @project.id), :class => :button
