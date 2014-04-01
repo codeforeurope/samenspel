@@ -33,7 +33,8 @@ class Organization < ActiveRecord::Base
 
   LogoSizes = {
     :square   => [96, 96],
-    :top      => [134, 36]
+    :top      => [134, 36],
+    :email    => [200, 143]
   }
 
 
@@ -106,6 +107,13 @@ class Organization < ActiveRecord::Base
 
   def has_logo?
     !!logo.original_filename
+  end
+
+  def logo_content_of_file
+    dest = Tempfile.new(self.logo_file_name)
+    dest.binmode
+    self.logo.copy_to_local_file(:email, dest.path)
+    return File.read(dest.path)
   end
 
   def to_api_hash(options = {})
