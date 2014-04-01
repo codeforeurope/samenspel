@@ -3,6 +3,8 @@
   = dont_answer
 
   .box{ :style => email_box }
+    %p.right
+      =image_tag attachments['team-logo.png'].url
     %p= t('emailer.invitation.invited_to_hello', :recipient_name => (h(@recipient.name.strip.split(/\s+/).first) unless @recipient.nil?))
     %p= t('emailer.invitation.collaborate_with', :name => h(@referral.name))
     -if !@project.goal.nil?
