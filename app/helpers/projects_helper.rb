@@ -160,10 +160,11 @@ module ProjectsHelper
     format = '@%s <span class="informal">%s</span>'
     special_all = format % ['all', t('conversations.watcher_fields.people_all')]
     data_by_permalink = Hash.new { |h, k| h[k] = [special_all] }
-    people = Person.user_names_from_projects(projects)
 
-    names = people.each_with_object(data_by_permalink) do |person, data|
-      data[person.project_id] << (format % [person.login, "#{h person.first_name} #{h person.last_name}"])
+    rows = Person.user_names_from_projects(projects)
+
+    names = rows.each_with_object(data_by_permalink) do |(project_id, login, first_name, last_name), data|
+      data[project_id] << (format % [login, "#{h first_name} #{h last_name}"])
     end
 
     javascript_tag "_people_autocomplete = #{names.to_json}"
@@ -172,15 +173,12 @@ module ProjectsHelper
   def projects_people_data
     projects = @current_project ? [@current_project] : current_user.projects.reject{ |p| p.new_record? }
     return nil if projects.empty?
-
     data = {}
-    people = Person.user_names_from_projects(projects, current_user)
-
-    people.each do |person|
-      data[person.project_id] ||= []
-      data[person.project_id] << [person.id, person.login, "#{h person.first_name} #{h person.last_name}", person.user_id]
+    rows = Person.user_names_from_projects(projects, current_user)
+    rows.each do |project_id, login, first_name, last_name, person_id, user_id|
+      data[project_id] ||= []
+      data[project_id] << [person_id.to_s, login, "#{h first_name} #{h last_name}", user_id]
     end
-
     javascript_tag "_people = #{data.to_json}"
   end
 
