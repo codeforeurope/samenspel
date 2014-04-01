@@ -110,10 +110,15 @@ class Organization < ActiveRecord::Base
   end
 
   def logo_content_of_file
-    dest = Tempfile.new(self.logo_file_name)
-    dest.binmode
-    self.logo.copy_to_local_file(:email, dest.path)
-    return File.read(dest.path)
+    begin
+      dest = Tempfile.new(self.logo_file_name)
+      dest.binmode
+      self.logo.copy_to_local_file(:email, dest.path)
+      filecontent = File.read(dest.path)
+    rescue
+      filecontent = ""
+    end
+    return filecontent
   end
 
   def to_api_hash(options = {})
