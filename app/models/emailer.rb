@@ -92,6 +92,7 @@ class Emailer < ActionMailer::Base
     @referral   = @invitation.user
     @project    = @invitation.project
     @recipient  = @invitation.invited_user
+    @organization = @project.organization
     attachments.inline['team-logo.png'] = @organization.logo_content_of_file
     mail(
       :to         => @invitation.email,
