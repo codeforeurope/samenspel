@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
 
 group :rails do
   gem 'rails', '~> 3.0.20'
@@ -15,7 +14,7 @@ end
 #Temporary hack - Fix once this ticket: is resolved
 #gem 'activesupport-i18n-patch', :git => 'git://github.com/teambox/activesupport-i18n-patch.git'
 
-gem 'nokogiri', '=1.6.0' #I fixed version 1.6.0 for heroku-api
+gem 'nokogiri', '=1.6.1' #I fixed version 1.6.1 as latest available. for heroku-api
 gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer', :platform => :mri_18
 gem 'whenever', '~> 0.4.1', :require => nil
 gem 'icalendar', '~> 1.1.3'

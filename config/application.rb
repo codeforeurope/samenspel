@@ -13,6 +13,11 @@ module Teambox
   end
 
   class Application < Rails::Application
+
+    #Fix for Ruby 2.0+ with Rails 3.0.20
+    #http://stackoverflow.com/questions/16044008/no-implicit-conversion-of-nil-into-string
+    ActionController::Base.config.relative_url_root = ''
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
