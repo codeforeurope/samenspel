@@ -16,8 +16,8 @@ Teambox::Application.configure do
   # config.cache_store = :mem_cache_store
   # RAILS3 check
   if ENV['MEMCACHEDCLOUD_SERVERS']
-  #   # Heroku setup: heroku addons:add memcachedcloud
-    config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  #   # Heroku setup: heroku addons:add memcachedcloud. Also add gem 'memcachier'
+    config.cache_store = :dalli_store
   else
      config.cache_store = :file_store, Rails.root + "tmp/cache"
   end
