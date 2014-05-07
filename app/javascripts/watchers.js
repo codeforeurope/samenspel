@@ -58,7 +58,9 @@ document.on("keyup", "form.new_conversation textarea", function(e,el) {
   Watchers.notify_people_span = true;
 
   var note = el.up("form").down("span.new");
-  note.show();
-  var e1 = new Effect.Move(note, { x: 50, transition: Effect.Transitions.linear, duration: 0 });
-  var e2 = new Effect.Move(note, { x: -50, transition: Effect.Transitions.spring, duration: 1.0 });
+  if(note != null) {
+    note.show();
+    var e1 = new Effect.Move(note, { x: 50, transition: Effect.Transitions.linear, duration: 0 });
+    var e2 = new Effect.Move(note, { x: -50, transition: Effect.Transitions.spring, duration: 1.0 });
+  }
 });
