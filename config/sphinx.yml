@@ -1,3 +1,11 @@
+indexed_models:
+  - Reflection
+  - Person
+  - Note
+  - Contact
+  - Comment
+  - Task
+  - TaskList
 development:
   port: 9312
 test:
