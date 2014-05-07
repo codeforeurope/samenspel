@@ -84,7 +84,10 @@ module Teambox
           smtp_settings.update(
             :user_name  => ENV['SENDGRID_USERNAME'],
             :password   => ENV['SENDGRID_PASSWORD'],
-            :domain     => ENV['SENDGRID_DOMAIN']
+            :domain     => ENV['SENDGRID_DOMAIN'],
+            :port           => '587',
+            :authentication => :plain,
+            :enable_starttls_auto => true
           )
         self.allow_outgoing_email = true
       end
