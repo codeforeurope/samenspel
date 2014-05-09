@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
   after_create :join_default_organizations
   before_save :update_token
 
+  def count_of_comments
+    comments.count
+  end
+
   def update_token
     self.recent_projects_ids ||= []
     self.rss_token ||= generate_rss_token
