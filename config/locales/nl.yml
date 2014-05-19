@@ -1499,17 +1499,17 @@ nl:
     results_search: "Zoek"
     show_plans: "Abonnementen"
   search:
-    placeholder: "Search all projects"
-    placeholder_in_project: "Search in project"
-    submit: "Search"
+    placeholder: "Zoeken in alle projecten"
+    placeholder_in_project: "Zoeken in dit project"
+    submit: "Zoeken"
     index:
-      title: "Searching in all projects"
-      title_in_project: "Searching in project: %{project}"
-      search_again: "Search again"
+      title: "Zoeken in alle projecten"
+      title_in_project: "Zoeken in project: %{project}"
+      search_again: "Zoeken opnieuw"
       no_results:
         title: "We didn't find any results for '%{term}', sorry!"
         explain: "Try using more specific search terms to find more results."
-      report: "We found %{count} results for your search terms '%{term}'"
+      report: "%{count} resultaten gevonden voor uw zoekwoorden '%{term}'"
   number:
     format:
       separator: "."
