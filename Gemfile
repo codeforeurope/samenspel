@@ -5,7 +5,6 @@ group :rails do
   gem 'rails', '~> 3.0.20'
   gem 'builder', '~> 2.1.2'
   gem 'dalli' #Memcache client
-  gem 'memcachier'
   gem 'tzinfo', '~> 0.3.12'
   gem 'i18n', '0.5.0'
   gem 'tmail', '~> 1.2.3'
