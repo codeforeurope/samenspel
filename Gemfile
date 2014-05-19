@@ -36,6 +36,7 @@ gem 'choices', :git => "git://github.com/teambox/choices.git"
 
 gem "will_paginate", :git=>"git://github.com/mislav/will_paginate.git", :branch=>"rails3"
 gem 'thinking-sphinx', '~> 2.1.0', require: 'thinking_sphinx'
+gem 'flying-sphinx',   '1.2.0'
 gem 'sprockets-rails'
 gem 'sprockets', '1.0.2'
 gem 'barista', '~> 1.0'

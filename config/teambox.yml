@@ -88,7 +88,7 @@ defaults: &defaults
   # Enable search (you must have thinking_sphinx installed and configured)
   # See http://wiki.github.com/teambox/teambox/configuring-search for more 
   # information on configuring search
-  allow_search: false
+  allow_search: true
 
   # Set to true to use S3 storage instead of local filesystem storage.
   # Automatically true on Heroku.

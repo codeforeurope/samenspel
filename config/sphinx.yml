@@ -1,16 +1,45 @@
-indexed_models:
-  - Reflection
-  - Person
-  - Note
-  - Contact
-  - Comment
-  - Task
-  - TaskList
 development:
   port: 9312
+  indexed_models:
+    - Reflection
+    - Person
+    - Note
+    - Contact
+    - Comment
+    - Task
+    - TaskList
 test:
   port: 9313
+  indexed_models:
+    - Reflection
+    - Person
+    - Note
+    - Contact
+    - Comment
+    - Task
+    - TaskList
 cucumber:
   port: 9313
+  indexed_models:
+    - Reflection
+    - Person
+    - Note
+    - Contact
+    - Comment
+    - Task
+    - TaskList
 production:
-  port: 9312
+  version: '2.0.6'
+  port: <%= ENV['FLYING_SPHINX_PORT'] %>
+#  Enable wildcard search  e.g. "giovann*"
+  enable_star: 1
+  min_infix_len: 1
+#  End enable wildcard search
+  indexed_models:
+    - Reflection
+    - Person
+    - Note
+    - Contact
+    - Comment
+    - Task
+    - TaskList
